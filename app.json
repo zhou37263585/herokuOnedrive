@@ -1,8 +1,8 @@
 {
-  "name": "heroku111Onedrive",
+  "name": "herokuOnedrive",
   "description": "Deploy herokuOnedrive to heroku",
   "website": "https://github.com/qkqpttgf/herokuOnedrive",
-  "repository": "https://github.com/qkqpttgf/herokuOnedrive",
+  "repository": "https://github.com/qkqpttgf/herokuOnedrive/tree/test",
   "success_url": "/",
   "env": {
     "sitename": {
