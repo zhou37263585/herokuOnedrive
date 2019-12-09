@@ -4,6 +4,11 @@
   "website": "https://github.com/qkqpttgf/herokuOnedrive",
   "repository": "https://github.com/qkqpttgf/herokuOnedrive/tree/test",
   "success_url": "/",
+  "keywords": [
+    "Onedrive",
+    "herokuOnedrive",
+    "manage"
+  ],
   "env": {
     "sitename": {
        "description": "网站的名称，不添加会显示为‘请在环境变量添加sitename’。"
