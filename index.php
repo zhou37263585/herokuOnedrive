@@ -752,14 +752,6 @@ function render_list($path, $files)
     </ul></li>
 <?php
     } ?>
-    <select class="changelanguage" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
-        <option>Language</option>
-<?php
-    foreach ($constStr['languages'] as $key1 => $value1) { ?>
-        <option value="<?php echo $key1; ?>"><?php echo $value1; ?></option>
-<?php
-    } ?>
-    </select>
 <?php
     if ($_SERVER['needUpdate']) { ?>
     <div style='position:absolute;'><font color='red'><?php echo $constStr['NeedUpdate'][$constStr['language']]; ?></font></div>
