@@ -991,7 +991,7 @@ function render_list($path, $files)
                 </form>';
                         echo $prepagenext;
                     }
-                    if ($_SERVER['admin']) { ?>
+                    if ($_SERVER['admin'] || $_SERVER['user']) { ?>
                 <div id="upload_div" style="margin:0 0 16px 0">
                 <center>
                     <input id="upload_file" type="file" name="upload_filename" multiple="multiple">
