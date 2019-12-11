@@ -1577,7 +1577,7 @@ function binupfile(file,url,tdnum){
                                 document.getElementById('upfile_td1_'+tdnum).innerHTML='<font color="green"><?php if (!$_SERVER['admin'] || !$_SERVER['user']) { ?>'+filemd5+'<br><?php } ?>'+document.getElementById('upfile_td1_'+tdnum).innerHTML+'<br><?php echo $constStr['UploadComplete'][$constStr['language']]; ?></font>';
                                 label.innerHTML=StartStr+MiddleStr;
                                 uploadbuttonshow();
-<?php if ($_SERVER['admin']  || !$_SERVER['user'] ) { ?>
+<?php if ($_SERVER['admin']  || $_SERVER['user'] ) { ?>
                                 addelement(response);
 <?php } ?>
                             } else {
