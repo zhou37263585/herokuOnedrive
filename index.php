@@ -1505,12 +1505,12 @@ function binupfile(file,url,tdnum){
                         reader.readAsArrayBuffer(blob);
                     }
                     readblob(asize);
-<?php if (!$_SERVER['admin'] || !$_SERVER['user']) { ?>
+<?php if (!$_SERVER['admin'] && !$_SERVER['user']) { ?>
                     var spark = new SparkMD5.ArrayBuffer();
 <?php } ?>
                     reader.onload = function(e){
                         var binary = this.result;
-<?php if (!$_SERVER['admin']  || !$_SERVER['user']) { ?>
+<?php if (!$_SERVER['admin']  && !$_SERVER['user']) { ?>
                         spark.append(binary);
                         if (asize < newstartsize) {
                             asize += chunksize;
@@ -1544,7 +1544,7 @@ function binupfile(file,url,tdnum){
                                 xhr3.onload = function(e){
                                     console.log(xhr3.responseText+','+xhr3.status);
                                 }
-<?php if (!$_SERVER['admin']  || !$_SERVER['user']) { ?>
+<?php if (!$_SERVER['admin']  && !$_SERVER['user']) { ?>
                                 var filemd5 = spark.end();
                                 var xhr4 = new XMLHttpRequest();
                                 xhr4.open("GET", '?action=uploaded_rename&filename='+encodeURIComponent(file.name)+'&filemd5='+filemd5);
@@ -1798,8 +1798,6 @@ function binupfile(file,url,tdnum){
 	
 	function splitFileName(obj){
 		var a = obj.value.split("\\");
-		console.log(a);
-		console.log(a.length);
 		document.getElementById('flieText').value = a[a.length-1];
 	}
 <?php } ?>
