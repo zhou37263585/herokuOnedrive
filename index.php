@@ -739,24 +739,6 @@ function render_list($path, $files)
             .list-table {padding:8px}
             .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
         }
-		
-		div.costs-uploadfile-div{
-			position:relative;
-		}
-		div.costs-uploadfile-div #textfield{
-			width:150px;
-			height:30px;    
-		}
-		div.costs-uploadfile-div #fileField{
-			width:245px;
-			height:30px;    
-			position: absolute;
-			top: 0;
-			left:0;
-			filter: alpha(opacity:0);
-			opacity: 0;
-		}
-
     </style>
 </head>
 
@@ -814,13 +796,9 @@ function render_list($path, $files)
     if ($_SERVER['is_imgup_path']&&!$_SERVER['admin']) { ?>
                 <div id="upload_div" style="margin:10px">
                 <center>
-					<div class="costs-uploadfile-div">                             
-						<input id="upload_file" type="file" name="upload_filename" id="fileField" onchange="document.getElementById('textfield').value=this.value" /> 
-						<input type='text' id="textfield" value="upload"/> 
-						<button id="upload_submit" nclick="preup();" class="allBtn costs-marl15"><?php echo $constStr['Upload'][$constStr['language']]; ?></button>
-					</div>
-				
-				<center>
+                    <input id="upload_file" type="file" name="upload_filename">
+                    <input id="upload_submit" onclick="preup();" value="<?php echo $constStr['Upload'][$constStr['language']]; ?>" type="button">
+                <center>
                 </div>
 <?php } else {
         if ($_SERVER['ishidden']<4) {
