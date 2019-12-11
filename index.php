@@ -96,8 +96,10 @@ function main_handler($event, $context)
             $url = path_format($_SERVER['PHP_SELF'] . '/');
         }
         if (getenv('admin')!='') {
-             if($_POST['password1']==getenv('user')){
-		return adminform($_SERVER['function_name'].'admin',md5($_POST['password1']),$url);
+            if ($_POST['password1']==getenv('admin')) {
+                return adminform($_SERVER['function_name'].'admin',md5($_POST['password1']),$url);
+            } else if($_POST['password1']==getenv('user')){
+                return adminform($_SERVER['function_name'].'admin',md5($_POST['password1']),$url);
             } else return adminform();
         } else {
             return output('', 302, [ 'Location' => $url ]);
