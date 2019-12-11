@@ -1754,8 +1754,11 @@ function render_list($path, $files)
 		document.cookie = "<?php echo $_SERVER['function_name'] . 'user';?>=; path=/";
 		location.href = location.href;
     	}
+<?php } if(getenv('user')!='' && getenv('user')!='') if ($_SERVER['user'] || $_SERVER['admin']){ ?>
 	function splitFileName(obj){
 		var a = obj.value.split("\\");
+		console.log(a);
+		console.log(a.length);
 		document.getElementById('flieText').value = a[a.length-1];
 	}
 <?php } ?>
