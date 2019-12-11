@@ -1687,35 +1687,6 @@ function binupfile(file,url,tdnum){
         }
         return false;
     }
-    function addelement(html) {
-        var tr1=document.createElement('tr');
-        tr1.setAttribute('data-to',1);
-        var td1=document.createElement('td');
-        td1.setAttribute('class','file');
-        var a1=document.createElement('a');
-        a1.href=html.name.replace(/#/,'%23');
-        a1.innerText=html.name;
-        a1.target='_blank';
-        var td2=document.createElement('td');
-        td2.setAttribute('class','updated_at');
-        td2.innerText=html.lastModifiedDateTime.replace(/T/,' ').replace(/Z/,'');
-        var td3=document.createElement('td');
-        td3.setAttribute('class','size');
-        td3.innerText=size_format(html.size);
-        if (!!html.folder) {
-            a1.href+='/';
-            document.getElementById('tr0').parentNode.insertBefore(tr1,document.getElementById('tr0').nextSibling);
-        }
-        if (!!html.file) {
-            a1.href+='?preview';
-            a1.name='filelist';
-            document.getElementById('tr0').parentNode.appendChild(tr1);
-        }
-        tr1.appendChild(td1);
-        td1.appendChild(a1);
-        tr1.appendChild(td2);
-        tr1.appendChild(td3);
-    }
     function getElements(formId) {
         var form = document.getElementById(formId);
         var elements = new Array();
@@ -1795,6 +1766,36 @@ function binupfile(file,url,tdnum){
 		location.href = location.href;
     	}
 <?php } if(getenv('user')!='' && getenv('user')!='') if ($_SERVER['user'] || $_SERVER['admin']){ ?>
+	function addelement(html) {
+		var tr1=document.createElement('tr');
+		tr1.setAttribute('data-to',1);
+		var td1=document.createElement('td');
+		td1.setAttribute('class','file');
+		var a1=document.createElement('a');
+		a1.href=html.name.replace(/#/,'%23');
+		a1.innerText=html.name;
+		a1.target='_blank';
+		var td2=document.createElement('td');
+		td2.setAttribute('class','updated_at');
+		td2.innerText=html.lastModifiedDateTime.replace(/T/,' ').replace(/Z/,'');
+		var td3=document.createElement('td');
+		td3.setAttribute('class','size');
+		td3.innerText=size_format(html.size);
+		if (!!html.folder) {
+		    a1.href+='/';
+		    document.getElementById('tr0').parentNode.insertBefore(tr1,document.getElementById('tr0').nextSibling);
+		}
+		if (!!html.file) {
+		    a1.href+='?preview';
+		    a1.name='filelist';
+		    document.getElementById('tr0').parentNode.appendChild(tr1);
+		}
+		tr1.appendChild(td1);
+		td1.appendChild(a1);
+		tr1.appendChild(td2);
+		tr1.appendChild(td3);
+	    }
+	
 	function splitFileName(obj){
 		var a = obj.value.split("\\");
 		console.log(a);
