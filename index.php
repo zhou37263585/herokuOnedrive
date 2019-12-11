@@ -65,14 +65,12 @@ if ($_SERVER['USER']!='qcloud') {
     http_response_code($re['statusCode']);
     echo $re['body'];
 }
-
 function main_handler($event, $context)
 {
     global $constStr;
     $event = json_decode(json_encode($event), true);
     $context = json_decode(json_encode($context), true);
     //printInput($event, $context);
-
     //unset($_POST);
     unset($_GET);
     //unset($_COOKIE);
@@ -83,7 +81,6 @@ function main_handler($event, $context)
     $_SERVER['refresh_token'] = getenv('t1').getenv('t2').getenv('t3').getenv('t4').getenv('t5').getenv('t6').getenv('t7');
     if (!$_SERVER['refresh_token']) $_SERVER['refresh_token'] = getenv('refresh_token');
     if (!$_SERVER['refresh_token']) return get_refresh_token($_SERVER['function_name'], $_SERVER['Region'], $context['namespace']);
-
     if (getenv('adminloginpage')=='') {
         $adminloginpage = 'admin';
     } else {
@@ -126,7 +123,6 @@ function main_handler($event, $context)
     $_SERVER['retry'] = 0;
     return list_files($path);
 }
-
 function fetch_files($path = '/')
 {
     $path1 = path_format($path);
@@ -134,11 +130,9 @@ function fetch_files($path = '/')
     $cache = null;
     $cache = new \Doctrine\Common\Cache\FilesystemCache(sys_get_temp_dir(), '.qdrive');
     if (!($files = $cache->fetch('path_' . $path))) {
-
         // https://docs.microsoft.com/en-us/graph/api/driveitem-get?view=graph-rest-1.0
         // https://docs.microsoft.com/zh-cn/graph/api/driveitem-put-content?view=graph-rest-1.0&tabs=http
         // https://developer.microsoft.com/zh-cn/graph/graph-explorer
-
         $url = $_SERVER['api_url'];
         if ($path !== '/') {
             $url .= ':' . $path;
@@ -147,7 +141,6 @@ function fetch_files($path = '/')
         $url .= '?expand=children(select=name,size,file,folder,parentReference,lastModifiedDateTime)';
         $files = json_decode(curl_request($url, false, ['Authorization' => 'Bearer ' . $_SERVER['access_token']]), true);
         // echo $path . '<br><pre>' . json_encode($files, JSON_PRETTY_PRINT) . '</pre>';
-
         if (isset($files['folder'])) {
             if ($files['folder']['childCount']>200) {
                 // files num > 200 , then get nextlink
@@ -161,12 +154,10 @@ function fetch_files($path = '/')
     }
     return $files;
 }
-
 function fetch_files_children($files, $path, $page, $cache)
 {
     $cachefilename = '.SCFcache_'.$_SERVER['function_name'];
     $maxpage = ceil($files['folder']['childCount']/200);
-
     if (!($files['children'] = $cache->fetch('files_' . $path . '_page_' . $page))) {
         // down cache file get jump info. 下载cache文件获取跳页链接
         $cachefile = fetch_files(path_format($path1 . '/' .$cachefilename));
@@ -263,7 +254,6 @@ function fetch_files_children($files, $path, $page, $cache)
     }
     return $files;
 }
-
 function list_files($path)
 {
     global $exts;
@@ -283,7 +273,6 @@ function list_files($path)
         $_SERVER['access_token'] = $ret['access_token'];
         $cache->save('access_token', $_SERVER['access_token'], $ret['expires_in'] - 60);
     }
-
     if ($_SERVER['ajax']) {
         if ($_GET['action']=='del_upload_cache'&&substr($_GET['filename'],-4)=='.tmp') {
             // del '.tmp' without login. 无需登录即可删除.tmp后缀文件
@@ -344,7 +333,6 @@ function list_files($path)
         if ($_SERVER['retry']>3) return list_files($path);
     }
 }
-
 function adminform($name = '', $pass = '', $path = '')
 {
     global $constStr;
@@ -377,7 +365,6 @@ function adminform($name = '', $pass = '', $path = '')
     $html .= '</body></html>';
     return output($html,$statusCode);
 }
-
 function bigfileupload($path)
 {
     $path1 = path_format($_SERVER['list_path'] . path_format($path));
@@ -405,14 +392,12 @@ function bigfileupload($path)
     }
     return output('error', 400);
 }
-
 function adminoperate($path)
 {
     global $constStr;
     $path1 = path_format($_SERVER['list_path'] . path_format($path));
     if (substr($path1,-1)=='/') $path1=substr($path1,0,-1);
     $tmparr['statusCode'] = 0;
-
     if ($_GET['rename_newname']!=$_GET['rename_oldname'] && $_GET['rename_newname']!='') {
         // rename 重命名
         $oldname = spurlencode($_GET['rename_oldname']);
@@ -484,7 +469,6 @@ function adminoperate($path)
     }
     return $tmparr;
 }
-
 function MSAPI($method, $path, $data = '', $access_token)
 {
     if (substr($path,0,7) == 'http://' or substr($path,0,8) == 'https://') {
@@ -531,12 +515,10 @@ function MSAPI($method, $path, $data = '', $access_token)
     foreach ($headers as $headerName => $headerVal) {
         $sendHeaders[] = $headerName . ': ' . $headerVal;
     }
-
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST,$method);
     curl_setopt($ch, CURLOPT_POSTFIELDS,$data);
-
     curl_setopt($ch, CURLOPT_TIMEOUT, 5);
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -552,7 +534,6 @@ function MSAPI($method, $path, $data = '', $access_token)
 ');
     return $response;
 }
-
 function get_thumbnails_url($path = '/')
 {
     $path1 = path_format($path);
@@ -567,7 +548,6 @@ function get_thumbnails_url($path = '/')
     if (isset($files['url'])) return output($files['url']);
     return output('', 404);
 }
-
 function EnvOpt($function_name, $needUpdate = 0)
 {
     global $constStr;
@@ -650,7 +630,6 @@ function_name:' . $_SERVER['function_name'] . '<br>
     </form>';
     return message($html, $constStr['Setup'][$constStr['language']]);
 }
-
 function render_list($path, $files)
 {
     global $exts;
@@ -732,7 +711,6 @@ function render_list($path, $files)
         .operatediv_close{position:absolute;right:3px;top:3px;}
         .readme{padding:8px;background-color:#fff;}
         #readme{padding:20px;text-align:left}
-
         @media only screen and (max-width:480px){
             .title{margin-bottom:24px}
             .list-wrapper{width:95%; margin-bottom:24px;}
@@ -1412,15 +1390,11 @@ function render_list($path, $files)
     if (isset($files['folder']) && ($_SERVER['is_imgup_path'] || $_SERVER['admin'] || $_SERVER['user'])) { // is folder and is admin or guest upload path. 当前是admin登录或图床目录时 ?>
     function uploadbuttonhide() {
         document.getElementById('upload_submit').disabled='disabled';
-        document.getElementById('upload_file').disabled='disabled';
         document.getElementById('upload_submit').style.display='none';
-        document.getElementById('upload_file').style.display='none';
     }
     function uploadbuttonshow() {
-        document.getElementById('upload_file').disabled='';
         document.getElementById('upload_submit').disabled='';
         document.getElementById('upload_submit').style.display='';
-        document.getElementById('upload_file').style.display='';
     }
     function preup() {
         uploadbuttonhide();
@@ -1516,9 +1490,6 @@ function render_list($path, $files)
                     var a = html['nextExpectedRanges'][0];
                     newstartsize = Number( a.slice(0,a.indexOf("-")) );
                     StartTime = new Date();
-<?php if ($_SERVER['admin']) { ?>
-                    asize = newstartsize;
-<?php } ?>
                     if (newstartsize==0) {
                         StartStr='<?php echo $constStr['UploadStartAt'][$constStr['language']]; ?>:' +StartTime.toLocaleString()+'<br>' ;
                     } else {
@@ -1532,19 +1503,8 @@ function render_list($path, $files)
                         reader.readAsArrayBuffer(blob);
                     }
                     readblob(asize);
-<?php if (!$_SERVER['admin']) { ?>
-                    var spark = new SparkMD5.ArrayBuffer();
-<?php } ?>
                     reader.onload = function(e){
                         var binary = this.result;
-<?php if (!$_SERVER['admin']) { ?>
-                        spark.append(binary);
-                        if (asize < newstartsize) {
-                            asize += chunksize;
-                            readblob(asize);
-                            return;
-                        }
-<?php } ?>
                         var xhr = new XMLHttpRequest();
                         xhr.open("PUT", url, true);
                         //xhr.setRequestHeader('x-requested-with','XMLHttpRequest');
@@ -1571,29 +1531,6 @@ function render_list($path, $files)
                                 xhr3.onload = function(e){
                                     console.log(xhr3.responseText+','+xhr3.status);
                                 }
-<?php if (!$_SERVER['admin']) { ?>
-                                var filemd5 = spark.end();
-                                var xhr4 = new XMLHttpRequest();
-                                xhr4.open("GET", '?action=uploaded_rename&filename='+encodeURIComponent(file.name)+'&filemd5='+filemd5);
-                                xhr4.setRequestHeader('x-requested-with','XMLHttpRequest');
-                                xhr4.send(null);
-                                xhr4.onload = function(e){
-                                    console.log(xhr4.responseText+','+xhr4.status);
-                                    var filename;
-                                    if (xhr4.status==200) filename = JSON.parse(xhr4.responseText)['name'];
-                                    if (xhr4.status==409) filename = filemd5 + file.name.substr(file.name.indexOf('.'));
-                                    if (filename=='') {
-                                        alert('<?php echo $constStr['UploadErrorUpAgain'][$constStr['language']]; ?>');
-                                        uploadbuttonshow();
-                                        return;
-                                    }
-                                    var lasturl = location.href;
-                                    if (lasturl.substr(lasturl.length-1)!='/') lasturl += '/';
-                                    lasturl += filename + '?preview';
-                                    //alert(lasturl);
-                                    window.open(lasturl);
-                                }
-<?php } ?>
                                 EndTime=new Date();
                                 MiddleStr = '<?php echo $constStr['EndAt'][$constStr['language']]; ?>:'+EndTime.toLocaleString()+'<br>';
                                 if (newstartsize==0) {
@@ -1604,9 +1541,6 @@ function render_list($path, $files)
                                 document.getElementById('upfile_td1_'+tdnum).innerHTML='<font color="green"><?php if (!$_SERVER['admin']) { ?>'+filemd5+'<br><?php } ?>'+document.getElementById('upfile_td1_'+tdnum).innerHTML+'<br><?php echo $constStr['UploadComplete'][$constStr['language']]; ?></font>';
                                 label.innerHTML=StartStr+MiddleStr;
                                 uploadbuttonshow();
-<?php if ($_SERVER['admin']) { ?>
-                                addelement(response);
-<?php } ?>
                             } else {
                                 if (!response['nextExpectedRanges']) {
                                     label.innerHTML='<font color="red">'+xhr.responseText+'</font><br>';
@@ -1670,7 +1604,6 @@ function render_list($path, $files)
         document.getElementById(action + '_sid').value=num;
         document.getElementById(action + '_hidden').value=str;
         if (action=='rename') document.getElementById(action + '_input').value=str;
-
         var $e = event || window.event;
         var $scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
         var $scrollY = document.documentElement.scrollTop || document.body.scrollTop;
