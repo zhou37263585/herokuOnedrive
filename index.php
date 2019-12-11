@@ -1468,7 +1468,7 @@ function render_list($path, $files)
         }
         return num.toFixed(2) + ' GB';
     }
-    function binupfile(file,url,tdnum){
+function binupfile(file,url,tdnum){
         var label=document.getElementById('upfile_td2_'+tdnum);
         var reader = new FileReader();
         var StartStr='';
@@ -1489,6 +1489,9 @@ function render_list($path, $files)
                     var a = html['nextExpectedRanges'][0];
                     newstartsize = Number( a.slice(0,a.indexOf("-")) );
                     StartTime = new Date();
+<?php if ($_SERVER['admin'] || $_SERVER['user']) { ?>
+                    asize = newstartsize;
+<?php } ?>
                     if (newstartsize==0) {
                         StartStr='<?php echo $constStr['UploadStartAt'][$constStr['language']]; ?>:' +StartTime.toLocaleString()+'<br>' ;
                     } else {
@@ -1502,8 +1505,19 @@ function render_list($path, $files)
                         reader.readAsArrayBuffer(blob);
                     }
                     readblob(asize);
+<?php if (!$_SERVER['admin'] || !$_SERVER['user']) { ?>
+                    var spark = new SparkMD5.ArrayBuffer();
+<?php } ?>
                     reader.onload = function(e){
                         var binary = this.result;
+<?php if (!$_SERVER['admin']  || !$_SERVER['user']) { ?>
+                        spark.append(binary);
+                        if (asize < newstartsize) {
+                            asize += chunksize;
+                            readblob(asize);
+                            return;
+                        }
+<?php } ?>
                         var xhr = new XMLHttpRequest();
                         xhr.open("PUT", url, true);
                         //xhr.setRequestHeader('x-requested-with','XMLHttpRequest');
@@ -1530,6 +1544,29 @@ function render_list($path, $files)
                                 xhr3.onload = function(e){
                                     console.log(xhr3.responseText+','+xhr3.status);
                                 }
+<?php if (!$_SERVER['admin']  || !$_SERVER['user']) { ?>
+                                var filemd5 = spark.end();
+                                var xhr4 = new XMLHttpRequest();
+                                xhr4.open("GET", '?action=uploaded_rename&filename='+encodeURIComponent(file.name)+'&filemd5='+filemd5);
+                                xhr4.setRequestHeader('x-requested-with','XMLHttpRequest');
+                                xhr4.send(null);
+                                xhr4.onload = function(e){
+                                    console.log(xhr4.responseText+','+xhr4.status);
+                                    var filename;
+                                    if (xhr4.status==200) filename = JSON.parse(xhr4.responseText)['name'];
+                                    if (xhr4.status==409) filename = filemd5 + file.name.substr(file.name.indexOf('.'));
+                                    if (filename=='') {
+                                        alert('<?php echo $constStr['UploadErrorUpAgain'][$constStr['language']]; ?>');
+                                        uploadbuttonshow();
+                                        return;
+                                    }
+                                    var lasturl = location.href;
+                                    if (lasturl.substr(lasturl.length-1)!='/') lasturl += '/';
+                                    lasturl += filename + '?preview';
+                                    //alert(lasturl);
+                                    window.open(lasturl);
+                                }
+<?php } ?>
                                 EndTime=new Date();
                                 MiddleStr = '<?php echo $constStr['EndAt'][$constStr['language']]; ?>:'+EndTime.toLocaleString()+'<br>';
                                 if (newstartsize==0) {
@@ -1537,9 +1574,12 @@ function render_list($path, $files)
                                 } else {
                                     MiddleStr += '<?php echo $constStr['ThisTime'][$constStr['language']].$constStr['AverageSpeed'][$constStr['language']]; ?>:'+size_format((totalsize-newstartsize)*1000/(EndTime.getTime()-StartTime.getTime()))+'/s<br>';
                                 }
-                                document.getElementById('upfile_td1_'+tdnum).innerHTML='<font color="green">'+document.getElementById('upfile_td1_'+tdnum).innerHTML+'<br><?php echo $constStr['UploadComplete'][$constStr['language']]; ?></font>';
+                                document.getElementById('upfile_td1_'+tdnum).innerHTML='<font color="green"><?php if (!$_SERVER['admin'] || !$_SERVER['user']) { ?>'+filemd5+'<br><?php } ?>'+document.getElementById('upfile_td1_'+tdnum).innerHTML+'<br><?php echo $constStr['UploadComplete'][$constStr['language']]; ?></font>';
                                 label.innerHTML=StartStr+MiddleStr;
                                 uploadbuttonshow();
+<?php if ($_SERVER['admin']  || !$_SERVER['user'] ) { ?>
+                                addelement(response);
+<?php } ?>
                             } else {
                                 if (!response['nextExpectedRanges']) {
                                     label.innerHTML='<font color="red">'+xhr.responseText+'</font><br>';
