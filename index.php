@@ -974,8 +974,8 @@ function render_list($path, $files)
                 <div id="upload_div" style="margin:0 0 16px 0">
                 <center>
                     	<input id="upload_file" type="file" name="upload_filename" onchange="document.getElementById('flieText').value = this.value" style="display:none">
-			<input value="<?php echo $constStr['Upload'][$constStr['language']]; ?>" type="button" onclick="document.getElementById('upload_file').click();">
-			<input id="flieText" type="text" style="border:0;outline:none;" onclick="document.getElementById('upload_file').click();" value="<?php echo $constStr['Upload'][$constStr['language']]; ?>">
+			<input value="<?php echo $constStr['FileSelected'][$constStr['language']]; ?>" type="button" onclick="document.getElementById('upload_file').click();">
+			<input id="flieText" type="text" style="border:0;outline:none;" onclick="document.getElementById('upload_file').click();" value="<?php echo $constStr['NoFileSelected'][$constStr['language']]; ?>">
 			<input id="upload_submit" onclick="preup();" value="<?php echo $constStr['Upload'][$constStr['language']]; ?>" type="button">
                 </center>
                 </div>
