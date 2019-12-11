@@ -744,7 +744,7 @@ function render_list($path, $files)
     		<a onclick="login();"><?php echo $constStr['Login'][$constStr['language']]; ?></a>
 <?php   }
     } else if(getenv('user')!='') if (!$_SERVER['user']){ ?>
-        	<a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; </a>
+        	<a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a>
 <?php	} else { ?>
     <li class="operate"><?php echo $constStr['Operate'][$constStr['language']]; ?><ul>
 <?php   if (isset($files['folder'])) { ?>
