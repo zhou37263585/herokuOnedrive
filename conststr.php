@@ -235,6 +235,14 @@ $constStr = [
         'en-us' => 'Upload',
         'zh-cn' => '上传',
     ],
+    'NoFileSelected' => [
+        'en-us' => 'No File Selected',
+        'zh-cn' => '未选择文件',
+    ],
+    'FileSelected' => [
+        'en-us' => 'File Selected',
+        'zh-cn' => '选择文件',
+    ],
     'Submit' => [
         'en-us' => 'Submit',
         'zh-cn' => '确认',
