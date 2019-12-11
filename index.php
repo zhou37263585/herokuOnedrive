@@ -741,9 +741,11 @@ function render_list($path, $files)
 <?php
     if (getenv('admin')!='') if (!$_SERVER['admin']) {
         if (getenv('adminloginpage')=='') { ?>
-    <a onclick="login();"><?php echo $constStr['Login'][$constStr['language']]; ?></a>
+    		<a onclick="login();"><?php echo $constStr['Login'][$constStr['language']]; ?></a>
 <?php   }
-    } else { ?>
+    } else if(getenv('user')!='') if (!$_SERVER['user']){ ?>
+        	<a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; </a>
+<?php	} else { ?>
     <li class="operate"><?php echo $constStr['Operate'][$constStr['language']]; ?><ul>
 <?php   if (isset($files['folder'])) { ?>
         <li><a onclick="showdiv(event,'create','');"><?php echo $constStr['Create'][$constStr['language']]; ?></a></li>
