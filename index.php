@@ -99,7 +99,7 @@ function main_handler($event, $context)
             if ($_POST['password1']==getenv('admin')) {
                 return adminform($_SERVER['function_name'].'admin',md5($_POST['password1']),$url);
             } else if($_POST['password1']==getenv('user')){
-                return adminform($_SERVER['function_name'].'admin',md5($_POST['password1']),$url);
+                return adminform($_SERVER['function_name'].'user',md5($_POST['password1']),$url);
             } else return adminform();
         } else {
             return output('', 302, [ 'Location' => $url ]);
