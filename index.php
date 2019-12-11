@@ -1813,7 +1813,7 @@ function render_list($path, $files)
         document.getElementById('login_div').style.top=(window.innerHeight-document.getElementById('login_div').offsetHeight)/2+document.body.scrollTop +'px';
         document.getElementById('login_input').focus();
     }
-<?php } else if (getenv('user')!='') if ($_SERVER['user']) { ?>
+<?php } else if(getenv('user')!='') if ($_SERVER['user']){ ?>
 	function userLoginOut() {
 		document.cookie = "<?php echo $_SERVER['function_name'] . 'user';?>=; path=/";
 		location.href = location.href;
