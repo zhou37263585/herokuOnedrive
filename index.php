@@ -740,7 +740,7 @@ function render_list($path, $files)
 <body>
 <?php
     if (getenv('admin')!='') if (!$_SERVER['admin']) {
-        if (getenv('adminloginpage')=='') { ?>
+        if (getenv('adminloginpage')=='') { 
     		if(getenv('user')!='') if (!$_SERVER['user']){ ?>
 				<a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a>
 			<?php } else { ?>
