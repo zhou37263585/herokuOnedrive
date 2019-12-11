@@ -747,7 +747,7 @@ function render_list($path, $files)
     if (getenv('admin')!='') if (!$_SERVER['admin']) {
         if (getenv('adminloginpage')=='') { 
     		if(getenv('user')!='') if ($_SERVER['user']){ ?>
-				<a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a>
+				<a onclick="userLoginOut()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a>
 			<?php } else { ?>
 				<a onclick="login();"><?php echo $constStr['Login'][$constStr['language']]; ?></a>
 			<?php } ?>
