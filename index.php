@@ -110,6 +110,11 @@ function main_handler($event, $context)
     } else {
         $_SERVER['admin']=0;
     }
+    if (getenv('user')!='') if ($_COOKIE[$_SERVER['function_name'].'user']==md5(getenv('user')) || $_POST['password1']==getenv('user') ) {
+        $_SERVER['user']=1;
+    } else {
+        $_SERVER['user']=0;
+    }
     //$_SERVER['needUpdate'] = needUpdate();
     if ($_GET['setup']) if ($_SERVER['admin'] && getenv('APIKey')!='') {
         // setup Environments. 设置，对环境变量操作
