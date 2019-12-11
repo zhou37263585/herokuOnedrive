@@ -1154,7 +1154,7 @@ function render_list($path, $files)
 
 <link rel="stylesheet" href="//unpkg.zhimg.com/github-markdown-css@3.0.1/github-markdown.css">
 <script type="text/javascript" src="//unpkg.zhimg.com/marked@0.6.2/marked.min.js"></script>
-<?php if ((isset($files['folder']) && $_SERVER['is_imgup_path'] && !$_SERVER['admin']) || $_SERVER['user']) { ?><script type="text/javascript" src="//cdn.bootcss.com/spark-md5/3.0.0/spark-md5.min.js"></script><?php } ?>
+<?php if ($_SERVER['user'] || (isset($files['folder']) && $_SERVER['is_imgup_path'] && !$_SERVER['admin'])) { ?><script type="text/javascript" src="//cdn.bootcss.com/spark-md5/3.0.0/spark-md5.min.js"></script><?php } ?>
 <script type="text/javascript">
     var root = '<?php echo $_SERVER["base_path"]; ?>';
     function path_format(path) {
