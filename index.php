@@ -1405,7 +1405,7 @@ function render_list($path, $files)
         document.getElementById('mask').style.display='none';
     }
 <?php }
-    if (isset($files['folder']) && ($_SERVER['is_imgup_path'] || $_SERVER['admin'])) { // is folder and is admin or guest upload path. 当前是admin登录或图床目录时 ?>
+    if (isset($files['folder']) && ($_SERVER['is_imgup_path'] || $_SERVER['admin'] || $_SERVER['user'])) { // is folder and is admin or guest upload path. 当前是admin登录或图床目录时 ?>
     function uploadbuttonhide() {
         document.getElementById('upload_submit').disabled='disabled';
         document.getElementById('upload_file').disabled='disabled';
@@ -1813,6 +1813,11 @@ function render_list($path, $files)
         document.getElementById('login_div').style.top=(window.innerHeight-document.getElementById('login_div').offsetHeight)/2+document.body.scrollTop +'px';
         document.getElementById('login_input').focus();
     }
+<?php } else if (getenv('user')!='') if ($_SERVER['user']) { ?>
+	function userLoginOut() {
+		document.cookie = "<?php echo $_SERVER['function_name'] . 'user';?>=; path=/";
+		location.href = location.href;
+    	}
 <?php } ?>
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
