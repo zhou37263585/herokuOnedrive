@@ -912,16 +912,16 @@ function render_list($path, $files)
     } else { ?>
     <li class="operate"><?php echo $constStr['Operate'][$constStr['language']]; ?><ul>
 <?php   if (isset($files['folder'])) { ?>
-        <li><a onclick="showdiv(event,'create','');" ><?php echo $constStr['Create'][$constStr['language']]; ?>
+        <li><a onclick="showdiv(event,'create','');" >
 		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA+0lEQVQ4T2NkoBAwUqifAcMAkWl3
 			jP8x/tdnYGCQxWk4I8Pqdxmq10DyKAYIzbitxfCfIZT5H+PS19kqd7AZIDD5tgNI/EOu6gEUA8S7
 			L3L/4eG69zZTVRyft3AaIDz1rikD4x/pt1nqG2AGCEy/bQi2LVP1PFwMlwvQTQZpEJx20xZEv89S
 			P0ySAaCw+PebQYyB8b8eWON/xktMrAyvQAGH0wvIEhQbAHMu2V7AF4iCM+56/f//7zksYOHpAFsg
 			YotOoem3P3EwfZR4lm7yDSUdEDIAnMj+MVz995fBEZaIUAyAKcCViP7/Z8hmZGY4AEvCMHXUz0yk
 			5k4AVUKTEfmS6BcAAAAASUVORK5CYII='/>
-			</a>
+			<?php echo $constStr['Create'][$constStr['language']]; ?></a>
 		</li>
-        <li><a onclick="showdiv(event,'encrypt','');"><?php echo $constStr['encrypt'][$constStr['language']]; ?>
+        <li><a onclick="showdiv(event,'encrypt','');">
 		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
 			OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
 			+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
@@ -929,10 +929,10 @@ function render_list($path, $files)
 			V2TwSkdyEqMeNUWvEKhcyLXkC0sKUOF0cPhOm8VrsC8eh2ujryy2fSsmlmVa1ZnEW8PyVXYEGAVH
 			HwfHr1IKMDuyq6DQFfV/CqT/Q+EVzM7TOiG+ZyDTc87o2gx9I3RXHzIt/I6sPGaGPa1KIvQCR5xM
 			zEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC'/>
-			</a>
+			<?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
 		</li>
 <?php   } ?>
-        <li><a <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>><?php echo $constStr['Setup'][$constStr['language']]; ?>
+        <li><a <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>>
 		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB7klEQVQ4T41TQY7TQBCsHhtyNdkP
 			eKV1JE6bvID8APMCwjHOJfwgvIBckhwxPzAvwPwgnCKtVyIfWMdXa+Mp1M5OZFAWMbeZ7q6u7qoR
 			PHP662IrQKVhAsMyiYJLqeIeg8+/AtM7fgeQW/KrQBaHWRRrvL8qFtYg9yiBBd+z9j9UH69b8BZA
@@ -943,16 +943,16 @@ function render_list($path, $files)
 			ICI/y+nN3Kljesetrf3h2Qft0gyW//JBl8kfMjojCZHrgk6ubN42tfftbJzNLoT1AqfKiR3DMhlM
 			zn9BdwExBDkisVenPSQ3Wdtgc7+kZdh638gBtKLF57/QdZit/RQvH0OjxoJ80ZgBlmUSjU6mk1gd
 			6GrODP7edkvz6agbu/p3c38Dn44bXo87ZCAAAAAASUVORK5CYII='/>
-			</a>
+			<?php echo $constStr['Setup'][$constStr['language']]; ?></a>
 		</li>
-        <li><a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; ?>
+        <li><a onclick="logout()">
 		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA9ElEQVQ4T2NkoBAwwvQLTL+uwMTA
 			Eo/NPMZ//x++zVZbgFUOJig47fZtRgYGFVwO+s/AmP4+S2UWujzcBULTbv//95fB8UOu6gF0RYLT
 			bu9nZGQ48C5TtXGoGjD9jjUj4//3/34ziDGxMNgje4WoMIDH1OTbDkzMDPsZGBknvstUKQCJ4zRA
 			cPoNa8b/zEewBNrV/wwM2v/+MRR+yFGdgNcFApNvO6AYwMwoz8Twr4GBgenOu1c/vRkatH+R7AVG
 			ZoZ6xv+Mce+yVR7j9QKyzULTbi1nYGS8QfN0cIWBgUEbV1JmZGSIe5upuhhnSqQ4M5GbqwFydp4R
 			iVZAFgAAAABJRU5ErkJggg=='/>
-			</a>
+			<?php echo $constStr['Logout'][$constStr['language']]; ?></a>
 		</li>
     </ul></li>
 <?php
@@ -1068,7 +1068,7 @@ function render_list($path, $files)
                     <!-- Dirs -->
 <?php               //echo json_encode($files['children'], JSON_PRETTY_PRINT);
                     foreach ($files['children'] as $file) {
-                        // Folders
+                        // Folders 
                         if (isset($file['folder'])) { 
                             $filenum++; ?>
                     <tr data-to id="tr<?php echo $filenum;?>">
@@ -1082,7 +1082,7 @@ function render_list($path, $files)
 								8lZ4weu5Mf77NK52C38mOQFVcSMR5erPkgAAAABJRU5ErkJggg=='/>
 							<?php echo $constStr['Operate'][$constStr['language']]; ?>
                             <ul>
-                                <li><a onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);"><?php echo $constStr['encrypt'][$constStr['language']]; ?>
+                                <li><a onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);">
 								<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
 									OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
 									+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
@@ -1090,32 +1090,34 @@ function render_list($path, $files)
 									V2TwSkdyEqMeNUWvEKhcyLXkC0sKUOF0cPhOm8VrsC8eh2ujryy2fSsmlmVa1ZnEW8PyVXYEGAVH
 									HwfHr1IKMDuyq6DQFfV/CqT/Q+EVzM7TOiG+ZyDTc87o2gx9I3RXHzIt/I6sPGaGPa1KIvQCR5xM
 									zEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC'/>
-									</a>
+									<?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
 								</li>
-                                <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);"><?php echo $constStr['Rename'][$constStr['language']]; ?>
+                                <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
 								<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA1ElEQVQ4T2NkIBMITL1lwMDEKMAI
 									0y847dYkRgbGXLzmMTI0vMtUbQSpQTFAYPJtByZmhqx3WaphhBwkNO12KAMDw6p3Wapgy8GE0PTb
 									9SAaZjouQ2CaGRgYwt5lqa4myQBsmok2AF0zyMUw1xL0Ajabhabd/k9UGOByNlEG4NIMDnRCLoBG
 									637k0EaOGaIMAGn4kKt6AFuUEjSAiMREXCDiSVCoBkD8/D/yXZZaOiHboeGz9F2WqjQ8IUFC9tZM
 									BgbGNEIGQOT/z4JZBs+NxGnEVAUAnb6OlYdp+d4AAAAASUVORK5CYII='/>
-									</a>
+									<?php echo $constStr['Rename'][$constStr['language']]; ?></a>
 								</li>
-                                <li><a onclick="showdiv(event, 'move',<?php echo $filenum;?>);"><?php echo $constStr['Move'][$constStr['language']]; ?>
+                                <li><a onclick="showdiv(event, 'move',<?php echo $filenum;?>);">
 									<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABR0lEQVQ4T51Tu07DMBQ912VgbMvK
 									Bp6Y+AM+gsDIwNK6YuALWiZ2orioEhIraQcmpDLBxBcweURs1PQH7KAbklKVJA1kiRSfe3zPI4SK
 									pxWaEW3g3XblRRmMyg7a2gQA+gBZiOTKduSkCFtI0AzNgWhA8UAixC05f+I9hvMz+bRKUroBA9va
 									xEzw2dl5+LMEHtjSRgP0OFO792sJeO3VFZnAAXdzJZ+XCZaxqYTMsMAqeVSVSn7G0iAQs7HUiswI
 									BJk4/ETVQPLr1qHZJ49tImymRAnOITClZmgGQuAUhBf+TsAHv2dKpiksbo1MH4Q9EF4zgsA7TL4l
 									XJtDOAS2J49rSwDGVsnxIsYiE1mrB6K1Jla0MfYOuqhA+czaIv2LIK8yG+oc4rTWhBvbldPaVeZu
-									EHDpgTcCNBtW+2fKgVnEsD05KPPpC8/xjRKfuGcxAAAAAElFTkSuQmCC'/></a>
+									EHDpgTcCNBtW+2fKgVnEsD05KPPpC8/xjRKfuGcxAAAAAElFTkSuQmCC'/>
+									<?php echo $constStr['Move'][$constStr['language']]; ?></a>
 								</li>
-                                <li><a onclick="showdiv(event, 'delete',<?php echo $filenum;?>);"><?php echo $constStr['Delete'][$constStr['language']]; ?>
+                                <li><a onclick="showdiv(event, 'delete',<?php echo $filenum;?>);">
 								<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVQ4T9WTPQ6CMBzFH+gBtI4u
 									xthBPYRwCNkdaeIRjHoDp+LmziVk8wTGmDo4OJrqBbCmA6YgGIhxsFM/Xn/9f7xa+HJYefebXGwt
 									wDHPFBDdGHWz+jcACcRcKTgqxtIU23WM9Fr6NLVfCMi+psG5ALIWAzwQAhhWLMceNrxUBIQL9Yjh
 									3qc0KoJpjWT0de93AMJFKBn1dCR6bqM2u7LusXQEptBM7Z8AwWkj/d4kqYFRj3JdaASHzt3vn7Pt
 									/FiDFhdRHGNR5APCxRjASjLaTsBpH2i7KmhRvisVLrCwS9LRkNzfWMXST94qvsAPzf8GAAAAAElF
-									TkSuQmCC'/></a>
+									TkSuQmCC'/>
+									<?php echo $constStr['Delete'][$constStr['language']]; ?></a>
 								</li>
                             </ul>
                             </li>&nbsp;&nbsp;&nbsp;
@@ -1142,7 +1144,12 @@ function render_list($path, $files)
                     <tr data-to id="tr<?php echo $filenum;?>">
                         <td class="file">
 <?php                           if ($_SERVER['admin']) { ?>
-                            <li class="operate"><?php echo $constStr['Operate'][$constStr['language']]; ?>
+                            <li class="operate"><img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVQ4T9WTPQ6CMBzFH+gBtI4u
+									xthBPYRwCNkdaeIRjHoDp+LmziVk8wTGmDo4OJrqBbCmA6YgGIhxsFM/Xn/9f7xa+HJYefebXGwt
+									wDHPFBDdGHWz+jcACcRcKTgqxtIU23WM9Fr6NLVfCMi+psG5ALIWAzwQAhhWLMceNrxUBIQL9Yjh
+									3qc0KoJpjWT0de93AMJFKBn1dCR6bqM2u7LusXQEptBM7Z8AwWkj/d4kqYFRj3JdaASHzt3vn7Pt
+									/FiDFhdRHGNR5APCxRjASjLaTsBpH2i7KmhRvisVLrCwS9LRkNzfWMXST94qvsAPzf8GAAAAAElF
+									TkSuQmCC'/><?php echo $constStr['Operate'][$constStr['language']]; ?>
                             <ul>
                                 <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);"><?php echo $constStr['Rename'][$constStr['language']]; ?></a></li>
                                 <li><a onclick="showdiv(event, 'move',<?php echo $filenum;?>);"><?php echo $constStr['Move'][$constStr['language']]; ?></a></li>
