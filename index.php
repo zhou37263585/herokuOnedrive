@@ -916,7 +916,7 @@ function render_list($path, $files)
 				<?php echo $constStr['Logout'][$constStr['language']]; ?></a>
 			<?php } else { ?>
 				<a onclick="login();">
-					<imgv class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T4WSMWgUQRSG/3/3UAMi
+					<img class="userLoginOut_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T4WSMWgUQRSG/3/3UAMi
 						yR5JGkHF7JnKRhvBIoJdhBSChZpKiGbPlBqw0FNQsDGg3B4qpBNEIUVMYwQjiI0ItuqthyCmibt3
 						QRJRd+eXNYnkLnvJq2bem/fNP+8fIiN6K0FPbLgnZhIueoVa1pm1HFuLef9TReCFdflZ0TyjrEuU
 						HofFwvj6niZAvhLclnR5w43ECwBvIJQAfom8vn0bFHSXg76EqraVq+QqaN9I6wYYanjudLr+ryDv
