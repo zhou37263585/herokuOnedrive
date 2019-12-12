@@ -1,4 +1,4 @@
-<?php
+
 /*
     帖子 ： https://www.hostloc.com/thread-617698-1-1.html
     github ： https://github.com/qkqpttgf/herokuOnedrive
@@ -65,14 +65,12 @@ if ($_SERVER['USER']!='qcloud') {
     http_response_code($re['statusCode']);
     echo $re['body'];
 }
-
 function main_handler($event, $context)
 {
     global $constStr;
     $event = json_decode(json_encode($event), true);
     $context = json_decode(json_encode($context), true);
     //printInput($event, $context);
-
     //unset($_POST);
     unset($_GET);
     //unset($_COOKIE);
@@ -83,7 +81,6 @@ function main_handler($event, $context)
     $_SERVER['refresh_token'] = getenv('t1').getenv('t2').getenv('t3').getenv('t4').getenv('t5').getenv('t6').getenv('t7');
     if (!$_SERVER['refresh_token']) $_SERVER['refresh_token'] = getenv('refresh_token');
     if (!$_SERVER['refresh_token']) return get_refresh_token($_SERVER['function_name'], $_SERVER['Region'], $context['namespace']);
-
     if (getenv('adminloginpage')=='') {
         $adminloginpage = 'admin';
     } else {
@@ -98,6 +95,8 @@ function main_handler($event, $context)
         if (getenv('admin')!='') {
             if ($_POST['password1']==getenv('admin')) {
                 return adminform($_SERVER['function_name'].'admin',md5($_POST['password1']),$url);
+            } else if($_POST['password1']==getenv('user')){
+                return adminform($_SERVER['function_name'].'user',md5($_POST['password1']),$url);
             } else return adminform();
         } else {
             return output('', 302, [ 'Location' => $url ]);
@@ -107,6 +106,11 @@ function main_handler($event, $context)
         $_SERVER['admin']=1;
     } else {
         $_SERVER['admin']=0;
+    }
+    if (getenv('user')!='') if ($_COOKIE[$_SERVER['function_name'].'user']==md5(getenv('user')) || $_POST['password1']==getenv('user') ) {
+        $_SERVER['user']=1;
+    } else {
+        $_SERVER['user']=0;
     }
     //$_SERVER['needUpdate'] = needUpdate();
     if ($_GET['setup']) if ($_SERVER['admin'] && getenv('APIKey')!='') {
@@ -119,7 +123,6 @@ function main_handler($event, $context)
     $_SERVER['retry'] = 0;
     return list_files($path);
 }
-
 function fetch_files($path = '/')
 {
     $path1 = path_format($path);
@@ -127,11 +130,9 @@ function fetch_files($path = '/')
     $cache = null;
     $cache = new \Doctrine\Common\Cache\FilesystemCache(sys_get_temp_dir(), '.qdrive');
     if (!($files = $cache->fetch('path_' . $path))) {
-
         // https://docs.microsoft.com/en-us/graph/api/driveitem-get?view=graph-rest-1.0
         // https://docs.microsoft.com/zh-cn/graph/api/driveitem-put-content?view=graph-rest-1.0&tabs=http
         // https://developer.microsoft.com/zh-cn/graph/graph-explorer
-
         $url = $_SERVER['api_url'];
         if ($path !== '/') {
             $url .= ':' . $path;
@@ -140,7 +141,6 @@ function fetch_files($path = '/')
         $url .= '?expand=children(select=name,size,file,folder,parentReference,lastModifiedDateTime)';
         $files = json_decode(curl_request($url, false, ['Authorization' => 'Bearer ' . $_SERVER['access_token']]), true);
         // echo $path . '<br><pre>' . json_encode($files, JSON_PRETTY_PRINT) . '</pre>';
-
         if (isset($files['folder'])) {
             if ($files['folder']['childCount']>200) {
                 // files num > 200 , then get nextlink
@@ -154,12 +154,10 @@ function fetch_files($path = '/')
     }
     return $files;
 }
-
 function fetch_files_children($files, $path, $page, $cache)
 {
     $cachefilename = '.SCFcache_'.$_SERVER['function_name'];
     $maxpage = ceil($files['folder']['childCount']/200);
-
     if (!($files['children'] = $cache->fetch('files_' . $path . '_page_' . $page))) {
         // down cache file get jump info. 下载cache文件获取跳页链接
         $cachefile = fetch_files(path_format($path1 . '/' .$cachefilename));
@@ -256,7 +254,6 @@ function fetch_files_children($files, $path, $page, $cache)
     }
     return $files;
 }
-
 function list_files($path)
 {
     global $exts;
@@ -276,7 +273,6 @@ function list_files($path)
         $_SERVER['access_token'] = $ret['access_token'];
         $cache->save('access_token', $_SERVER['access_token'], $ret['expires_in'] - 60);
     }
-
     if ($_SERVER['ajax']) {
         if ($_GET['action']=='del_upload_cache'&&substr($_GET['filename'],-4)=='.tmp') {
             // del '.tmp' without login. 无需登录即可删除.tmp后缀文件
@@ -337,7 +333,6 @@ function list_files($path)
         if ($_SERVER['retry']>3) return list_files($path);
     }
 }
-
 function adminform($name = '', $pass = '', $path = '')
 {
     global $constStr;
@@ -370,7 +365,6 @@ function adminform($name = '', $pass = '', $path = '')
     $html .= '</body></html>';
     return output($html,$statusCode);
 }
-
 function bigfileupload($path)
 {
     $path1 = path_format($_SERVER['list_path'] . path_format($path));
@@ -388,7 +382,6 @@ function bigfileupload($path)
             $getoldupinfo = json_decode($getoldupinfo_j , true);
             if ( json_decode( curl_request($getoldupinfo['uploadUrl']), true)['@odata.context']!='' ) return output($getoldupinfo_j);
         }
-        if (!$_SERVER['admin']) $filename = spurlencode( $fileinfo['name'] ) . '.scfupload';
         $response=MSAPI('createUploadSession',path_format($path1 . '/' . $filename),'{"item": { "@microsoft.graph.conflictBehavior": "fail"  }}',$_SERVER['access_token']);
         $responsearry = json_decode($response['body'],true);
         if (isset($responsearry['error'])) return output($response['body'], $response['stat']);
@@ -398,14 +391,12 @@ function bigfileupload($path)
     }
     return output('error', 400);
 }
-
 function adminoperate($path)
 {
     global $constStr;
     $path1 = path_format($_SERVER['list_path'] . path_format($path));
     if (substr($path1,-1)=='/') $path1=substr($path1,0,-1);
     $tmparr['statusCode'] = 0;
-
     if ($_GET['rename_newname']!=$_GET['rename_oldname'] && $_GET['rename_newname']!='') {
         // rename 重命名
         $oldname = spurlencode($_GET['rename_oldname']);
@@ -477,7 +468,6 @@ function adminoperate($path)
     }
     return $tmparr;
 }
-
 function MSAPI($method, $path, $data = '', $access_token)
 {
     if (substr($path,0,7) == 'http://' or substr($path,0,8) == 'https://') {
@@ -524,12 +514,10 @@ function MSAPI($method, $path, $data = '', $access_token)
     foreach ($headers as $headerName => $headerVal) {
         $sendHeaders[] = $headerName . ': ' . $headerVal;
     }
-
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST,$method);
     curl_setopt($ch, CURLOPT_POSTFIELDS,$data);
-
     curl_setopt($ch, CURLOPT_TIMEOUT, 5);
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -545,7 +533,6 @@ function MSAPI($method, $path, $data = '', $access_token)
 ');
     return $response;
 }
-
 function get_thumbnails_url($path = '/')
 {
     $path1 = path_format($path);
@@ -560,7 +547,6 @@ function get_thumbnails_url($path = '/')
     if (isset($files['url'])) return output($files['url']);
     return output('', 404);
 }
-
 function EnvOpt($function_name, $needUpdate = 0)
 {
     global $constStr;
@@ -643,7 +629,6 @@ function_name:' . $_SERVER['function_name'] . '<br>
     </form>';
     return message($html, $constStr['Setup'][$constStr['language']]);
 }
-
 function render_list($path, $files)
 {
     global $exts;
@@ -725,21 +710,203 @@ function render_list($path, $files)
         .operatediv_close{position:absolute;right:3px;top:3px;}
         .readme{padding:8px;background-color:#fff;}
         #readme{padding:20px;text-align:left}
-
         @media only screen and (max-width:480px){
             .title{margin-bottom:24px}
             .list-wrapper{width:95%; margin-bottom:24px;}
             .list-table {padding:8px}
             .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
         }
+<!-- DisLog start-->		
+.disLog_btn_cancel{
+	float: right;
+	width: 50%;
+	height: 39px;
+	line-height: 39px;
+	font-size: 1rem;
+	cursor:pointer;
+}
+.disLog_btn_submit{
+	float: left;
+	width: 49%;
+	height: 39px;
+	border-right: 1px solid #CCCCCC;
+	line-height: 39px;
+	font-size: 1rem;
+	cursor:pointer;
+}
+.disLog_btn_cancel:hover{
+	filter: alpha(Opacity=60);
+	opacity: 0.5;
+}
+.disLog_btn_submit:hover{
+	filter: alpha(Opacity=60);
+	opacity: 0.5;
+}
+.disLogBg{
+	border: 1px solid;
+	width: 100%;
+	margin: auto;
+	height: 100%;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	background: rgb(0,0,0,0.6);
+	overflow: auto;
+	text-align: center;
+	display: none;
+}
+.disLogBody{
+	background: white;
+	width: 250px;
+	height: 150px;
+	margin: auto;
+	border-radius: 5px;
+	position:relative
+}
+.disLogContent{
+	height: 110px;border-bottom: 1px solid #CCCCCC;
+}
+.titleText{
+	font-size: 0.9rem;
+	padding-top: 30px;
+}
+.contentTest{
+	font-size: 0.8rem;margin-top: 15px;
+}
+.disLog_btn_close{
+	position: absolute;
+	right:-20px;
+	top:-20px;
+	cursor:pointer;
+}
+.disLog_btn_close:hover{
+	filter: alpha(Opacity=60);
+	opacity:  0.85;
+}
+<!-- DisLog end-->
+<!-- loginInputTextCss start-->	    
+.form-field {
+  display: block;
+  width: 90%;
+  padding: 8px 16px;
+  line-height: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: 6px;
+  -webkit-appearance: none;
+  color: var(--input-color);
+  border: 1px solid var(--input-border);
+  background: var(--input-background);
+  transition: border .3s ease;
+}
+.form-field::-webkit-input-placeholder {
+  color: var(--input-placeholder);
+}
+.form-field:-ms-input-placeholder {
+  color: var(--input-placeholder);
+}
+.form-field::-ms-input-placeholder {
+  color: var(--input-placeholder);
+}
+.form-field::placeholder {
+  color: var(--input-placeholder);
+}
+.form-field:focus {
+  outline: none;
+  border-color: var(--input-border-focus);
+}
+.form-group {
+  position: relative;
+  display: flex;
+  width: 80%;
+  margin: auto;
+}
+.form-group > span,
+.form-group .form-field {
+  white-space: nowrap;
+  display: block;
+}
+.form-group > span:not(:first-child):not(:last-child),
+.form-group .form-field:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+.form-group > span:first-child,
+.form-group .form-field:first-child {
+  border-radius: 6px 0 0 6px;
+}
+.form-group > span:last-child,
+.form-group .form-field:last-child {
+  border-radius: 0 6px 6px 0;
+}
+.form-group > span:not(:first-child),
+.form-group .form-field:not(:first-child) {
+  margin-left: -1px;
+}
+.form-group .form-field {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  width: 1%;
+  margin-top: 0;
+  margin-bottom: 0;
+	
+<!-- 代码重复 尚未解决 不可删除  start-->
+  --input-color: #99A3BA;
+  --input-border: #CDD9ED;
+  --input-background: #fff;
+  --input-placeholder: #CBD1DC;
+  --input-border-focus: #275EFE;
+  --group-color: var(--input-color);
+  --group-border: var(--input-border);
+  --group-background: #EEF4FF;
+  --group-color-focus: #fff;
+  --group-border-focus: var(--input-border-focus);
+  --group-background-focus: #678EFE;
+<!-- 代码重复 尚未解决 不可删除 end-->	
+}
+.form-group > span {
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 25px;
+  color: var(--group-color);
+  background: var(--group-background);
+  border: 1px solid var(--group-border);
+  transition: background .3s ease, border .3s ease, color .3s ease;
+  cursor:pointer;
+	
+<!-- 代码重复 尚未解决 不可删除  start-->
+  --input-color: #99A3BA;
+  --input-border: #CDD9ED;
+  --input-background: #fff;
+  --input-placeholder: #CBD1DC;
+  --input-border-focus: #275EFE;
+  --group-color: var(--input-color);
+  --group-border: var(--input-border);
+  --group-background: #EEF4FF;
+  --group-color-focus: #fff;
+  --group-border-focus: var(--input-border-focus);
+  --group-background-focus: #678EFE;
+<!-- 代码重复 尚未解决 不可删除 end-->
+}
+.form-group:focus-within > span {
+  color: var(--group-color-focus);
+  background: var(--group-background-focus);
+  border-color: var(--group-border-focus);
+}
+<!-- loginInputTextCss end-->
     </style>
 </head>
-
 <body>
 <?php
     if (getenv('admin')!='') if (!$_SERVER['admin']) {
-        if (getenv('adminloginpage')=='') { ?>
-    <a onclick="login();"><?php echo $constStr['Login'][$constStr['language']]; ?></a>
+        if (getenv('adminloginpage')=='') { 
+    		if(getenv('user')!='') if ($_SERVER['user']){ ?>
+				<a onclick="userLoginOut()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a>
+			<?php } else { ?>
+				<a onclick="login();"><?php echo $constStr['Login'][$constStr['language']]; ?></a>
+			<?php } ?>
 <?php   }
     } else { ?>
     <li class="operate"><?php echo $constStr['Operate'][$constStr['language']]; ?><ul>
@@ -752,14 +919,6 @@ function render_list($path, $files)
     </ul></li>
 <?php
     } ?>
-    <select class="changelanguage" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
-        <option>Language</option>
-<?php
-    foreach ($constStr['languages'] as $key1 => $value1) { ?>
-        <option value="<?php echo $key1; ?>"><?php echo $value1; ?></option>
-<?php
-    } ?>
-    </select>
 <?php
     if ($_SERVER['needUpdate']) { ?>
     <div style='position:absolute;'><font color='red'><?php echo $constStr['NeedUpdate'][$constStr['language']]; ?></font></div>
@@ -793,8 +952,10 @@ function render_list($path, $files)
     if ($_SERVER['is_imgup_path']&&!$_SERVER['admin']) { ?>
                 <div id="upload_div" style="margin:10px">
                 <center>
-                    <input id="upload_file" type="file" name="upload_filename">
-                    <input id="upload_submit" onclick="preup();" value="<?php echo $constStr['Upload'][$constStr['language']]; ?>" type="button">
+			<input id="upload_file" type="file" name="upload_filename" onchange="document.getElementById('flieText').value = this.value" style="display:none">
+			<input value="<?php echo $constStr['FileSelected'][$constStr['language']]; ?>" type="button" onclick="document.getElementById('upload_file').click();">
+			<input id="flieText" type="text" style="border:0;outline:none;" onclick="document.getElementById('upload_file').click();" value="<?php echo $constStr['NoFileSelected'][$constStr['language']]; ?>">
+			<input id="upload_submit" onclick="preup();" value="<?php echo $constStr['Upload'][$constStr['language']]; ?>" type="button">
                 <center>
                 </div>
 <?php } else {
@@ -926,7 +1087,9 @@ function render_list($path, $files)
 <?php                           } elseif (in_array($ext, $exts['txt'])) { ?>
                             <ion-icon name="clipboard"></ion-icon>
 <?php                           } elseif (in_array($ext, $exts['zip'])) { ?>
-                            <ion-icon name="logo-buffer"></ion-icon>
+                            <ion-icon name="filing"></ion-icon>
+<?php                           } elseif ($ext=='iso') { ?>
+                            <ion-icon name="disc"></ion-icon>
 <?php                           } elseif ($ext=='apk') { ?>
                             <ion-icon name="logo-android"></ion-icon>
 <?php                           } elseif ($ext=='exe') { ?>
@@ -986,11 +1149,13 @@ function render_list($path, $files)
                 </form>';
                         echo $prepagenext;
                     }
-                    if ($_SERVER['admin']) { ?>
+                    if ($_SERVER['admin'] || $_SERVER['user']) { ?>
                 <div id="upload_div" style="margin:0 0 16px 0">
                 <center>
-                    <input id="upload_file" type="file" name="upload_filename" multiple="multiple">
-                    <input id="upload_submit" onclick="preup();" value="<?php echo $constStr['Upload'][$constStr['language']]; ?>" type="button">
+                    	<input id="upload_file" type="file" name="upload_filename" onchange="splitFileName(this)" style="display:none">
+			<input value="<?php echo $constStr['FileSelected'][$constStr['language']]; ?>" type="button" onclick="document.getElementById('upload_file').click();">
+			<input id="flieText" type="text" style="border:0;outline:none;" onclick="document.getElementById('upload_file').click();" value="<?php echo $constStr['NoFileSelected'][$constStr['language']]; ?>">
+			<input id="upload_submit" onclick="preup();" value="<?php echo $constStr['Upload'][$constStr['language']]; ?>" type="button">
                 </center>
                 </div>
 <?php               }
@@ -1131,25 +1296,25 @@ function render_list($path, $files)
 <?php   }
     } else {
         if (getenv('admin')!='') if (getenv('adminloginpage')=='') { ?>
-    <div id="login_div" class="operatediv" style="display:none">
-        <div style="margin:50px">
-            <a onclick="operatediv_close('login')" class="operatediv_close"><?php echo $constStr['Close'][$constStr['language']]; ?></a>
-	        <center>
-	            <form action="<?php echo $_GET['preview']?'?preview&':'?';?>admin" method="post">
-		        <input id="login_input" name="password1" type="password" placeholder="<?php echo $constStr['InputPassword'][$constStr['language']]; ?>">
-		        <input type="submit" value="<?php echo $constStr['Login'][$constStr['language']]; ?>">
-	            </form>
-            </center>
-        </div>
+	<div id="login_div" class="disLogBg" >
+		<div class="disLogBody" style="height: 120px;">
+			<img class="disLog_btn_close" onclick="closeDisLog(this)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRCOEYxMDFENTRGNjExRTBCNzA3RTM1Q0E5NTYwM0RGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRCOEYxMDFFNTRGNjExRTBCNzA3RTM1Q0E5NTYwM0RGIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6REI4RjEwMUI1NEY2MTFFMEI3MDdFMzVDQTk1NjAzREYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6REI4RjEwMUM1NEY2MTFFMEI3MDdFMzVDQTk1NjAzREYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6sfbEgAAAF9klEQVR42syZ6UskRxTAu9uezMRdj0THY+O6STDZ7MG62cSQgH/ACmFBA4KwERQE2S/6IeBnz+g3ERWjooJkUfJBQvZDPL8YjUdgFe/7AKOb9VzvuSqvmqqhpqZ6Zlpd2IJHt9NV3b969d6rV08ZISS9y02lN7IsGxkn+/lNb9aGtIGVpxqckCy4yjrQiLlSkY2CqhcAo6IwV4XrR4FcgqshjaoXBAsiojBXhfuwi4iTEZkDlv1BqgbgKIxKriZyrzKArAYplIMTJ6dln5pUA4CjH6cw7xE4E3NPNUrHuRg4G4idudpJPye35ChQQB6Oao0CmUEs+JqdnX0zLS3t64SEhAehoaE3goODrQ6H4+z4+Pi/7e3t5X+gNTY2To6Oju5B/zOQc/I+CuvwC4ldmYuFMqMxDHMN5AOQGJCPQe5EREQktba2/rS5uTlyfn6+53K5nIhrBPTV+Pj489zc3FQY9wDkM5CbIFaQUJD3mRWQ+UigcXGAtFMQ0RYL9ynI/by8vB82Njb+QgYaTGK/v7+/EsY/ArkNEs9AWgikEiigQgbg2YWBRIN8guHq6uqegVb+RRds8/Pzv4M5fEcgsSYjQa6TlVJ5SD1AurQhZJa3QO5VVFRk2Wy2A3TJtra21oVNBN75OcgNskLBIi3ygKz2gsnAj/BsMzMzUw4ODpbRFTVwml/gvYlkZaKYpVb9AQYx2osiL0icmppqR1fY7Hb7YWlpaSZ2OJA4kA9FWhQBqmQm4UT9twsKCtLBI0/5j5hMJk2qq6sR2CVyOr0cGTU1Nbn77e3tITAR97Pl5eU/4f0PGS2GEMcM8gVoIp4bQTzt/uTk5HORFuLi4twfLy4uRmACHpDgUO7nMTEx6OXLlxokbdDXBnH0CXGYWOKQFl+ACpnBdeIceGYPd3d3p0SAQ0NDKDo62g1RXl7uhmxpaXH/HhUVhWpqatDw8LAHIG49PT0V8I27xKPpMqv+AENIaEkA+er09PS1CPDs7Az19fUhq9XqhikrK9Ng6N/4WW1tLYIYiL1XG8O2xcXFFySA3yIh5xpZRV1AM/GoGBL1k0T2hxvsHujk5AR1dXVpS0ih2GXF9onhVldXtb54DNu2traGGTu0ktXzAFR8JAtaJ0VRhAkFzsAtFouUnJwsdXR0eD0HL5USExOl+Ph4CZZZ68tn7XrvZkON4iM119QKs3bo5mMEcnp62uvZ7OysBEssRUZGCuFwA3u1+zsaKDpg7oQTQsORr4SyoaFBgmRAu4dsRhPcKisrpba2NglMRNI7mB0dHb1iElvkL5uhu4iHF+/s7EzpBVyA87C5+vp61Nzc7GGTJSUlXiGItu7u7p+NeLEwDk5MTLSK4CDPc0PAMmpxDzvEwsIC/rCHd4M9ekHC/XlWVtb3ZE8OKA4Kd5L8/Pw02JqO9XYS1ltxKMHeigVDxsbGuvvNzc1pOw5tMJE/LrKTCPdi2E1+5QHB8DUAGufYUEJDUG9vrzYBs9mMBgYGEJiLNhbs+k1RUdFTePcXRvdiPpvRtJiRkfF4f39/gQXEu8LY2BgaGRlB6+vrXnGOQuJnuA/uS3eSwcHBahKg2WzG7C+bEWmR5oN3CwsLf8TpPQXAGz/+IBb43SsIU0j8jPbDY5aWll7Akj8iG4GhfNBvRl1VVZVzeHi4ftE0a2Zm5jdY8m9IghBHnNFwRs2fScLJ1och7+Xk5DxZWVnpNAIGzrEJiUE5jP+SS/dDmEQ1oDOJ3qkunD3V4Q9BUvAMHKMP7Ow13hEESekRhJYlsL/61NTUx8ypLo7AsQcm3VOdTOG4rUj2cy7WJD09PTYlJeVOUlLSt2FhYbFgWyH4xAnQu3Akne/s7Py7vb19FQ5Lb5hzsY05Fzu5XQQZAdSrLPBVBX+VBTtXXWBLILpw/spvSFDoQYIPq4yG5QBqM2whia12Ga7NSILqk0sAyVa4ZKY/W91iK1yixODC1S1+MK9VJ1cjFBUwXYIaIbrK+qAvUKpVXxVWJLh/KxVWvRejS4x9K4CX+tilAN/Vf0f8L8AA17MWcpwxFUIAAAAASUVORK5CYII=">
+			<div class="titleText" >点击任意位置即可登录！</div>
+			<form action="<?php echo $_GET['preview']?'?preview&':'?';?>admin" method="post" id="loginForm">
+				<div class="form-group" style="padding-top: 5%;">
+					<input class="form-field basic-style" id="login_input" name="password1" type="password" onchange="document.getElementById('loginForm').submit();" placeholder="<?php echo $constStr['InputPassword'][$constStr['language']]; ?>" />
+					<span class="basic-style"><?php echo $constStr['Login'][$constStr['language']]; ?></span>
+				</div>
+			</form>
+		</div>
 	</div>
 <?php   }
     } ?>
     <font color="#f7f7f9"><?php echo date("Y-m-d H:i:s")." ".$constStr['Week'][date("w")][$constStr['language']]." ".$_SERVER['REMOTE_ADDR'];?></font>
 </body>
-
 <link rel="stylesheet" href="//unpkg.zhimg.com/github-markdown-css@3.0.1/github-markdown.css">
 <script type="text/javascript" src="//unpkg.zhimg.com/marked@0.6.2/marked.min.js"></script>
-<?php if (isset($files['folder']) && $_SERVER['is_imgup_path'] && !$_SERVER['admin']) { ?><script type="text/javascript" src="//cdn.bootcss.com/spark-md5/3.0.0/spark-md5.min.js"></script><?php } ?>
+<?php if (!$_SERVER['user'] && isset($files['folder']) && $_SERVER['is_imgup_path'] && !$_SERVER['admin']) { ?><script type="text/javascript" src="//cdn.bootcss.com/spark-md5/3.0.0/spark-md5.min.js"></script><?php } ?>
 <script type="text/javascript">
     var root = '<?php echo $_SERVER["base_path"]; ?>';
     function path_format(path) {
@@ -1400,18 +1565,14 @@ function render_list($path, $files)
         document.getElementById('mask').style.display='none';
     }
 <?php }
-    if (isset($files['folder']) && ($_SERVER['is_imgup_path'] || $_SERVER['admin'])) { // is folder and is admin or guest upload path. 当前是admin登录或图床目录时 ?>
+    if (isset($files['folder']) && ($_SERVER['is_imgup_path'] || $_SERVER['admin'] || $_SERVER['user'])) { // is folder and is admin or guest upload path. 当前是admin登录或图床目录时 ?>
     function uploadbuttonhide() {
         document.getElementById('upload_submit').disabled='disabled';
-        document.getElementById('upload_file').disabled='disabled';
         document.getElementById('upload_submit').style.display='none';
-        document.getElementById('upload_file').style.display='none';
     }
     function uploadbuttonshow() {
-        document.getElementById('upload_file').disabled='';
         document.getElementById('upload_submit').disabled='';
         document.getElementById('upload_submit').style.display='';
-        document.getElementById('upload_file').style.display='';
     }
     function preup() {
         uploadbuttonhide();
@@ -1486,7 +1647,7 @@ function render_list($path, $files)
         }
         return num.toFixed(2) + ' GB';
     }
-    function binupfile(file,url,tdnum){
+function binupfile(file,url,tdnum){
         var label=document.getElementById('upfile_td2_'+tdnum);
         var reader = new FileReader();
         var StartStr='';
@@ -1507,7 +1668,7 @@ function render_list($path, $files)
                     var a = html['nextExpectedRanges'][0];
                     newstartsize = Number( a.slice(0,a.indexOf("-")) );
                     StartTime = new Date();
-<?php if ($_SERVER['admin']) { ?>
+<?php if ($_SERVER['admin'] || $_SERVER['user']) { ?>
                     asize = newstartsize;
 <?php } ?>
                     if (newstartsize==0) {
@@ -1523,12 +1684,12 @@ function render_list($path, $files)
                         reader.readAsArrayBuffer(blob);
                     }
                     readblob(asize);
-<?php if (!$_SERVER['admin']) { ?>
+<?php if (!$_SERVER['admin'] && !$_SERVER['user']) { ?>
                     var spark = new SparkMD5.ArrayBuffer();
 <?php } ?>
                     reader.onload = function(e){
                         var binary = this.result;
-<?php if (!$_SERVER['admin']) { ?>
+<?php if (!$_SERVER['admin']  && !$_SERVER['user']) { ?>
                         spark.append(binary);
                         if (asize < newstartsize) {
                             asize += chunksize;
@@ -1562,7 +1723,7 @@ function render_list($path, $files)
                                 xhr3.onload = function(e){
                                     console.log(xhr3.responseText+','+xhr3.status);
                                 }
-<?php if (!$_SERVER['admin']) { ?>
+<?php if (!$_SERVER['admin']  && !$_SERVER['user']) { ?>
                                 var filemd5 = spark.end();
                                 var xhr4 = new XMLHttpRequest();
                                 xhr4.open("GET", '?action=uploaded_rename&filename='+encodeURIComponent(file.name)+'&filemd5='+filemd5);
@@ -1592,10 +1753,10 @@ function render_list($path, $files)
                                 } else {
                                     MiddleStr += '<?php echo $constStr['ThisTime'][$constStr['language']].$constStr['AverageSpeed'][$constStr['language']]; ?>:'+size_format((totalsize-newstartsize)*1000/(EndTime.getTime()-StartTime.getTime()))+'/s<br>';
                                 }
-                                document.getElementById('upfile_td1_'+tdnum).innerHTML='<font color="green"><?php if (!$_SERVER['admin']) { ?>'+filemd5+'<br><?php } ?>'+document.getElementById('upfile_td1_'+tdnum).innerHTML+'<br><?php echo $constStr['UploadComplete'][$constStr['language']]; ?></font>';
+                                document.getElementById('upfile_td1_'+tdnum).innerHTML='<font color="green"><?php if (!$_SERVER['admin'] && !$_SERVER['user']) { ?>'+filemd5+'<br><?php } ?>'+document.getElementById('upfile_td1_'+tdnum).innerHTML+'<br><?php echo $constStr['UploadComplete'][$constStr['language']]; ?></font>';
                                 label.innerHTML=StartStr+MiddleStr;
                                 uploadbuttonshow();
-<?php if ($_SERVER['admin']) { ?>
+<?php if ($_SERVER['admin']  || $_SERVER['user'] ) { ?>
                                 addelement(response);
 <?php } ?>
                             } else {
@@ -1661,7 +1822,6 @@ function render_list($path, $files)
         document.getElementById(action + '_sid').value=num;
         document.getElementById(action + '_hidden').value=str;
         if (action=='rename') document.getElementById(action + '_input').value=str;
-
         var $e = event || window.event;
         var $scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
         var $scrollY = document.documentElement.scrollTop || document.body.scrollTop;
@@ -1705,35 +1865,6 @@ function render_list($path, $files)
             document.getElementById('mask').style.display='none';
         }
         return false;
-    }
-    function addelement(html) {
-        var tr1=document.createElement('tr');
-        tr1.setAttribute('data-to',1);
-        var td1=document.createElement('td');
-        td1.setAttribute('class','file');
-        var a1=document.createElement('a');
-        a1.href=html.name.replace(/#/,'%23');
-        a1.innerText=html.name;
-        a1.target='_blank';
-        var td2=document.createElement('td');
-        td2.setAttribute('class','updated_at');
-        td2.innerText=html.lastModifiedDateTime.replace(/T/,' ').replace(/Z/,'');
-        var td3=document.createElement('td');
-        td3.setAttribute('class','size');
-        td3.innerText=size_format(html.size);
-        if (!!html.folder) {
-            a1.href+='/';
-            document.getElementById('tr0').parentNode.insertBefore(tr1,document.getElementById('tr0').nextSibling);
-        }
-        if (!!html.file) {
-            a1.href+='?preview';
-            a1.name='filelist';
-            document.getElementById('tr0').parentNode.appendChild(tr1);
-        }
-        tr1.appendChild(td1);
-        td1.appendChild(a1);
-        tr1.appendChild(td2);
-        tr1.appendChild(td3);
     }
     function getElements(formId) {
         var form = document.getElementById(formId);
@@ -1800,14 +1931,70 @@ function render_list($path, $files)
 <?php   }
     } else if (getenv('admin')!='') if (getenv('adminloginpage')=='') { ?>
     function login() {
-        document.getElementById('mask').style.display='';
-            //document.getElementById('mask').style.width=document.documentElement.scrollWidth+'px';
-        document.getElementById('mask').style.height=document.documentElement.scrollHeight<window.innerHeight?window.innerHeight:document.documentElement.scrollHeight+'px';
-        document.getElementById('login_div').style.display='';
-        document.getElementById('login_div').style.left=(document.body.clientWidth-document.getElementById('login_div').offsetWidth)/2 +'px';
-        document.getElementById('login_div').style.top=(window.innerHeight-document.getElementById('login_div').offsetHeight)/2+document.body.scrollTop +'px';
-        document.getElementById('login_input').focus();
+        this.openDisLog('login_div');
+		document.getElementById('login_input').focus();
     }
+	function closeDisLog(obj) {
+		var popInner = obj.parentNode;
+		while(true){
+			popInner = popInner.parentNode;
+			if(popInner.className == 'disLogBg') break;
+		}
+		popInner.style.display = "none"; 
+	}
+		
+	function openDisLog(id) {
+		if(id == '' || id == null) return false;
+		document.getElementById(id).style.display="block";
+	}
+	
+	<!-- 按窗口宽度加载窗口位置 start -->
+	var x = document.getElementsByClassName("disLogBody");
+	var i;console.log(x.length)
+	for (i = 0; i < x.length; i++) {
+		x[i].style.marginTop = document.body.clientHeight/3 + "px";
+	}
+	<!-- 按窗口宽度加载窗口位置 end -->
+<?php }  if(getenv('user')!='') if ($_SERVER['user']){ ?>
+	function userLoginOut() {
+		document.cookie = "<?php echo $_SERVER['function_name'] . 'user';?>=; path=/";
+		location.href = location.href;
+    	}
+<?php } if(getenv('user')!='' && getenv('user')!='') if ($_SERVER['user'] || $_SERVER['admin']){ ?>
+	function addelement(html) {
+		var tr1=document.createElement('tr');
+		tr1.setAttribute('data-to',1);
+		var td1=document.createElement('td');
+		td1.setAttribute('class','file');
+		var a1=document.createElement('a');
+		a1.href=html.name.replace(/#/,'%23');
+		a1.innerText=html.name;
+		a1.target='_blank';
+		var td2=document.createElement('td');
+		td2.setAttribute('class','updated_at');
+		td2.innerText=html.lastModifiedDateTime.replace(/T/,' ').replace(/Z/,'');
+		var td3=document.createElement('td');
+		td3.setAttribute('class','size');
+		td3.innerText=size_format(html.size);
+		if (!!html.folder) {
+		    a1.href+='/';
+		    document.getElementById('tr0').parentNode.insertBefore(tr1,document.getElementById('tr0').nextSibling);
+		}
+		if (!!html.file) {
+		    a1.href+='?preview';
+		    a1.name='filelist';
+		    document.getElementById('tr0').parentNode.appendChild(tr1);
+		}
+		tr1.appendChild(td1);
+		td1.appendChild(a1);
+		tr1.appendChild(td2);
+		tr1.appendChild(td3);
+	    }
+	
+	function splitFileName(obj){
+		var a = obj.value.split("\\");
+		document.getElementById('flieText').value = a[a.length-1];
+	}
 <?php } ?>
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
