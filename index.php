@@ -701,9 +701,10 @@ function render_list($path, $files)
         .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
 <?php if ($_SERVER['admin']) { ?>
         .operate{display:inline-table;margin:0;list-style:none;}
-        .operate ul{position:absolute;display:none;background: white;border:0px #1296db solid;border-radius:5px;margin:-7px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
+        .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin:-7px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
         .operate:hover ul{position:absolute;display:inline-table;}
         .operate ul li{padding:7px;list-style:none;display:inline-table;}
+		.operate_ico{margin-bottom: -3px;}
 <?php } ?>
         .operatediv{position:absolute;border:1px #CCCCCC;background-color:#FFFFCC;z-index:2;}
         .operatediv div{margin:16px}
@@ -911,7 +912,7 @@ function render_list($path, $files)
     } else { ?>
     <li class="operate"><?php echo $constStr['Operate'][$constStr['language']]; ?><ul>
 <?php   if (isset($files['folder'])) { ?>
-        <li><img style="margin-bottom: -3px;" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA+0lEQVQ4T2NkoBAwUqifAcMAkWl3
+        <li><img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA+0lEQVQ4T2NkoBAwUqifAcMAkWl3
 			jP8x/tdnYGCQxWk4I8Pqdxmq10DyKAYIzbitxfCfIZT5H+PS19kqd7AZIDD5tgNI/EOu6gEUA8S7
 			L3L/4eG69zZTVRyft3AaIDz1rikD4x/pt1nqG2AGCEy/bQi2LVP1PFwMlwvQTQZpEJx20xZEv89S
 			P0ySAaCw+PebQYyB8b8eWON/xktMrAyvQAGH0wvIEhQbAHMu2V7AF4iCM+56/f//7zksYOHpAFsg
@@ -919,10 +920,36 @@ function render_list($path, $files)
 			5k4AVUKTEfmS6BcAAAAASUVORK5CYII='/>
 			<a onclick="showdiv(event,'create','');" ><?php echo $constStr['Create'][$constStr['language']]; ?></a>
 		</li>
-        <li><a onclick="showdiv(event,'encrypt','');"><?php echo $constStr['encrypt'][$constStr['language']]; ?></a></li>
+        <li><img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
+			OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
+			+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
+			AGeBY52qDRXPPwJwOKdFtZe97Y80MgEYntzUGLcJfa9ETm2gwobXr2o885wQtiJH3E0HWtLWdHQD
+			V2TwSkdyEqMeNUWvEKhcyLXkC0sKUOF0cPhOm8VrsC8eh2ujryy2fSsmlmVa1ZnEW8PyVXYEGAVH
+			HwfHr1IKMDuyq6DQFfV/CqT/Q+EVzM7TOiG+ZyDTc87o2gx9I3RXHzIt/I6sPGaGPa1KIvQCR5xM
+			zEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC'/>
+			<a onclick="showdiv(event,'encrypt','');"><?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
+		</li>
 <?php   } ?>
-        <li><a <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>><?php echo $constStr['Setup'][$constStr['language']]; ?></a></li>
-        <li><a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a></li>
+        <li><img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB7klEQVQ4T41TQY7TQBCsHhtyNdkP
+			eKV1JE6bvID8APMCwjHOJfwgvIBckhwxPzAvwPwgnCKtVyIfWMdXa+Mp1M5OZFAWMbeZ7q6u7qoR
+			PHP662IrQKVhAsMyiYJLqeIeg8+/AtM7fgeQW/KrQBaHWRRrvL8qFtYg9yiBBd+z9j9UH69b8BZA
+			i73eMWvIuScmJLgUcvEwG6RtfFOMDZFBJAW5FyBuaj9WkBagv75LrUhaTaP8uZG0iesarO6GRiQt
+			k2h4YrApxmIxd5QdK/SOtx4kbOTxRzV9vXfg/XUxBxGUs2ghLRrwBoK5rV+MtEuw2YWGfgYiE3AP
+			kQnI1I3UXxd7S8bVbLAVvei8jWly1+XVqsgILjTBdb1aF3kjx4nmXK3vY8LGgIxFAw9JNO7OfulN
+			aQtZORaar3n/DaB70qLuolsAVUAgoQUOhyR653SHActp9OmSKuoLCm4FuH5SYRd69NPuKJoEQUzg
+			ICI/y+nN3Kljesetrf3h2Qft0gyW//JBl8kfMjojCZHrgk6ubN42tfftbJzNLoT1AqfKiR3DMhlM
+			zn9BdwExBDkisVenPSQ3Wdtgc7+kZdh638gBtKLF57/QdZit/RQvH0OjxoJ80ZgBlmUSjU6mk1gd
+			6GrODP7edkvz6agbu/p3c38Dn44bXo87ZCAAAAAASUVORK5CYII='/>
+			<a <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>><?php echo $constStr['Setup'][$constStr['language']]; ?></a>
+		</li>
+        <li><img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA9ElEQVQ4T2NkoBAwwvQLTL+uwMTA
+			Eo/NPMZ//x++zVZbgFUOJig47fZtRgYGFVwO+s/AmP4+S2UWujzcBULTbv//95fB8UOu6gF0RYLT
+			bu9nZGQ48C5TtXGoGjD9jjUj4//3/34ziDGxMNgje4WoMIDH1OTbDkzMDPsZGBknvstUKQCJ4zRA
+			cPoNa8b/zEewBNrV/wwM2v/+MRR+yFGdgNcFApNvO6AYwMwoz8Twr4GBgenOu1c/vRkatH+R7AVG
+			ZoZ6xv+Mce+yVR7j9QKyzULTbi1nYGS8QfN0cIWBgUEbV1JmZGSIe5upuhhnSqQ4M5GbqwFydp4R
+			iVZAFgAAAABJRU5ErkJggg=='/>
+			<a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a>
+		</li>
     </ul></li>
 <?php
     } ?>
