@@ -931,8 +931,8 @@ function render_list($path, $files)
 			<?php } ?>
 <?php   }
     } else { ?>
-    <li class="operate operate_ul_li">
-		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T4WSMWgUQRSG/3/3UAMi
+    <li class="operate">
+		<span clasa="operate_ul_li"><img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T4WSMWgUQRSG/3/3UAMi
 				yR5JGkHF7JnKRhvBIoJdhBSChZpKiGbPlBqw0FNQsDGg3B4qpBNEIUVMYwQjiI0ItuqthyCmibt3
 				QRJRd+eXNYnkLnvJq2bem/fNP+8fIiN6K0FPbLgnZhIueoVa1pm1HFuLef9TReCFdflZ0TyjrEuU
 				HofFwvj6niZAvhLclnR5w43ECwBvIJQAfom8vn0bFHSXg76EqraVq+QqaN9I6wYYanjudLr+ryDv
@@ -942,7 +942,7 @@ function render_list($path, $files)
 				4ByB6dBzh1YAfjADaHDT5tWiEp2hzUeQlqJiYScxp5zzIViCkNqzZZC4JfE0oL3pLLil/61IoiRh
 				vxJMpoNkz8Nab/w7HgYxvDqsNioUCZyxaMrh6IG3mTbuvvO142fHsmOkvBLbgUydJle3f/2pfx/v
 				/5FF/gv1tsPPI1Vk7wAAAABJRU5ErkJggg=='/>
-			<?php echo $constStr['Operate'][$constStr['language']]; ?><ul>
+			<?php echo $constStr['Operate'][$constStr['language']]; ?></span><ul>
 <?php   if (isset($files['folder'])) { ?>
         <li><a onclick="showdiv(event,'create','');" class="operate_ul_li">
 		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA+0lEQVQ4T2NkoBAwUqifAcMAkWl3
@@ -1106,8 +1106,8 @@ function render_list($path, $files)
                     <tr data-to id="tr<?php echo $filenum;?>">
                         <td class="file">
 <?php                       if ($_SERVER['admin']) { ?>
-                            <li class="operate operate_ul_li" >
-							<?php echo $constStr['Operate'][$constStr['language']]; ?>
+                            <li class="operate" ><span class="operate_ul_li">
+							<?php echo $constStr['Operate'][$constStr['language']]; ?></span>
                             <ul>
                                 <li><a class="operate_ul_li" onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);">
 								<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
