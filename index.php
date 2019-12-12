@@ -1,4 +1,4 @@
-
+<?php
 /*
     帖子 ： https://www.hostloc.com/thread-617698-1-1.html
     github ： https://github.com/qkqpttgf/herokuOnedrive
@@ -701,7 +701,7 @@ function render_list($path, $files)
         .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
 <?php if ($_SERVER['admin']) { ?>
         .operate{display:inline-table;margin:0;list-style:none;}
-        .operate ul{position:absolute;display:none;background: white;border:1px #87CEFA solid;border-radius:5px;margin:-7px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
+        .operate ul{position:absolute;display:none;background:#fffaaa;border:0px #f7f7f7 solid;border-radius:5px;margin:-7px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
         .operate:hover ul{position:absolute;display:inline-table;}
         .operate ul li{padding:7px;list-style:none;display:inline-table;}
 <?php } ?>
@@ -1947,14 +1947,6 @@ function binupfile(file,url,tdnum){
 		if(id == '' || id == null) return false;
 		document.getElementById(id).style.display="block";
 	}
-	
-	<!-- 按窗口宽度加载窗口位置 start -->
-	var x = document.getElementsByClassName("disLogBody");
-	var i;console.log(x.length)
-	for (i = 0; i < x.length; i++) {
-		x[i].style.marginTop = document.body.clientHeight/3 + "px";
-	}
-	<!-- 按窗口宽度加载窗口位置 end -->
 <?php }  if(getenv('user')!='') if ($_SERVER['user']){ ?>
 	function userLoginOut() {
 		document.cookie = "<?php echo $_SERVER['function_name'] . 'user';?>=; path=/";
