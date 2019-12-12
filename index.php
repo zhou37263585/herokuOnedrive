@@ -905,9 +905,26 @@ function render_list($path, $files)
     if (getenv('admin')!='') if (!$_SERVER['admin']) {
         if (getenv('adminloginpage')=='') { 
     		if(getenv('user')!='') if ($_SERVER['user']){ ?>
-				<a onclick="userLoginOut()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a>
+				<a onclick="userLoginOut()">
+				<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA9ElEQVQ4T2NkoBAwwvQLTL+uwMTA
+					Eo/NPMZ//x++zVZbgFUOJig47fZtRgYGFVwO+s/AmP4+S2UWujzcBULTbv//95fB8UOu6gF0RYLT
+					bu9nZGQ48C5TtXGoGjD9jjUj4//3/34ziDGxMNgje4WoMIDH1OTbDkzMDPsZGBknvstUKQCJ4zRA
+					cPoNa8b/zEewBNrV/wwM2v/+MRR+yFGdgNcFApNvO6AYwMwoz8Twr4GBgenOu1c/vRkatH+R7AVG
+					ZoZ6xv+Mce+yVR7j9QKyzULTbi1nYGS8QfN0cIWBgUEbV1JmZGSIe5upuhhnSqQ4M5GbqwFydp4R
+					iVZAFgAAAABJRU5ErkJggg=='/>
+				<?php echo $constStr['Logout'][$constStr['language']]; ?></a>
 			<?php } else { ?>
-				<a onclick="login();"><?php echo $constStr['Login'][$constStr['language']]; ?></a>
+				<a onclick="login();">
+				<img src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABwElEQVQ4T42SP2gUQRjFf28ROUFE
+					ImipooVws9tYHVicYBchhWChsRKCIJYqWPgPFKwEIYgW6QRRSBHTGEEDYiMews3cwSEEG9Pk9ATJ
+					dbufjOTkctmcLizsztv5fW/fG1FyZVm2P8/zg0mSfPfer5R9M1jTqOicewxcGlpfKoriVZIkVyU9
+					995fH96zCZCm6QMzu1Yy8Q3wAbhtZl9brdbhLQ6q1epRSV+2s2tmNyXdjXqSJFPNZnMhPv914Jy7
+					Ajwa87/zwARQj05CCHdGAVF4NwYwB0wDOyWd9d6/3ASIL865T8DxMoikWTO7bGafK5XKiUaj0d8C
+					SNN0xsyelACWgJ6ZrUl6H0J4UVqjc27SzCqSTgHHgBVJb4FaURSvgdOSZoCTIYTl0QxuAPeAn5K+
+					xWnA3hg6kElaNbOnMcCN6WdCCPN/WnDO3RoSts1R0kMz2wNclLTgvZ8aABaByXFHdqCZ2XlJz4D1
+					EMJu1ev1Hd1udz3W8z8A4L6ZnZN0KGYh59y/+h/lxgyOAHMxyAg4AFzYuLMxLn4Ai0VRzLbb7Y+l
+					NdZqtV39fn8iz/N98diaWey+l+d5r9Pp/CqD/wbh163VXPOm8gAAAABJRU5ErkJggg=='/>
+				<?php echo $constStr['Login'][$constStr['language']]; ?></a>
 			<?php } ?>
 <?php   }
     } else { ?>
