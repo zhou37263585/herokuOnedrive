@@ -911,7 +911,7 @@ function render_list($path, $files)
     } else { ?>
     <li class="operate"><?php echo $constStr['Operate'][$constStr['language']]; ?><ul>
 <?php   if (isset($files['folder'])) { ?>
-        <li><a onclick="showdiv(event,'create','');"><?php echo $constStr['Create'][$constStr['language']]; ?></a></li>
+        <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACHElEQVRYR+2Wv08UQRTHv2/WmNiYuz0o7Ejg9qCyNiZGjJXRwoJeQeF2gdiof4TaGGD3UFB7CwoJlQFCQqyt4PYgoaOA27vYmBh3ntk91xjcu531zjuLm273zbzvZ96PmSH0eFCP9dEWwGDpMB9s4KQ4XPnbjaQGyDkHN8D8SDJfIcJgIMyME0H0CUQvq+bIZhqYVAC6XXkN8IPWArTiWfmHqhDKAFnbLRLg/HLMvAESa+E3y7sguhXZGDBrllFSgVACyJTKl4WkHQAXQ6dEU56Zf/O7gO5UJsG8+vPfFyn4Wr1Y+JwEoQSQcw7mmOVCY7d44s0aL+Ic60vuYxCeNxjFfNUcWewIgG5XVgCeCpwJqRVO54bdOMcDi4eGFH65YaNVz8on1AvU2jBru1sEXA/cepbRMmq67XIjUNiuWcZ4RyLQB+hJBLLO/lWCdpOZw9xHNRDktlVez84jom2G/7Fmju7GrYstqKzj3ibGh6QCSmNnwp2aaayfXRMLoNvuMoDpNAIKc195ljGjBJAm50nCSW0Zn4IUff/fAGQW9sJijUZ9fiws1q5FIAAQmrYViErfH+8D9CPQ9Qg0a8eudcE/AwhaKumwaWWPWrPZAyX2JMwtufeY8LYd4T/OfMb96qzxTukuyDh7Q4K1ZwAmOgTxXpL/tG6OHSkBRJMGlo8uff/2tdAOxLnzF8qnM0PHzXwoPcvbAUha23OAHwCmRTAW7txMAAAAAElFTkSuQmCC"/><a onclick="showdiv(event,'create','');"><?php echo $constStr['Create'][$constStr['language']]; ?></a></li>
         <li><a onclick="showdiv(event,'encrypt','');"><?php echo $constStr['encrypt'][$constStr['language']]; ?></a></li>
 <?php   } ?>
         <li><a <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>><?php echo $constStr['Setup'][$constStr['language']]; ?></a></li>
