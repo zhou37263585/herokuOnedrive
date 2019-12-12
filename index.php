@@ -932,7 +932,7 @@ function render_list($path, $files)
 <?php   }
     } else { ?>
     <li class="operate">
-		<span clasa="operate_ul_li"><img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T4WSMWgUQRSG/3/3UAMi
+		<span class="operate_ul_li"><img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T4WSMWgUQRSG/3/3UAMi
 				yR5JGkHF7JnKRhvBIoJdhBSChZpKiGbPlBqw0FNQsDGg3B4qpBNEIUVMYwQjiI0ItuqthyCmibt3
 				QRJRd+eXNYnkLnvJq2bem/fNP+8fIiN6K0FPbLgnZhIueoVa1pm1HFuLef9TReCFdflZ0TyjrEuU
 				HofFwvj6niZAvhLclnR5w43ECwBvIJQAfom8vn0bFHSXg76EqraVq+QqaN9I6wYYanjudLr+ryDv
@@ -952,7 +952,7 @@ function render_list($path, $files)
 			YotOoem3P3EwfZR4lm7yDSUdEDIAnMj+MVz995fBEZaIUAyAKcCViP7/Z8hmZGY4AEvCMHXUz0yk
 			5k4AVUKTEfmS6BcAAAAASUVORK5CYII='/>
 			<?php echo $constStr['Create'][$constStr['language']]; ?></a>
-		</li>
+		</li> 
         <li><a onclick="showdiv(event,'encrypt','');" class="operate_ul_li">
 		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
 			OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
@@ -1172,7 +1172,7 @@ function render_list($path, $files)
                         <td class="file">
 <?php                           if ($_SERVER['admin']) { ?>
                             <li class="operate">
-								<?php echo $constStr['Operate'][$constStr['language']]; ?>
+								<span class="operate_ul_li"><?php echo $constStr['Operate'][$constStr['language']]; ?></span>
                             <ul>
                                 <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
 									<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
