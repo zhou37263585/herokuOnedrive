@@ -704,7 +704,7 @@ function render_list($path, $files)
         .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin:-7px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
         .operate:hover ul{position:absolute;display:inline-table;}
         .operate ul li{padding:7px;list-style:none;display:inline-table;}
-		.operate ul lihover{filter: alpha(Opacity=60);opacity:  0.85;}
+		.operate_ul_li:hover{filter: alpha(Opacity=60);opacity:  0.85;}
 		.operate_ico{margin-bottom: -3px;}
 <?php } ?>
 		.userLoginOut_ico{margin-bottom: -3px;}
@@ -906,7 +906,7 @@ function render_list($path, $files)
     if (getenv('admin')!='') if (!$_SERVER['admin']) {
         if (getenv('adminloginpage')=='') { 
     		if(getenv('user')!='') if ($_SERVER['user']){ ?>
-				<a onclick="userLoginOut()">
+				<a onclick="userLoginOut()" class="operate_ul_li">
 				<img class="userLoginOut_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA9ElEQVQ4T2NkoBAwwvQLTL+uwMTA
 					Eo/NPMZ//x++zVZbgFUOJig47fZtRgYGFVwO+s/AmP4+S2UWujzcBULTbv//95fB8UOu6gF0RYLT
 					bu9nZGQ48C5TtXGoGjD9jjUj4//3/34ziDGxMNgje4WoMIDH1OTbDkzMDPsZGBknvstUKQCJ4zRA
@@ -915,7 +915,7 @@ function render_list($path, $files)
 					iVZAFgAAAABJRU5ErkJggg=='/>
 				<?php echo $constStr['Logout'][$constStr['language']]; ?></a>
 			<?php } else { ?>
-				<a onclick="login();">
+				<a onclick="login();" class="operate_ul_li">
 					<img class="userLoginOut_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T4WSMWgUQRSG/3/3UAMi
 						yR5JGkHF7JnKRhvBIoJdhBSChZpKiGbPlBqw0FNQsDGg3B4qpBNEIUVMYwQjiI0ItuqthyCmibt3
 						QRJRd+eXNYnkLnvJq2bem/fNP+8fIiN6K0FPbLgnZhIueoVa1pm1HFuLef9TReCFdflZ0TyjrEuU
@@ -930,7 +930,7 @@ function render_list($path, $files)
 			<?php } ?>
 <?php   }
     } else { ?>
-    <li class="operate">
+    <li class="operate" class="operate_ul_li">
 		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T4WSMWgUQRSG/3/3UAMi
 				yR5JGkHF7JnKRhvBIoJdhBSChZpKiGbPlBqw0FNQsDGg3B4qpBNEIUVMYwQjiI0ItuqthyCmibt3
 				QRJRd+eXNYnkLnvJq2bem/fNP+8fIiN6K0FPbLgnZhIueoVa1pm1HFuLef9TReCFdflZ0TyjrEuU
@@ -943,7 +943,7 @@ function render_list($path, $files)
 				/5FF/gv1tsPPI1Vk7wAAAABJRU5ErkJggg=='/>
 			<?php echo $constStr['Operate'][$constStr['language']]; ?><ul>
 <?php   if (isset($files['folder'])) { ?>
-        <li><a onclick="showdiv(event,'create','');" >
+        <li><a onclick="showdiv(event,'create','');" class="operate_ul_li">
 		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA+0lEQVQ4T2NkoBAwUqifAcMAkWl3
 			jP8x/tdnYGCQxWk4I8Pqdxmq10DyKAYIzbitxfCfIZT5H+PS19kqd7AZIDD5tgNI/EOu6gEUA8S7
 			L3L/4eG69zZTVRyft3AaIDz1rikD4x/pt1nqG2AGCEy/bQi2LVP1PFwMlwvQTQZpEJx20xZEv89S
@@ -952,7 +952,7 @@ function render_list($path, $files)
 			5k4AVUKTEfmS6BcAAAAASUVORK5CYII='/>
 			<?php echo $constStr['Create'][$constStr['language']]; ?></a>
 		</li>
-        <li><a onclick="showdiv(event,'encrypt','');">
+        <li><a onclick="showdiv(event,'encrypt','');" class="operate_ul_li">
 		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
 			OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
 			+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
@@ -963,7 +963,7 @@ function render_list($path, $files)
 			<?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
 		</li>
 <?php   } ?>
-        <li><a <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>>
+        <li><a class="operate_ul_li" <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>>
 		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB7klEQVQ4T41TQY7TQBCsHhtyNdkP
 			eKV1JE6bvID8APMCwjHOJfwgvIBckhwxPzAvwPwgnCKtVyIfWMdXa+Mp1M5OZFAWMbeZ7q6u7qoR
 			PHP662IrQKVhAsMyiYJLqeIeg8+/AtM7fgeQW/KrQBaHWRRrvL8qFtYg9yiBBd+z9j9UH69b8BZA
@@ -976,7 +976,7 @@ function render_list($path, $files)
 			6GrODP7edkvz6agbu/p3c38Dn44bXo87ZCAAAAAASUVORK5CYII='/>
 			<?php echo $constStr['Setup'][$constStr['language']]; ?></a>
 		</li>
-        <li><a onclick="logout()">
+        <li><a class="operate_ul_li" onclick="logout()">
 		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA9ElEQVQ4T2NkoBAwwvQLTL+uwMTA
 			Eo/NPMZ//x++zVZbgFUOJig47fZtRgYGFVwO+s/AmP4+S2UWujzcBULTbv//95fB8UOu6gF0RYLT
 			bu9nZGQ48C5TtXGoGjD9jjUj4//3/34ziDGxMNgje4WoMIDH1OTbDkzMDPsZGBknvstUKQCJ4zRA
@@ -1105,10 +1105,10 @@ function render_list($path, $files)
                     <tr data-to id="tr<?php echo $filenum;?>">
                         <td class="file">
 <?php                       if ($_SERVER['admin']) { ?>
-                            <li class="operate">
+                            <li class="operate" class="operate_ul_li">
 							<?php echo $constStr['Operate'][$constStr['language']]; ?>
                             <ul>
-                                <li><a onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);">
+                                <li><a class="operate_ul_li" onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);">
 								<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
 									OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
 									+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
@@ -1118,7 +1118,7 @@ function render_list($path, $files)
 									zEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC'/>
 									<?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
 								</li>
-                                <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
+                                <li><a class="operate_ul_li" onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
 								<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA1ElEQVQ4T2NkIBMITL1lwMDEKMAI
 									0y847dYkRgbGXLzmMTI0vMtUbQSpQTFAYPJtByZmhqx3WaphhBwkNO12KAMDw6p3Wapgy8GE0PTb
 									9SAaZjouQ2CaGRgYwt5lqa4myQBsmok2AF0zyMUw1xL0Ajabhabd/k9UGOByNlEG4NIMDnRCLoBG
@@ -1126,7 +1126,7 @@ function render_list($path, $files)
 									BgbGNEIGQOT/z4JZBs+NxGnEVAUAnb6OlYdp+d4AAAAASUVORK5CYII='/>
 									<?php echo $constStr['Rename'][$constStr['language']]; ?></a>
 								</li>
-                                <li><a onclick="showdiv(event, 'move',<?php echo $filenum;?>);">
+                                <li><a class="operate_ul_li" onclick="showdiv(event, 'move',<?php echo $filenum;?>);">
 									<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABR0lEQVQ4T51Tu07DMBQ912VgbMvK
 									Bp6Y+AM+gsDIwNK6YuALWiZ2orioEhIraQcmpDLBxBcweURs1PQH7KAbklKVJA1kiRSfe3zPI4SK
 									pxWaEW3g3XblRRmMyg7a2gQA+gBZiOTKduSkCFtI0AzNgWhA8UAixC05f+I9hvMz+bRKUroBA9va
@@ -1136,7 +1136,7 @@ function render_list($path, $files)
 									EHDpgTcCNBtW+2fKgVnEsD05KPPpC8/xjRKfuGcxAAAAAElFTkSuQmCC'/>
 									<?php echo $constStr['Move'][$constStr['language']]; ?></a>
 								</li>
-                                <li><a onclick="showdiv(event, 'delete',<?php echo $filenum;?>);">
+                                <li><a class="operate_ul_li" onclick="showdiv(event, 'delete',<?php echo $filenum;?>);">
 								<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVQ4T9WTPQ6CMBzFH+gBtI4u
 									xthBPYRwCNkdaeIRjHoDp+LmziVk8wTGmDo4OJrqBbCmA6YgGIhxsFM/Xn/9f7xa+HJYefebXGwt
 									wDHPFBDdGHWz+jcACcRcKTgqxtIU23WM9Fr6NLVfCMi+psG5ALIWAzwQAhhWLMceNrxUBIQL9Yjh
