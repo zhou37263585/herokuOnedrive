@@ -704,6 +704,7 @@ function render_list($path, $files)
         .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin:-7px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
         .operate:hover ul{position:absolute;display:inline-table;}
         .operate ul li{padding:7px;list-style:none;display:inline-table;}
+		.operate ul lihover{filter: alpha(Opacity=60);opacity:  0.85;}
 		.operate_ico{margin-bottom: -3px;}
 <?php } ?>
         .operatediv{position:absolute;border:1px #CCCCCC;background-color:#FFFFCC;z-index:2;}
@@ -1075,6 +1076,15 @@ function render_list($path, $files)
                         <td class="file">
 <?php                       if ($_SERVER['admin']) { ?>
                             <li class="operate">
+							<img src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABwElEQVQ4T42SP2gUQRjFf28ROUFE
+								ImipooVws9tYHVicYBchhWChsRKCIJYqWPgPFKwEIYgW6QRRSBHTGEEDYiMews3cwSEEG9Pk9ATJ
+								dbufjOTkctmcLizsztv5fW/fG1FyZVm2P8/zg0mSfPfer5R9M1jTqOicewxcGlpfKoriVZIkVyU9
+								995fH96zCZCm6QMzu1Yy8Q3wAbhtZl9brdbhLQ6q1epRSV+2s2tmNyXdjXqSJFPNZnMhPv914Jy7
+								Ajwa87/zwARQj05CCHdGAVF4NwYwB0wDOyWd9d6/3ASIL865T8DxMoikWTO7bGafK5XKiUaj0d8C
+								SNN0xsyelACWgJ6ZrUl6H0J4UVqjc27SzCqSTgHHgBVJb4FaURSvgdOSZoCTIYTl0QxuAPeAn5K+
+								xWnA3hg6kElaNbOnMcCN6WdCCPN/WnDO3RoSts1R0kMz2wNclLTgvZ8aABaByXFHdqCZ2XlJz4D1
+								EMJu1ev1Hd1udz3W8z8A4L6ZnZN0KGYh59y/+h/lxgyOAHMxyAg4AFzYuLMxLn4Ai0VRzLbb7Y+l
+								NdZqtV39fn8iz/N98diaWey+l+d5r9Pp/CqD/wbh163VXPOm8gAAAABJRU5ErkJggg=='/>
 							<?php echo $constStr['Operate'][$constStr['language']]; ?>
                             <ul>
                                 <li><a onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);">
@@ -1140,6 +1150,15 @@ function render_list($path, $files)
                         <td class="file">
 <?php                           if ($_SERVER['admin']) { ?>
                             <li class="operate">
+								<img src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABwElEQVQ4T42SP2gUQRjFf28ROUFE
+									ImipooVws9tYHVicYBchhWChsRKCIJYqWPgPFKwEIYgW6QRRSBHTGEEDYiMews3cwSEEG9Pk9ATJ
+									dbufjOTkctmcLizsztv5fW/fG1FyZVm2P8/zg0mSfPfer5R9M1jTqOicewxcGlpfKoriVZIkVyU9
+									995fH96zCZCm6QMzu1Yy8Q3wAbhtZl9brdbhLQ6q1epRSV+2s2tmNyXdjXqSJFPNZnMhPv914Jy7
+									Ajwa87/zwARQj05CCHdGAVF4NwYwB0wDOyWd9d6/3ASIL865T8DxMoikWTO7bGafK5XKiUaj0d8C
+									SNN0xsyelACWgJ6ZrUl6H0J4UVqjc27SzCqSTgHHgBVJb4FaURSvgdOSZoCTIYTl0QxuAPeAn5K+
+									xWnA3hg6kElaNbOnMcCN6WdCCPN/WnDO3RoSts1R0kMz2wNclLTgvZ8aABaByXFHdqCZ2XlJz4D1
+									EMJu1ev1Hd1udz3W8z8A4L6ZnZN0KGYh59y/+h/lxgyOAHMxyAg4AFzYuLMxLn4Ai0VRzLbb7Y+l
+									NdZqtV39fn8iz/N98diaWey+l+d5r9Pp/CqD/wbh163VXPOm8gAAAABJRU5ErkJggg=='/>
 								<?php echo $constStr['Operate'][$constStr['language']]; ?>
                             <ul>
                                 <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
