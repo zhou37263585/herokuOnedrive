@@ -915,7 +915,7 @@ function render_list($path, $files)
 				<?php echo $constStr['Logout'][$constStr['language']]; ?></a>
 			<?php } else { ?>
 				<a onclick="login();">
-				<img src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABwElEQVQ4T42SP2gUQRjFf28ROUFE
+				<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABwElEQVQ4T42SP2gUQRjFf28ROUFE
 					ImipooVws9tYHVicYBchhWChsRKCIJYqWPgPFKwEIYgW6QRRSBHTGEEDYiMews3cwSEEG9Pk9ATJ
 					dbufjOTkctmcLizsztv5fW/fG1FyZVm2P8/zg0mSfPfer5R9M1jTqOicewxcGlpfKoriVZIkVyU9
 					995fH96zCZCm6QMzu1Yy8Q3wAbhtZl9brdbhLQ6q1epRSV+2s2tmNyXdjXqSJFPNZnMhPv914Jy7
@@ -929,7 +929,7 @@ function render_list($path, $files)
 <?php   }
     } else { ?>
     <li class="operate">
-		<img src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABwElEQVQ4T42SP2gUQRjFf28ROUFE
+		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABwElEQVQ4T42SP2gUQRjFf28ROUFE
 			ImipooVws9tYHVicYBchhWChsRKCIJYqWPgPFKwEIYgW6QRRSBHTGEEDYiMews3cwSEEG9Pk9ATJ
 			dbufjOTkctmcLizsztv5fW/fG1FyZVm2P8/zg0mSfPfer5R9M1jTqOicewxcGlpfKoriVZIkVyU9
 			995fH96zCZCm6QMzu1Yy8Q3wAbhtZl9brdbhLQ6q1epRSV+2s2tmNyXdjXqSJFPNZnMhPv914Jy7
