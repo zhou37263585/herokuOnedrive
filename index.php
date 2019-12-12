@@ -1927,7 +1927,7 @@ function binupfile(file,url,tdnum){
         //document.getElementById('login_div').style.display='';
         //document.getElementById('login_div').style.left=(document.body.clientWidth-document.getElementById('login_div').offsetWidth)/2 +'px';
         //document.getElementById('login_div').style.top=(window.innerHeight-document.getElementById('login_div').offsetHeight)/2+document.body.scrollTop +'px';
-        this.openDisLog('login_div'):
+        this.openDisLog('login_div');
 		document.getElementById('login_input').focus();
     }
 	function closeDisLog(obj) {
