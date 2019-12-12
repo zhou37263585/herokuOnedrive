@@ -1948,6 +1948,14 @@ function binupfile(file,url,tdnum){
 		if(id == '' || id == null) return false;
 		document.getElementById(id).style.display="block";
 	}
+	
+	<!-- 按窗口宽度加载窗口位置 start -->
+	var x = document.getElementsByClassName("disLogBody");
+	var i;console.log(x.length)
+	for (i = 0; i < x.length; i++) {
+		x[i].style.marginTop = document.body.clientHeight/2;
+	}
+	<!-- 按窗口宽度加载窗口位置 end -->
 <?php }  if(getenv('user')!='') if ($_SERVER['user']){ ?>
 	function userLoginOut() {
 		document.cookie = "<?php echo $_SERVER['function_name'] . 'user';?>=; path=/";
