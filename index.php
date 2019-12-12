@@ -1952,7 +1952,7 @@ function binupfile(file,url,tdnum){
 	var x = document.getElementsByClassName("disLogBody");
 	var i;console.log(x.length)
 	for (i = 0; i < x.length; i++) {
-		x[i].style.marginTop = document.body.clientHeight/2;
+		x[i].style.marginTop = document.body.clientHeight/2 + "px";
 	}
 	<!-- 按窗口宽度加载窗口位置 end -->
 <?php }  if(getenv('user')!='') if ($_SERVER['user']){ ?>
