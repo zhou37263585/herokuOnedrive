@@ -1288,7 +1288,7 @@ function render_list($path, $files)
 			<div class="titleText" >点击任意位置即可登录！</div>
 			<form action="<?php echo $_GET['preview']?'?preview&':'?';?>admin" method="post" id="loginForm">
 				<div class="form-group" style="padding-top: 5%;">
-					<input class="form-field" id="login_input" name="password1" type="password" onchange="document.getElementById("loginForm").submit();" placeholder="<?php echo $constStr['InputPassword'][$constStr['language']]; ?>" />
+					<input class="form-field" id="login_input" name="password1" type="password" onchange="document.getElementById('loginForm').submit();" placeholder="<?php echo $constStr['InputPassword'][$constStr['language']]; ?>" />
 					<span><?php echo $constStr['Login'][$constStr['language']]; ?></span>
 				</div>
 			</form>
