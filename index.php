@@ -911,11 +911,43 @@ function render_list($path, $files)
     } else { ?>
     <li class="operate"><?php echo $constStr['Operate'][$constStr['language']]; ?><ul>
 <?php   if (isset($files['folder'])) { ?>
-        <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACHElEQVRYR+2Wv08UQRTHv2/WmNiYuz0o7Ejg9qCyNiZGjJXRwoJeQeF2gdiof4TaGGD3UFB7CwoJlQFCQqyt4PYgoaOA27vYmBh3ntk91xjcu531zjuLm273zbzvZ96PmSH0eFCP9dEWwGDpMB9s4KQ4XPnbjaQGyDkHN8D8SDJfIcJgIMyME0H0CUQvq+bIZhqYVAC6XXkN8IPWArTiWfmHqhDKAFnbLRLg/HLMvAESa+E3y7sguhXZGDBrllFSgVACyJTKl4WkHQAXQ6dEU56Zf/O7gO5UJsG8+vPfFyn4Wr1Y+JwEoQSQcw7mmOVCY7d44s0aL+Ic60vuYxCeNxjFfNUcWewIgG5XVgCeCpwJqRVO54bdOMcDi4eGFH65YaNVz8on1AvU2jBru1sEXA/cepbRMmq67XIjUNiuWcZ4RyLQB+hJBLLO/lWCdpOZw9xHNRDktlVez84jom2G/7Fmju7GrYstqKzj3ibGh6QCSmNnwp2aaayfXRMLoNvuMoDpNAIKc195ljGjBJAm50nCSW0Zn4IUff/fAGQW9sJijUZ9fiws1q5FIAAQmrYViErfH+8D9CPQ9Qg0a8eudcE/AwhaKumwaWWPWrPZAyX2JMwtufeY8LYd4T/OfMb96qzxTukuyDh7Q4K1ZwAmOgTxXpL/tG6OHSkBRJMGlo8uff/2tdAOxLnzF8qnM0PHzXwoPcvbAUha23OAHwCmRTAW7txMAAAAAElFTkSuQmCC"/><a onclick="showdiv(event,'create','');"><?php echo $constStr['Create'][$constStr['language']]; ?></a></li>
-        <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA1ElEQVQ4T2NkIBMITL1lwMDEKMAI0y847dYkRgbGXLzmMTI0vMtUbQSpQTFAYPJtByZmhqx3WaphhBwkNO12KAMDw6p3Wapgy8GE0PTb9SAaZjouQ2CaGRgYwt5lqa4myQBsmok2AF0zyMUw1xL0Ajabhabd/k9UGOByNlEG4NIMDnRCLoBG637k0EaOGaIMAGn4kKt6AFuUEjSAiMREXCDiSVCoBkD8/D/yXZZaOiHboeGz9F2WqjQ8IUFC9tZMBgbGNEIGQOT/z4JZBs+NxGnEVAUAnb6OlYdp+d4AAAAASUVORK5CYII="/><a onclick="showdiv(event,'encrypt','');"><?php echo $constStr['encrypt'][$constStr['language']]; ?></a></li>
+        <li><img src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA+0lEQVQ4T2NkoBAwUqifAcMAkWl3
+			jP8x/tdnYGCQxWk4I8Pqdxmq10DyKAYIzbitxfCfIZT5H+PS19kqd7AZIDD5tgNI/EOu6gEUA8S7
+			L3L/4eG69zZTVRyft3AaIDz1rikD4x/pt1nqG2AGCEy/bQi2LVP1PFwMlwvQTQZpEJx20xZEv89S
+			P0ySAaCw+PebQYyB8b8eWON/xktMrAyvQAGH0wvIEhQbAHMu2V7AF4iCM+56/f//7zksYOHpAFsg
+			YotOoem3P3EwfZR4lm7yDSUdEDIAnMj+MVz995fBEZaIUAyAKcCViP7/Z8hmZGY4AEvCMHXUz0yk
+			5k4AVUKTEfmS6BcAAAAASUVORK5CYII='/>
+			<a onclick="showdiv(event,'create','');"><?php echo $constStr['Create'][$constStr['language']]; ?></a>
+		</li>
+        <li><img src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
+			OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
+			+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
+			AGeBY52qDRXPPwJwOKdFtZe97Y80MgEYntzUGLcJfa9ETm2gwobXr2o885wQtiJH3E0HWtLWdHQD
+			V2TwSkdyEqMeNUWvEKhcyLXkC0sKUOF0cPhOm8VrsC8eh2ujryy2fSsmlmVa1ZnEW8PyVXYEGAVH
+			HwfHr1IKMDuyq6DQFfV/CqT/Q+EVzM7TOiG+ZyDTc87o2gx9I3RXHzIt/I6sPGaGPa1KIvQCR5xM
+			zEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC'/>
+			<a onclick="showdiv(event,'encrypt','');"><?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
+		</li>
 <?php   } ?>
-        <li><a <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>><?php echo $constStr['Setup'][$constStr['language']]; ?></a></li>
-        <li><a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a></li>
+        <li><img src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB7klEQVQ4T41TQY7TQBCsHhtyNdkP
+			eKV1JE6bvID8APMCwjHOJfwgvIBckhwxPzAvwPwgnCKtVyIfWMdXa+Mp1M5OZFAWMbeZ7q6u7qoR
+			PHP662IrQKVhAsMyiYJLqeIeg8+/AtM7fgeQW/KrQBaHWRRrvL8qFtYg9yiBBd+z9j9UH69b8BZA
+			i73eMWvIuScmJLgUcvEwG6RtfFOMDZFBJAW5FyBuaj9WkBagv75LrUhaTaP8uZG0iesarO6GRiQt
+			k2h4YrApxmIxd5QdK/SOtx4kbOTxRzV9vXfg/XUxBxGUs2ghLRrwBoK5rV+MtEuw2YWGfgYiE3AP
+			kQnI1I3UXxd7S8bVbLAVvei8jWly1+XVqsgILjTBdb1aF3kjx4nmXK3vY8LGgIxFAw9JNO7OfulN
+			aQtZORaar3n/DaB70qLuolsAVUAgoQUOhyR653SHActp9OmSKuoLCm4FuH5SYRd69NPuKJoEQUzg
+			ICI/y+nN3Kljesetrf3h2Qft0gyW//JBl8kfMjojCZHrgk6ubN42tfftbJzNLoT1AqfKiR3DMhlM
+			zn9BdwExBDkisVenPSQ3Wdtgc7+kZdh638gBtKLF57/QdZit/RQvH0OjxoJ80ZgBlmUSjU6mk1gd
+			6GrODP7edkvz6agbu/p3c38Dn44bXo87ZCAAAAAASUVORK5CYII='/>
+			<a <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>><?php echo $constStr['Setup'][$constStr['language']]; ?></a>
+		</li>
+        <li><img src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4ElEQVQ4T2NkYGBgEJp2q5uBgSGJ
+			gYFRCMTHAq7+Z2SqeJ+pvAVdjlFo2u1VDAwMoTg0Ign/n/UuSy0dwwDBqbdfMTIyiIIk/jMw3GFg
+			YHiCoYiB4fW7LNUwbJaAXPAfKnH1XZaqDmGXoKqAG/CfgeHA+yxVR0IGCE67fYbx/7/l77LVe0Fq
+			STYA7uJ//93e5ajtxmmAyLQ7xn/+/udFdxETM8N+sNh/hlsMDIwuWA0Qmn67nuE/QwMh7zAwMK6j
+			jQEgmynyAj6nEx2IuAzBGY0MDAzkJSRqJGXKMhOl2RkA1YaXsy9puFUAAAAASUVORK5CYII='/>
+			<a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a>
+		</li>
     </ul></li>
 <?php
     } ?>
