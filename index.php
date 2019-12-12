@@ -700,7 +700,7 @@ function render_list($path, $files)
         .list-table .file ion-icon{font-size:15px;margin-right:5px;vertical-align:bottom}
         .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
 <?php if ($_SERVER['admin']) { ?>
-        .operate{display:inline-table;margin:0;list-style:none;}
+        .operate{display:inline-table;margin:0;list-style:none;cursor:pointer;}
         .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin:-7px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
         .operate:hover ul{position:absolute;display:inline-table;}
         .operate ul li{padding:7px;list-style:none;display:inline-table;}
@@ -1075,11 +1075,6 @@ function render_list($path, $files)
                         <td class="file">
 <?php                       if ($_SERVER['admin']) { ?>
                             <li class="operate">
-							<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA0ElEQVQ4T7XTPU4CURSG4Wc6CvfA
-								zxq0g4ZaSqlhFZTKClgCNK5AbSjYgLoDArTQEgsryU1mJjeTuaIhnPLe8315z1/mwsgu1LuawT0G
-								6OMbSzzjs0pcR/CIp0Rpjdyw/K4a3OK9RvyFDg7nCOYYVZL26GKdvwfCaZFTJdiiFRlsMIxqL8or
-								db8ZHDFDEIUoxDu0UwRxCW+Y4AE/UWMXGKcM4iYG9CZ6+ThvctEdPlIGMWrdJMN4ywaGhNQmxosU
-								8lZ4weu5Mf77NK52C38mOQFVcSMR5erPkgAAAABJRU5ErkJggg=='/>
 							<?php echo $constStr['Operate'][$constStr['language']]; ?>
                             <ul>
                                 <li><a onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);">
@@ -1144,11 +1139,7 @@ function render_list($path, $files)
                     <tr data-to id="tr<?php echo $filenum;?>">
                         <td class="file">
 <?php                           if ($_SERVER['admin']) { ?>
-                            <li class="operate"><img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA0ElEQVQ4T7XTPU4CURSG4Wc6CvfA
-								zxq0g4ZaSqlhFZTKClgCNK5AbSjYgLoDArTQEgsryU1mJjeTuaIhnPLe8315z1/mwsgu1LuawT0G
-								6OMbSzzjs0pcR/CIp0Rpjdyw/K4a3OK9RvyFDg7nCOYYVZL26GKdvwfCaZFTJdiiFRlsMIxqL8or
-								db8ZHDFDEIUoxDu0UwRxCW+Y4AE/UWMXGKcM4iYG9CZ6+ThvctEdPlIGMWrdJMN4ywaGhNQmxosU
-								8lZ4weu5Mf77NK52C38mOQFVcSMR5erPkgAAAABJRU5ErkJggg=='/>
+                            <li class="operate">
 								<?php echo $constStr['Operate'][$constStr['language']]; ?>
                             <ul>
                                 <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
