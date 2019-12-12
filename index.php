@@ -701,7 +701,7 @@ function render_list($path, $files)
         .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
 <?php if ($_SERVER['admin']) { ?>
         .operate{display:inline-table;margin:0;list-style:none;}
-        .operate ul{position:absolute;display:none;background: white;border:1px #87CEFA solid;border-radius:5px;margin:-7px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
+        .operate ul{position:absolute;display:none;background:#fffaaa;border:0px #f7f7f7 solid;border-radius:5px;margin:-7px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
         .operate:hover ul{position:absolute;display:inline-table;}
         .operate ul li{padding:7px;list-style:none;display:inline-table;}
 <?php } ?>
@@ -917,37 +917,12 @@ function render_list($path, $files)
 			P0ySAaCw+PebQYyB8b8eWON/xktMrAyvQAGH0wvIEhQbAHMu2V7AF4iCM+56/f//7zksYOHpAFsg
 			YotOoem3P3EwfZR4lm7yDSUdEDIAnMj+MVz995fBEZaIUAyAKcCViP7/Z8hmZGY4AEvCMHXUz0yk
 			5k4AVUKTEfmS6BcAAAAASUVORK5CYII='/>
-			<a onclick="showdiv(event,'create','');" style="margin-bottom:3px;"><?php echo $constStr['Create'][$constStr['language']]; ?></a>
+			<a onclick="showdiv(event,'create','');" style="margin-bottom:10px"><?php echo $constStr['Create'][$constStr['language']]; ?></a>
 		</li>
-        <li><img src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
-			OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
-			+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
-			AGeBY52qDRXPPwJwOKdFtZe97Y80MgEYntzUGLcJfa9ETm2gwobXr2o885wQtiJH3E0HWtLWdHQD
-			V2TwSkdyEqMeNUWvEKhcyLXkC0sKUOF0cPhOm8VrsC8eh2ujryy2fSsmlmVa1ZnEW8PyVXYEGAVH
-			HwfHr1IKMDuyq6DQFfV/CqT/Q+EVzM7TOiG+ZyDTc87o2gx9I3RXHzIt/I6sPGaGPa1KIvQCR5xM
-			zEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC'/>
-			<a onclick="showdiv(event,'encrypt','');"><?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
-		</li>
+        <li><a onclick="showdiv(event,'encrypt','');"><?php echo $constStr['encrypt'][$constStr['language']]; ?></a></li>
 <?php   } ?>
-        <li><img src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB7klEQVQ4T41TQY7TQBCsHhtyNdkP
-			eKV1JE6bvID8APMCwjHOJfwgvIBckhwxPzAvwPwgnCKtVyIfWMdXa+Mp1M5OZFAWMbeZ7q6u7qoR
-			PHP662IrQKVhAsMyiYJLqeIeg8+/AtM7fgeQW/KrQBaHWRRrvL8qFtYg9yiBBd+z9j9UH69b8BZA
-			i73eMWvIuScmJLgUcvEwG6RtfFOMDZFBJAW5FyBuaj9WkBagv75LrUhaTaP8uZG0iesarO6GRiQt
-			k2h4YrApxmIxd5QdK/SOtx4kbOTxRzV9vXfg/XUxBxGUs2ghLRrwBoK5rV+MtEuw2YWGfgYiE3AP
-			kQnI1I3UXxd7S8bVbLAVvei8jWly1+XVqsgILjTBdb1aF3kjx4nmXK3vY8LGgIxFAw9JNO7OfulN
-			aQtZORaar3n/DaB70qLuolsAVUAgoQUOhyR653SHActp9OmSKuoLCm4FuH5SYRd69NPuKJoEQUzg
-			ICI/y+nN3Kljesetrf3h2Qft0gyW//JBl8kfMjojCZHrgk6ubN42tfftbJzNLoT1AqfKiR3DMhlM
-			zn9BdwExBDkisVenPSQ3Wdtgc7+kZdh638gBtKLF57/QdZit/RQvH0OjxoJ80ZgBlmUSjU6mk1gd
-			6GrODP7edkvz6agbu/p3c38Dn44bXo87ZCAAAAAASUVORK5CYII='/>
-			<a <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>><?php echo $constStr['Setup'][$constStr['language']]; ?></a>
-		</li>
-        <li><img src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4ElEQVQ4T2NkYGBgEJp2q5uBgSGJ
-			gYFRCMTHAq7+Z2SqeJ+pvAVdjlFo2u1VDAwMoTg0Ign/n/UuSy0dwwDBqbdfMTIyiIIk/jMw3GFg
-			YHiCoYiB4fW7LNUwbJaAXPAfKnH1XZaqDmGXoKqAG/CfgeHA+yxVR0IGCE67fYbx/7/l77LVe0Fq
-			STYA7uJ//93e5ajtxmmAyLQ7xn/+/udFdxETM8N+sNh/hlsMDIwuWA0Qmn67nuE/QwMh7zAwMK6j
-			jQEgmynyAj6nEx2IuAzBGY0MDAzkJSRqJGXKMhOl2RkA1YaXsy9puFUAAAAASUVORK5CYII='/>
-			<a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a>
-		</li>
+        <li><a <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>><?php echo $constStr['Setup'][$constStr['language']]; ?></a></li>
+        <li><a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a></li>
     </ul></li>
 <?php
     } ?>
@@ -1979,6 +1954,14 @@ function binupfile(file,url,tdnum){
 		if(id == '' || id == null) return false;
 		document.getElementById(id).style.display="block";
 	}
+	
+	<!-- 按窗口宽度加载窗口位置 start -->
+	var x = document.getElementsByClassName("disLogBody");
+	var i;console.log(x.length)
+	for (i = 0; i < x.length; i++) {
+		x[i].style.marginTop = document.body.clientHeight/3 + "px";
+	}
+	<!-- 按窗口宽度加载窗口位置 end -->
 <?php }  if(getenv('user')!='') if ($_SERVER['user']){ ?>
 	function userLoginOut() {
 		document.cookie = "<?php echo $_SERVER['function_name'] . 'user';?>=; path=/";
