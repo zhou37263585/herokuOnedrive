@@ -704,7 +704,7 @@ function render_list($path, $files)
         .operate ul{position:absolute;display:none;background: white;border:1px #87CEFA solid;border-radius:5px;margin:-7px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
         .operate:hover ul{position:absolute;display:inline-table;}
         .operate ul li{padding:7px;list-style:none;display:inline-table;}
-		.operate_ico{margin-top: -5px;}
+		.operate_ico{margin-top: 10px;}
 <?php } ?>
         .operatediv{position:absolute;border:1px #CCCCCC;background-color:#FFFFCC;z-index:2;}
         .operatediv div{margin:16px}
