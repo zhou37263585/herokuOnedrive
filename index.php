@@ -760,7 +760,6 @@ function render_list($path, $files)
 	width: 250px;
 	height: 150px;
 	margin: auto;
-	margin-top: 25%;
 	border-radius: 5px;
 	position:relative
 }
