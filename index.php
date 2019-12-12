@@ -785,20 +785,7 @@ function render_list($path, $files)
 	opacity:  0.85;
 }
 <!-- DisLog end-->
-<!-- loginInputTextCss start-->
-.basic-style {
-  --input-color: #99A3BA;
-  --input-border: #CDD9ED;
-  --input-background: #fff;
-  --input-placeholder: #CBD1DC;
-  --input-border-focus: #275EFE;
-  --group-color: var(--input-color);
-  --group-border: var(--input-border);
-  --group-background: #EEF4FF;
-  --group-color-focus: #fff;
-  --group-border-focus: var(--input-border-focus);
-  --group-background-focus: #678EFE;
-}	    
+<!-- loginInputTextCss start-->	    
 .form-field {
   display: block;
   width: 90%;
@@ -864,6 +851,20 @@ function render_list($path, $files)
   width: 1%;
   margin-top: 0;
   margin-bottom: 0;
+	
+<!-- 代码重复 尚未解决 不可删除  start-->
+  --input-color: #99A3BA;
+  --input-border: #CDD9ED;
+  --input-background: #fff;
+  --input-placeholder: #CBD1DC;
+  --input-border-focus: #275EFE;
+  --group-color: var(--input-color);
+  --group-border: var(--input-border);
+  --group-background: #EEF4FF;
+  --group-color-focus: #fff;
+  --group-border-focus: var(--input-border-focus);
+  --group-background-focus: #678EFE;
+<!-- 代码重复 尚未解决 不可删除 end-->	
 }
 .form-group > span {
   text-align: center;
@@ -875,6 +876,20 @@ function render_list($path, $files)
   border: 1px solid var(--group-border);
   transition: background .3s ease, border .3s ease, color .3s ease;
   cursor:pointer;
+	
+<!-- 代码重复 尚未解决 不可删除  start-->
+  --input-color: #99A3BA;
+  --input-border: #CDD9ED;
+  --input-background: #fff;
+  --input-placeholder: #CBD1DC;
+  --input-border-focus: #275EFE;
+  --group-color: var(--input-color);
+  --group-border: var(--input-border);
+  --group-background: #EEF4FF;
+  --group-color-focus: #fff;
+  --group-border-focus: var(--input-border-focus);
+  --group-background-focus: #678EFE;
+<!-- 代码重复 尚未解决 不可删除 end-->
 }
 .form-group:focus-within > span {
   color: var(--group-color-focus);
