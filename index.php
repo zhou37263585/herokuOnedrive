@@ -786,6 +786,19 @@ function render_list($path, $files)
 }
 <!-- DisLog end-->
 <!-- loginInputTextCss start-->
+.basic-style {
+  --input-color: #99A3BA;
+  --input-border: #CDD9ED;
+  --input-background: #fff;
+  --input-placeholder: #CBD1DC;
+  --input-border-focus: #275EFE;
+  --group-color: var(--input-color);
+  --group-border: var(--input-border);
+  --group-background: #EEF4FF;
+  --group-color-focus: #fff;
+  --group-border-focus: var(--input-border-focus);
+  --group-background-focus: #678EFE;
+}	    
 .form-field {
   display: block;
   width: 90%;
@@ -851,18 +864,6 @@ function render_list($path, $files)
   width: 1%;
   margin-top: 0;
   margin-bottom: 0;
-	
-  --input-color: #99A3BA;
-  --input-border: #CDD9ED;
-  --input-background: #fff;
-  --input-placeholder: #CBD1DC;
-  --input-border-focus: #275EFE;
-  --group-color: var(--input-color);
-  --group-border: var(--input-border);
-  --group-background: #EEF4FF;
-  --group-color-focus: #fff;
-  --group-border-focus: var(--input-border-focus);
-  --group-background-focus: #678EFE;
 }
 .form-group > span {
   text-align: center;
@@ -1287,8 +1288,8 @@ function render_list($path, $files)
 			<div class="titleText" >点击任意位置即可登录！</div>
 			<form action="<?php echo $_GET['preview']?'?preview&':'?';?>admin" method="post" id="loginForm">
 				<div class="form-group" style="padding-top: 5%;">
-					<input class="form-field" id="login_input" name="password1" type="password" onchange="document.getElementById('loginForm').submit();" placeholder="<?php echo $constStr['InputPassword'][$constStr['language']]; ?>" />
-					<span><?php echo $constStr['Login'][$constStr['language']]; ?></span>
+					<input class="form-field basic-style" id="login_input" name="password1" type="password" onchange="document.getElementById('loginForm').submit();" placeholder="<?php echo $constStr['InputPassword'][$constStr['language']]; ?>" />
+					<span class="basic-style"><?php echo $constStr['Login'][$constStr['language']]; ?></span>
 				</div>
 			</form>
 		</div>
