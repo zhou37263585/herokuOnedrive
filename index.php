@@ -920,6 +920,7 @@ function render_list($path, $files)
 						vxJMpoNkz8Nab/w7HgYxvDqsNioUCZyxaMrh6IG3mTbuvvO142fHsmOkvBLbgUydJle3f/2pfx/v
 						/5FF/gv1tsPPI1Vk7wAAAABJRU5ErkJggg=='/>
 				<?php echo $constStr['Login'][$constStr['language']]; ?></a>
+		<?php } ?>
 <?php   } else if($_SERVER['user']){ ?>
 	<a onclick="userLoginOut()" class="userLoginOut_a">
 				<img class="userLoginOut_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA9ElEQVQ4T2NkoBAwwvQLTL+uwMTA
