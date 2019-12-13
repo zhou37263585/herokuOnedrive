@@ -382,6 +382,7 @@ function bigfileupload($path)
             $getoldupinfo = json_decode($getoldupinfo_j , true);
             if ( json_decode( curl_request($getoldupinfo['uploadUrl']), true)['@odata.context']!='' ) return output($getoldupinfo_j);
         }
+        if (!$_SERVER['admin']) $filename = spurlencode( $fileinfo['name'] ) . '.scfupload';
         $response=MSAPI('createUploadSession',path_format($path1 . '/' . $filename),'{"item": { "@microsoft.graph.conflictBehavior": "fail"  }}',$_SERVER['access_token']);
         $responsearry = json_decode($response['body'],true);
         if (isset($responsearry['error'])) return output($response['body'], $response['stat']);
@@ -576,7 +577,7 @@ namespace:' . $namespace . '<br>
     if ($_POST['submit1']) {
         foreach ($_POST as $k => $v) {
             if (in_array($k, $constEnv)) {
-                $tmp[$k] = $v;
+                if (!(getenv($k)==''&&$v=='')) $tmp[$k] = $v;
             }
         }
         $response = json_decode(setHerokuConfig($function_name, $tmp, getenv('APIKey')), true);
@@ -591,6 +592,7 @@ function_name:' . $_SERVER['function_name'] . '<br>
         }
     }
     $html .= '
+        <a href="'.$_SERVER['PHP_SELF'].'">'.$constStr['BackHome'][$constStr['language']].'</a>&nbsp;&nbsp;&nbsp;
         <a href="https://github.com/qkqpttgf/herokuOnedrive">Github</a><br>';
     /*if ($needUpdate) {
         $html .= '<pre>' . $_SERVER['github_version'] . '</pre>
@@ -904,18 +906,8 @@ function render_list($path, $files)
 </head>
 <body>
 <?php
-    if (getenv('admin')!='') if (!$_SERVER['admin']) {
-        if (getenv('adminloginpage')=='') { 
-    		if(getenv('user')!='') if ($_SERVER['user']){ ?>
-				<a onclick="userLoginOut()" class="userLoginOut_a">
-				<img class="userLoginOut_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA9ElEQVQ4T2NkoBAwwvQLTL+uwMTA
-					Eo/NPMZ//x++zVZbgFUOJig47fZtRgYGFVwO+s/AmP4+S2UWujzcBULTbv//95fB8UOu6gF0RYLT
-					bu9nZGQ48C5TtXGoGjD9jjUj4//3/34ziDGxMNgje4WoMIDH1OTbDkzMDPsZGBknvstUKQCJ4zRA
-					cPoNa8b/zEewBNrV/wwM2v/+MRR+yFGdgNcFApNvO6AYwMwoz8Twr4GBgenOu1c/vRkatH+R7AVG
-					ZoZ6xv+Mce+yVR7j9QKyzULTbi1nYGS8QfN0cIWBgUEbV1JmZGSIe5upuhhnSqQ4M5GbqwFydp4R
-					iVZAFgAAAABJRU5ErkJggg=='/>
-				<?php echo $constStr['Logout'][$constStr['language']]; ?></a>
-			<?php } else { ?>
+    if (getenv('admin')!='') if (!$_SERVER['admin'] && !$_SERVER['user']) {
+        if (getenv('adminloginpage')=='') { ?>
 				<a onclick="login();" class="userLoginOut_a">
 					<img class="userLoginOut_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T4WSMWgUQRSG/3/3UAMi
 						yR5JGkHF7JnKRhvBIoJdhBSChZpKiGbPlBqw0FNQsDGg3B4qpBNEIUVMYwQjiI0ItuqthyCmibt3
@@ -928,9 +920,17 @@ function render_list($path, $files)
 						vxJMpoNkz8Nab/w7HgYxvDqsNioUCZyxaMrh6IG3mTbuvvO142fHsmOkvBLbgUydJle3f/2pfx/v
 						/5FF/gv1tsPPI1Vk7wAAAABJRU5ErkJggg=='/>
 				<?php echo $constStr['Login'][$constStr['language']]; ?></a>
-			<?php } ?>
-<?php   }
-    } else { ?>
+<?php   } else if($_SERVER['user']){ ?>
+	<a onclick="userLoginOut()" class="userLoginOut_a">
+				<img class="userLoginOut_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA9ElEQVQ4T2NkoBAwwvQLTL+uwMTA
+					Eo/NPMZ//x++zVZbgFUOJig47fZtRgYGFVwO+s/AmP4+S2UWujzcBULTbv//95fB8UOu6gF0RYLT
+					bu9nZGQ48C5TtXGoGjD9jjUj4//3/34ziDGxMNgje4WoMIDH1OTbDkzMDPsZGBknvstUKQCJ4zRA
+					cPoNa8b/zEewBNrV/wwM2v/+MRR+yFGdgNcFApNvO6AYwMwoz8Twr4GBgenOu1c/vRkatH+R7AVG
+					ZoZ6xv+Mce+yVR7j9QKyzULTbi1nYGS8QfN0cIWBgUEbV1JmZGSIe5upuhhnSqQ4M5GbqwFydp4R
+					iVZAFgAAAABJRU5ErkJggg=='/>
+				<?php echo $constStr['Logout'][$constStr['language']]; ?></a>
+
+ <?php   } else { ?>
     <li class="operate">
 		<span class="operate_ul_li"><img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T4WSMWgUQRSG/3/3UAMi
 				yR5JGkHF7JnKRhvBIoJdhBSChZpKiGbPlBqw0FNQsDGg3B4qpBNEIUVMYwQjiI0ItuqthyCmibt3
@@ -989,6 +989,14 @@ function render_list($path, $files)
     </ul></li>
 <?php
     } ?>
+    <select class="changelanguage" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
+        <option>Language</option>
+<?php
+    foreach ($constStr['languages'] as $key1 => $value1) { ?>
+        <option value="<?php echo $key1; ?>"><?php echo $value1; ?></option>
+<?php
+    } ?>
+    </select>
 <?php
     if ($_SERVER['needUpdate']) { ?>
     <div style='position:absolute;'><font color='red'><?php echo $constStr['NeedUpdate'][$constStr['language']]; ?></font></div>
