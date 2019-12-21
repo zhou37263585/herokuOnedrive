@@ -1359,7 +1359,7 @@ function render_list($path, $files)
 					<div class="form-group" style="padding-top: 5%;">
 						<input class="form-field basic-style" id="rename_input" name="rename_newname" type="text" placeholder="<?php echo $constStr['Input'][$constStr['language']]; ?>" />
 						<span class="basic-style" onclick="document.getElementById('rename_operate_action').click();"><?php echo $constStr['Rename'][$constStr['language']]; ?></span>
-						<input name="operate_action" type="submit" id="rename_operate_action"value="<?php echo $constStr['Rename'][$constStr['language']]; ?>" style="display:none">
+						<input name="operate_action" type="submit" id="rename_operate_action" value="<?php echo $constStr['Rename'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				</form>
 			</div>
@@ -1379,7 +1379,8 @@ function render_list($path, $files)
 					<input id="delete_hidden" name="delete_name" type="hidden" value="">
 				</div>
 				<form id="delete_form" onsubmit="return submit_operate('delete');">
-					<div class="disLog_btn_submit" tabindex="1" id="delete_input" onclick="document.getElementById(delete_form).submit();" ><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
+					<div class="disLog_btn_submit" tabindex="1" id="delete_input" onclick="document.getElementById(delete_operate_action).click();" ><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
+					<input name="operate_action" type="submit" id="delete_operate_action" value="<?php echo $constStr['Submit'][$constStr['language']]; ?>" style="display:none">
 					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)">取消</div>
 				</form>
 			</div>
