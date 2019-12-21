@@ -1944,9 +1944,7 @@ function binupfile(file,url,tdnum){
         for ($i=0;$i<$operatediv.length;$i++) {
             $operatediv[$i].style.display='none';
         }
-        document.getElementById('mask').style.display='';
-        //document.getElementById('mask').style.width=document.documentElement.scrollWidth+'px';
-        document.getElementById('mask').style.height=document.documentElement.scrollHeight<window.innerHeight?window.innerHeight:document.documentElement.scrollHeight+'px';
+
         if (num=='') {
             var str='';
         } else {
