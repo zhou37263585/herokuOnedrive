@@ -722,75 +722,7 @@ function render_list($path, $files)
             .list-table {padding:8px}
             .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
         }
-<!-- DisLog start -->
-.disLog_btn_cancel{
-	float: right;
-	width: 50%;
-	height: 39px;
-	line-height: 39px;
-	font-size: 1rem;
-	cursor:pointer;
-}
-.disLog_btn_submit{
-	float: left;
-	width: 49%;
-	height: 39px;
-	border-right: 1px solid #87CEEB;
-	line-height: 39px;
-	font-size: 1rem;
-	cursor:pointer;
-}
-.disLog_btn_cancel:hover{
-	filter: alpha(Opacity=60);
-	opacity: 0.5;
-	border: 1px solid #CCCCCC;
-}
-.disLog_btn_submit:hover{
-	filter: alpha(Opacity=60);
-	opacity: 0.5;
-	border: 1px solid #87CEEB;
-}
-.disLogBg{
-	border: 1px solid;
-	width: 100%;
-	height: 100%;
-	background: rgb(0,0,0,0.6);
-	overflow: auto;
-	text-align: center;
-	position:absolute;
-	left:0px;
-	top:0px;
-	display: none;
-}
-.disLogBody{
-	background: white;
-	width: 250px;
-	height: 150px;
-	margin: auto;
-	border-radius: 5px;
-	position:relative
-}
-.disLogContent{
-	height: 110px;border-bottom: 1px solid #CCCCCC;
-}
-.titleText{
-	font-size: 0.9rem;
-	padding-top: 30px;
-}
-.contentTest{
-	font-size: 0.8rem;margin-top: 15px;
-}
-.disLog_btn_close{
-	position: absolute;
-	right:-20px;
-	top:-20px;
-	cursor:pointer;
-}
-.disLog_btn_close:hover{
-	filter: alpha(Opacity=60);
-	opacity:  0.85;
-}
-<!-- DisLog end -->
+
 <!-- loginInputTextCss start -->
 .form-field {
   display: block;
@@ -903,7 +835,77 @@ function render_list($path, $files)
   border-color: var(--group-border-focus);
 }
 <!-- loginInputTextCss end-->
-    </style>
+
+<!-- DisLog start -->
+.disLog_btn_cancel{
+	float: right;
+	width: 50%;
+	height: 39px;
+	line-height: 39px;
+	font-size: 1rem;
+	cursor:pointer;
+}
+.disLog_btn_submit{
+	float: left;
+	width: 49%;
+	height: 39px;
+	border-right: 1px solid #87CEEB;
+	line-height: 39px;
+	font-size: 1rem;
+	cursor:pointer;
+}
+.disLog_btn_cancel:hover{
+	filter: alpha(Opacity=60);
+	opacity: 0.5;
+	border: 1px solid #CCCCCC;
+}
+.disLog_btn_submit:hover{
+	filter: alpha(Opacity=60);
+	opacity: 0.5;
+	border: 1px solid #87CEEB;
+}
+.disLogBg{
+	border: 1px solid;
+	width: 100%;
+	height: 100%;
+	background: rgb(0,0,0,0.6);
+	overflow: auto;
+	text-align: center;
+	position:absolute;
+	left:0px;
+	top:0px;
+	display: none;
+}
+.disLogBody{
+	background: white;
+	width: 250px;
+	height: 150px;
+	margin: auto;
+	border-radius: 5px;
+	position:relative
+}
+.disLogContent{
+	height: 110px;border-bottom: 1px solid #CCCCCC;
+}
+.titleText{
+	font-size: 0.9rem;
+	padding-top: 30px;
+}
+.contentTest{
+	font-size: 0.8rem;margin-top: 15px;
+}
+.disLog_btn_close{
+	position: absolute;
+	right:-20px;
+	top:-20px;
+	cursor:pointer;
+}
+.disLog_btn_close:hover{
+	filter: alpha(Opacity=60);
+	opacity:  0.85;
+}
+<!-- DisLog end -->
+</style>
 </head>
 <body>
 <?php
