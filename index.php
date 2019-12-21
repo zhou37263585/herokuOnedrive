@@ -722,21 +722,20 @@ function render_list($path, $files)
             .list-table {padding:8px}
             .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
         }
-<!-- DisLog start-->		
-
+<!-- DisLog start-->
+.disLog_btn_cancel{
+	float: right;
+	width: 50%;
+	height: 39px;
+	line-height: 39px;
+	font-size: 1rem;
+	cursor:pointer;
+}
 .disLog_btn_submit{
 	float: left;
 	width: 49%;
 	height: 39px;
 	border-right: 1px solid #87CEEB;
-	line-height: 39px;
-	font-size: 1rem;
-	cursor:pointer;
-}
-.disLog_btn_cancel{
-	float: right;
-	width: 50%;
-	height: 39px;
 	line-height: 39px;
 	font-size: 1rem;
 	cursor:pointer;
@@ -792,7 +791,7 @@ function render_list($path, $files)
 	opacity:  0.85;
 }
 <!-- DisLog end-->
-<!-- loginInputTextCss start-->	    
+<!-- loginInputTextCss start-->
 .form-field {
   display: block;
   width: 90%;
