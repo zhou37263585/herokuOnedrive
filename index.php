@@ -1379,7 +1379,7 @@ function render_list($path, $files)
 					<input id="delete_hidden" name="delete_name" type="hidden" value="">
 				</div>
 				<form id="delete_form" onsubmit="return submit_operate('delete');">
-					<div class="disLog_btn_submit" tabindex="1" id="delete_input" onclick="document.getElementById(delete_operate_action).click();" ><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
+					<div class="disLog_btn_submit" tabindex="1" id="delete_input" onclick="document.getElementById('delete_operate_action').click();" ><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
 					<input name="operate_action" type="submit" id="delete_operate_action" value="<?php echo $constStr['Submit'][$constStr['language']]; ?>" style="display:none">
 					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)">取消</div>
 				</form>
