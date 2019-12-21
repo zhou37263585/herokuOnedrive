@@ -708,6 +708,21 @@ function render_list($path, $files)
         .operate ul li{padding:7px;list-style:none;display:inline-table;}
 		.operate_ul_li:hover{filter: alpha(Opacity=60);opacity:  0.5;}
 		.operate_ico{margin-bottom: -3px;}
+<?php } ?>
+		.userLoginOut_ico{margin-bottom: -3px;}
+		.userLoginOut_a:hover{filter: alpha(Opacity=60);opacity:  0.5;}
+        .operatediv{position:absolute;border:1px #CCCCCC;background-color:#FFFFCC;z-index:2;}
+        .operatediv div{margin:16px}
+        .operatediv_close{position:absolute;right:3px;top:3px;}
+        .readme{padding:8px;background-color:#fff;}
+        #readme{padding:20px;text-align:left}
+        @media only screen and (max-width:480px){
+            .title{margin-bottom:24px}
+            .list-wrapper{width:95%; margin-bottom:24px;}
+            .list-table {padding:8px}
+            .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
+        }
+<!-- DisLog start -->
 .disLog_btn_cancel{
 	float: right;
 	width: 50%;
@@ -735,22 +750,6 @@ function render_list($path, $files)
 	opacity: 0.5;
 	border: 1px solid #87CEEB;
 }
-<?php } ?>
-		.userLoginOut_ico{margin-bottom: -3px;}
-		.userLoginOut_a:hover{filter: alpha(Opacity=60);opacity:  0.5;}
-        .operatediv{position:absolute;border:1px #CCCCCC;background-color:#FFFFCC;z-index:2;}
-        .operatediv div{margin:16px}
-        .operatediv_close{position:absolute;right:3px;top:3px;}
-        .readme{padding:8px;background-color:#fff;}
-        #readme{padding:20px;text-align:left}
-        @media only screen and (max-width:480px){
-            .title{margin-bottom:24px}
-            .list-wrapper{width:95%; margin-bottom:24px;}
-            .list-table {padding:8px}
-            .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
-        }
-<!-- DisLog start -->
-
 .disLogBg{
 	border: 1px solid;
 	width: 100%;
@@ -859,7 +858,7 @@ function render_list($path, $files)
   margin-top: 0;
   margin-bottom: 0;
 	
-<!-- 代码重复 尚未解决 不可删除  start -->
+<!-- 代码重复 尚未解决 不可删除  start-->
   --input-color: #99A3BA;
   --input-border: #CDD9ED;
   --input-background: #fff;
@@ -871,7 +870,7 @@ function render_list($path, $files)
   --group-color-focus: #fff;
   --group-border-focus: var(--input-border-focus);
   --group-background-focus: #678EFE;
-<!-- 代码重复 尚未解决 不可删除 end -->	
+<!-- 代码重复 尚未解决 不可删除 end-->	
 }
 .form-group > span {
   text-align: center;
