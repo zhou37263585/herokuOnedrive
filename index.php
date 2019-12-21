@@ -1963,22 +1963,7 @@ function binupfile(file,url,tdnum){
         document.getElementById(action + '_sid').value=num;
         document.getElementById(action + '_hidden').value=str;
         if (action=='rename') document.getElementById(action + '_input').value=str;
-        var $e = event || window.event;
-        var $scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
-        var $scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-        var $x = $e.pageX || $e.clientX + $scrollX;
-        var $y = $e.pageY || $e.clientY + $scrollY;
-        if (action=='create') {
-            document.getElementById(action + '_div').style.left=(document.body.clientWidth-document.getElementById(action + '_div').offsetWidth)/2 +'px';
-            document.getElementById(action + '_div').style.top=(window.innerHeight-document.getElementById(action + '_div').offsetHeight)/2+$scrollY +'px';
-        } else {
-            if ($x + document.getElementById(action + '_div').offsetWidth > document.body.clientWidth) {
-                document.getElementById(action + '_div').style.left=document.body.clientWidth-document.getElementById(action + '_div').offsetWidth+'px';
-            } else {
-                document.getElementById(action + '_div').style.left=$x+'px';
-            }
-            document.getElementById(action + '_div').style.top=$y+'px';
-        }
+
         document.getElementById(action + '_input').focus();
     }
     function submit_operate(str) {
