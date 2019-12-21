@@ -722,7 +722,15 @@ function render_list($path, $files)
             .list-table {padding:8px}
             .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
         }
-<!-- DisLog start -->
+<!-- DisLog start-->
+.disLog_btn{
+	float: left;
+	width: 49%;
+	height: 39px;
+	line-height: 39px;
+	font-size: 1rem;
+	cursor:pointer;
+}
 .disLog_btn_submit{
 	float: left;
 	width: 49%;
@@ -741,8 +749,8 @@ function render_list($path, $files)
 	opacity: 0.5;
 }
 .disLog_btn_cancel{
-	float: right;
-	width: 50%;
+	float: left;
+	width: 49%;
 	height: 39px;
 	line-height: 39px;
 	font-size: 1rem;
