@@ -1364,13 +1364,13 @@ function render_list($path, $files)
 					<div class="contentTest">
 						（删除后不可恢复）
 					</div>
-					<form id="delete_form" onsubmit="return submit_operate('delete');">
-						<input id="delete_sid" name="delete_sid" type="hidden" value="">
-						<input id="delete_hidden" name="delete_name" type="hidden" value="">
-						<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)">取消</div>
-						<div class="disLog_btn_submit" id="delete_input" tabindex="1" onclick="document.getElementById('delete_form').submit();"><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
-					</form>
 				</div>
+				<form id="delete_form" onsubmit="return submit_operate('delete');">
+					<input id="delete_sid" name="delete_sid" type="hidden" value="">
+					<input id="delete_hidden" name="delete_name" type="hidden" value="">
+					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)">取消</div>
+					<div class="disLog_btn_submit" id="delete_input" tabindex="1" onclick="document.getElementById('delete_form').submit();"><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
+				</form>
 			</div>
 		</div>
         <div id="encrypt_div" class="operatediv" style="display:none">
