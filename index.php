@@ -2074,18 +2074,11 @@ function binupfile(file,url,tdnum){
         }
         return queryComponents.join('&');
     }
-	<!-- 共有打开弹出层方法 start -->
+	<!-- 共有打开/关闭弹出层方法 start -->
 	function openDisLog(id) {
 		if(id == '' || id == null) return false;
-		document.getElementById(id).style.display="block";
+		document.getElementById(id).style.display="";
 	}
-	<!-- 共有打开弹出层方法 end -->
-<?php   }
-    } else if (getenv('admin')!='') if (getenv('adminloginpage')=='') { ?>
-    function login() {
-        this.openDisLog('login_div');
-		document.getElementById('login_input').focus();
-    }
 	function closeDisLog(obj) {
 		var popInner = obj.parentNode;
 		while(true){
@@ -2094,6 +2087,13 @@ function binupfile(file,url,tdnum){
 		}
 		popInner.style.display = "none"; 
 	}
+	<!-- 共有打开/关闭弹出层方法 end -->
+<?php   }
+    } else if (getenv('admin')!='') if (getenv('adminloginpage')=='') { ?>
+    function login() {
+        this.openDisLog('login_div');
+		document.getElementById('login_input').focus();
+    }
 	
 	<!-- 按窗口宽度加载窗口位置 start -->
 	var x = document.getElementsByClassName("disLogBody");
