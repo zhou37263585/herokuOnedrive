@@ -1341,7 +1341,6 @@ function render_list($path, $files)
 <?php
     if ($_SERVER['admin']) {
         if (!$_GET['preview']) { ?>
-    <div>
         <div id="rename_div" class="operatediv" style="display:none">
             <div>
                 <label id="rename_label"></label><br><br><a onclick="operatediv_close('rename')" class="operatediv_close"><?php echo $constStr['Close'][$constStr['language']]; ?></a>
@@ -1353,7 +1352,7 @@ function render_list($path, $files)
                 </form>
             </div>
         </div>
-        <div id="delete_div" class="operatediv" style="display:none">
+        <div id="delete_div" class="disLogBg" style="display:none">
             <div>
                 <br><a onclick="operatediv_close('delete')" class="operatediv_close"><?php echo $constStr['Close'][$constStr['language']]; ?></a>
                 <label id="delete_label"></label>
@@ -1430,7 +1429,6 @@ function render_list($path, $files)
                 </form>
             </div>
         </div>
-    </div>
 <?php   }
     } else {
         if (getenv('admin')!='') if (getenv('adminloginpage')=='') { ?>
