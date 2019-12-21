@@ -1968,7 +1968,8 @@ function binupfile(file,url,tdnum){
             if (str.substr(-1)==' ') str=str.substr(0,str.length-1);
         }
         this.openDisLog(action + '_div');
-		<!-- 禁止页面滚动 start -->
+		<!-- 禁止页面滚动 start 
+		window.addEventListener(‘touchmove’, func, { passive: false })
 		document.body.onmousewheel = function () {return false;}
 		<!-- 禁止页面滚动 end -->
         document.getElementById(action + '_label').innerText=str;//.replace(/&/,'&amp;');
