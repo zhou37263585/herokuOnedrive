@@ -382,6 +382,7 @@ function bigfileupload($path)
             $getoldupinfo = json_decode($getoldupinfo_j , true);
             if ( json_decode( curl_request($getoldupinfo['uploadUrl']), true)['@odata.context']!='' ) return output($getoldupinfo_j);
         }
+        if (!$_SERVER['admin'] && !$_SERVER['user']) $filename = spurlencode( $fileinfo['name'] ) . '.scfupload';
         $response=MSAPI('createUploadSession',path_format($path1 . '/' . $filename),'{"item": { "@microsoft.graph.conflictBehavior": "fail"  }}',$_SERVER['access_token']);
         $responsearry = json_decode($response['body'],true);
         if (isset($responsearry['error'])) return output($response['body'], $response['stat']);
@@ -576,7 +577,7 @@ namespace:' . $namespace . '<br>
     if ($_POST['submit1']) {
         foreach ($_POST as $k => $v) {
             if (in_array($k, $constEnv)) {
-                $tmp[$k] = $v;
+                if (!(getenv($k)==''&&$v=='')) $tmp[$k] = $v;
             }
         }
         $response = json_decode(setHerokuConfig($function_name, $tmp, getenv('APIKey')), true);
@@ -591,6 +592,7 @@ function_name:' . $_SERVER['function_name'] . '<br>
         }
     }
     $html .= '
+        <a href="'.$_SERVER['PHP_SELF'].'">'.$constStr['BackHome'][$constStr['language']].'</a>&nbsp;&nbsp;&nbsp;
         <a href="https://github.com/qkqpttgf/herokuOnedrive">Github</a><br>';
     /*if ($needUpdate) {
         $html .= '<pre>' . $_SERVER['github_version'] . '</pre>
@@ -700,24 +702,23 @@ function render_list($path, $files)
         .list-table .file ion-icon{font-size:15px;margin-right:5px;vertical-align:bottom}
         .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
 <?php if ($_SERVER['admin']) { ?>
-        .operate{display:inline-table;margin:0;list-style:none;}
-        .operate ul{position:absolute;display:none;background:#fffaaa;border:0px #f7f7f7 solid;border-radius:5px;margin:-9px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
+        .operate{display:inline-table;margin:3px 0 0 0;list-style:none;cursor:pointer;}
+        .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin: -9px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
         .operate:hover ul{position:absolute;display:inline-table;}
         .operate ul li{padding:7px;list-style:none;display:inline-table;}
+		.operate_ul_li:hover{filter: alpha(Opacity=60);opacity:  0.5;}
+		.operate_ico{margin-bottom: -3px;}
 <?php } ?>
+		.userLoginOut_ico{margin-bottom: -3px;}
+		.userLoginOut_a:hover{filter: alpha(Opacity=60);opacity:  0.5;}
         .operatediv{position:absolute;border:1px #CCCCCC;background-color:#FFFFCC;z-index:2;}
         .operatediv div{margin:16px}
         .operatediv_close{position:absolute;right:3px;top:3px;}
         .readme{padding:8px;background-color:#fff;}
         #readme{padding:20px;text-align:left}
-        @media only screen and (max-width:480px){
-            .title{margin-bottom:24px}
-            .list-wrapper{width:95%; margin-bottom:24px;}
-            .list-table {padding:8px}
-            .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
-        }
-<!-- DisLog start-->		
-.disLog_btn_cancel{
+.disLog_btn{}
+<!-- DisLog start-->
+#disLog_btn_cancel{
 	float: right;
 	width: 50%;
 	height: 39px;
@@ -729,7 +730,7 @@ function render_list($path, $files)
 	float: left;
 	width: 49%;
 	height: 39px;
-	border-right: 1px solid #CCCCCC;
+	border-right: 1px solid #87CEEB;
 	line-height: 39px;
 	font-size: 1rem;
 	cursor:pointer;
@@ -737,22 +738,23 @@ function render_list($path, $files)
 .disLog_btn_cancel:hover{
 	filter: alpha(Opacity=60);
 	opacity: 0.5;
+	border: 1px solid #CCCCCC;
 }
 .disLog_btn_submit:hover{
 	filter: alpha(Opacity=60);
 	opacity: 0.5;
+	border: 1px solid #87CEEB;
 }
 .disLogBg{
 	border: 1px solid;
 	width: 100%;
-	margin: auto;
 	height: 100%;
-	position: fixed;
-	left: 0px;
-	top: 0px;
 	background: rgb(0,0,0,0.6);
 	overflow: auto;
 	text-align: center;
+	position:absolute;
+	left:0px;
+	top:0px;
 	display: none;
 }
 .disLogBody{
@@ -784,7 +786,7 @@ function render_list($path, $files)
 	opacity:  0.85;
 }
 <!-- DisLog end-->
-<!-- loginInputTextCss start-->	    
+<!-- loginInputTextCss start-->
 .form-field {
   display: block;
   width: 90%;
@@ -896,29 +898,109 @@ function render_list($path, $files)
   border-color: var(--group-border-focus);
 }
 <!-- loginInputTextCss end-->
+        @media only screen and (max-width:480px){
+            .title{margin-bottom:24px}
+            .list-wrapper{width:95%; margin-bottom:24px;}
+            .list-table {padding:8px}
+            .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
+        }
+
     </style>
 </head>
 <body>
 <?php
-    if (getenv('admin')!='') if (!$_SERVER['admin']) {
-        if (getenv('adminloginpage')=='') { 
-    		if(getenv('user')!='') if ($_SERVER['user']){ ?>
-				<a onclick="userLoginOut()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a>
-			<?php } else { ?>
-				<a onclick="login();"><?php echo $constStr['Login'][$constStr['language']]; ?></a>
-			<?php } ?>
-<?php   }
-    } else { ?>
-    <li class="operate"><?php echo $constStr['Operate'][$constStr['language']]; ?><ul>
+    if (getenv('admin')!='') if (!$_SERVER['admin'] && !$_SERVER['user']) {
+        if (getenv('adminloginpage')=='') { ?>
+				<a onclick="login();" class="userLoginOut_a">
+					<img class="userLoginOut_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T4WSMWgUQRSG/3/3UAMi
+						yR5JGkHF7JnKRhvBIoJdhBSChZpKiGbPlBqw0FNQsDGg3B4qpBNEIUVMYwQjiI0ItuqthyCmibt3
+						QRJRd+eXNYnkLnvJq2bem/fNP+8fIiN6K0FPbLgnZhIueoVa1pm1HFuLef9TReCFdflZ0TyjrEuU
+						HofFwvj6niZAvhLclnR5w43ECwBvIJQAfom8vn0bFHSXg76EqraVq+QqaN9I6wYYanjudLr+ryDv
+						B2OC7rZ/L6cEOQQGQJSiUfd6E6DzXnXAsjHXXoEmRZwluA3AqchznzYB0k2XX31H4FAWRLDKhCkS
+						eL/dXjw6f/7wcgYgGCF0PwMwC7AuaoEJXkcX3SeZNnb5nwdNkuzI2ThuwH4KNVl4aQlHjOLnpH0C
+						4IhJcKwx5r5qGeLHK4J1E0ADwDcSCxI6AVkADwKYB/FgxUqA0smwWJj654JTqV5bK2z260BMQNgF
+						4ByB6dBzh1YAfjADaHDT5tWiEp2hzUeQlqJiYScxp5zzIViCkNqzZZC4JfE0oL3pLLil/61IoiRh
+						vxJMpoNkz8Nab/w7HgYxvDqsNioUCZyxaMrh6IG3mTbuvvO142fHsmOkvBLbgUydJle3f/2pfx/v
+						/5FF/gv1tsPPI1Vk7wAAAABJRU5ErkJggg=='/>
+				<?php echo $constStr['Login'][$constStr['language']]; ?></a>
+		<?php } ?>
+<?php   } else if($_SERVER['user']){ ?>
+	<a onclick="userLoginOut()" class="userLoginOut_a">
+				<img class="userLoginOut_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA9ElEQVQ4T2NkoBAwwvQLTL+uwMTA
+					Eo/NPMZ//x++zVZbgFUOJig47fZtRgYGFVwO+s/AmP4+S2UWujzcBULTbv//95fB8UOu6gF0RYLT
+					bu9nZGQ48C5TtXGoGjD9jjUj4//3/34ziDGxMNgje4WoMIDH1OTbDkzMDPsZGBknvstUKQCJ4zRA
+					cPoNa8b/zEewBNrV/wwM2v/+MRR+yFGdgNcFApNvO6AYwMwoz8Twr4GBgenOu1c/vRkatH+R7AVG
+					ZoZ6xv+Mce+yVR7j9QKyzULTbi1nYGS8QfN0cIWBgUEbV1JmZGSIe5upuhhnSqQ4M5GbqwFydp4R
+					iVZAFgAAAABJRU5ErkJggg=='/>
+				<?php echo $constStr['Logout'][$constStr['language']]; ?></a>
+
+ <?php   } else { ?>
+    <li class="operate">
+		<span class="operate_ul_li"><img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T4WSMWgUQRSG/3/3UAMi
+				yR5JGkHF7JnKRhvBIoJdhBSChZpKiGbPlBqw0FNQsDGg3B4qpBNEIUVMYwQjiI0ItuqthyCmibt3
+				QRJRd+eXNYnkLnvJq2bem/fNP+8fIiN6K0FPbLgnZhIueoVa1pm1HFuLef9TReCFdflZ0TyjrEuU
+				HofFwvj6niZAvhLclnR5w43ECwBvIJQAfom8vn0bFHSXg76EqraVq+QqaN9I6wYYanjudLr+ryDv
+				B2OC7rZ/L6cEOQQGQJSiUfd6E6DzXnXAsjHXXoEmRZwluA3AqchznzYB0k2XX31H4FAWRLDKhCkS
+				eL/dXjw6f/7wcgYgGCF0PwMwC7AuaoEJXkcX3SeZNnb5nwdNkuzI2ThuwH4KNVl4aQlHjOLnpH0C
+				4IhJcKwx5r5qGeLHK4J1E0ADwDcSCxI6AVkADwKYB/FgxUqA0smwWJj654JTqV5bK2z260BMQNgF
+				4ByB6dBzh1YAfjADaHDT5tWiEp2hzUeQlqJiYScxp5zzIViCkNqzZZC4JfE0oL3pLLil/61IoiRh
+				vxJMpoNkz8Nab/w7HgYxvDqsNioUCZyxaMrh6IG3mTbuvvO142fHsmOkvBLbgUydJle3f/2pfx/v
+				/5FF/gv1tsPPI1Vk7wAAAABJRU5ErkJggg=='/>
+			<?php echo $constStr['Operate'][$constStr['language']]; ?></span><ul>
 <?php   if (isset($files['folder'])) { ?>
-        <li><a onclick="showdiv(event,'create','');"><?php echo $constStr['Create'][$constStr['language']]; ?></a></li>
-        <li><a onclick="showdiv(event,'encrypt','');"><?php echo $constStr['encrypt'][$constStr['language']]; ?></a></li>
+        <li><a onclick="showdiv(event,'create','');" class="operate_ul_li">
+		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA+0lEQVQ4T2NkoBAwUqifAcMAkWl3
+			jP8x/tdnYGCQxWk4I8Pqdxmq10DyKAYIzbitxfCfIZT5H+PS19kqd7AZIDD5tgNI/EOu6gEUA8S7
+			L3L/4eG69zZTVRyft3AaIDz1rikD4x/pt1nqG2AGCEy/bQi2LVP1PFwMlwvQTQZpEJx20xZEv89S
+			P0ySAaCw+PebQYyB8b8eWON/xktMrAyvQAGH0wvIEhQbAHMu2V7AF4iCM+56/f//7zksYOHpAFsg
+			YotOoem3P3EwfZR4lm7yDSUdEDIAnMj+MVz995fBEZaIUAyAKcCViP7/Z8hmZGY4AEvCMHXUz0yk
+			5k4AVUKTEfmS6BcAAAAASUVORK5CYII='/>
+			<?php echo $constStr['Create'][$constStr['language']]; ?></a>
+		</li> 
+        <li><a onclick="showdiv(event,'encrypt','');" class="operate_ul_li">
+		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
+			OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
+			+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
+			AGeBY52qDRXPPwJwOKdFtZe97Y80MgEYntzUGLcJfa9ETm2gwobXr2o885wQtiJH3E0HWtLWdHQD
+			V2TwSkdyEqMeNUWvEKhcyLXkC0sKUOF0cPhOm8VrsC8eh2ujryy2fSsmlmVa1ZnEW8PyVXYEGAVH
+			HwfHr1IKMDuyq6DQFfV/CqT/Q+EVzM7TOiG+ZyDTc87o2gx9I3RXHzIt/I6sPGaGPa1KIvQCR5xM
+			zEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC'/>
+			<?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
+		</li>
 <?php   } ?>
-        <li><a <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>><?php echo $constStr['Setup'][$constStr['language']]; ?></a></li>
-        <li><a onclick="logout()"><?php echo $constStr['Logout'][$constStr['language']]; ?></a></li>
+        <li><a class="operate_ul_li" <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>>
+		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB7klEQVQ4T41TQY7TQBCsHhtyNdkP
+			eKV1JE6bvID8APMCwjHOJfwgvIBckhwxPzAvwPwgnCKtVyIfWMdXa+Mp1M5OZFAWMbeZ7q6u7qoR
+			PHP662IrQKVhAsMyiYJLqeIeg8+/AtM7fgeQW/KrQBaHWRRrvL8qFtYg9yiBBd+z9j9UH69b8BZA
+			i73eMWvIuScmJLgUcvEwG6RtfFOMDZFBJAW5FyBuaj9WkBagv75LrUhaTaP8uZG0iesarO6GRiQt
+			k2h4YrApxmIxd5QdK/SOtx4kbOTxRzV9vXfg/XUxBxGUs2ghLRrwBoK5rV+MtEuw2YWGfgYiE3AP
+			kQnI1I3UXxd7S8bVbLAVvei8jWly1+XVqsgILjTBdb1aF3kjx4nmXK3vY8LGgIxFAw9JNO7OfulN
+			aQtZORaar3n/DaB70qLuolsAVUAgoQUOhyR653SHActp9OmSKuoLCm4FuH5SYRd69NPuKJoEQUzg
+			ICI/y+nN3Kljesetrf3h2Qft0gyW//JBl8kfMjojCZHrgk6ubN42tfftbJzNLoT1AqfKiR3DMhlM
+			zn9BdwExBDkisVenPSQ3Wdtgc7+kZdh638gBtKLF57/QdZit/RQvH0OjxoJ80ZgBlmUSjU6mk1gd
+			6GrODP7edkvz6agbu/p3c38Dn44bXo87ZCAAAAAASUVORK5CYII='/>
+			<?php echo $constStr['Setup'][$constStr['language']]; ?></a>
+		</li>
+        <li><a class="operate_ul_li" onclick="logout()">
+		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA9ElEQVQ4T2NkoBAwwvQLTL+uwMTA
+			Eo/NPMZ//x++zVZbgFUOJig47fZtRgYGFVwO+s/AmP4+S2UWujzcBULTbv//95fB8UOu6gF0RYLT
+			bu9nZGQ48C5TtXGoGjD9jjUj4//3/34ziDGxMNgje4WoMIDH1OTbDkzMDPsZGBknvstUKQCJ4zRA
+			cPoNa8b/zEewBNrV/wwM2v/+MRR+yFGdgNcFApNvO6AYwMwoz8Twr4GBgenOu1c/vRkatH+R7AVG
+			ZoZ6xv+Mce+yVR7j9QKyzULTbi1nYGS8QfN0cIWBgUEbV1JmZGSIe5upuhhnSqQ4M5GbqwFydp4R
+			iVZAFgAAAABJRU5ErkJggg=='/>
+			<?php echo $constStr['Logout'][$constStr['language']]; ?></a>
+		</li>
     </ul></li>
 <?php
     } ?>
+    <select class="changelanguage" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
+        <option>Language</option>
+<?php
+    foreach ($constStr['languages'] as $key1 => $value1) { ?>
+        <option value="<?php echo $key1; ?>"><?php echo $value1; ?></option>
+<?php
+    } ?>
+    </select>
 <?php
     if ($_SERVER['needUpdate']) { ?>
     <div style='position:absolute;'><font color='red'><?php echo $constStr['NeedUpdate'][$constStr['language']]; ?></font></div>
@@ -1030,18 +1112,52 @@ function render_list($path, $files)
                     <!-- Dirs -->
 <?php               //echo json_encode($files['children'], JSON_PRETTY_PRINT);
                     foreach ($files['children'] as $file) {
-                        // Folders
+                        // Folders 
                         if (isset($file['folder'])) { 
                             $filenum++; ?>
                     <tr data-to id="tr<?php echo $filenum;?>">
                         <td class="file">
 <?php                       if ($_SERVER['admin']) { ?>
-                            <li class="operate"><?php echo $constStr['Operate'][$constStr['language']]; ?>
+                            <li class="operate" ><span class="operate_ul_li">
+							<?php echo $constStr['Operate'][$constStr['language']]; ?></span>
                             <ul>
-                                <li><a onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);"><?php echo $constStr['encrypt'][$constStr['language']]; ?></a></li>
-                                <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);"><?php echo $constStr['Rename'][$constStr['language']]; ?></a></li>
-                                <li><a onclick="showdiv(event, 'move',<?php echo $filenum;?>);"><?php echo $constStr['Move'][$constStr['language']]; ?></a></li>
-                                <li><a onclick="showdiv(event, 'delete',<?php echo $filenum;?>);"><?php echo $constStr['Delete'][$constStr['language']]; ?></a></li>
+                                <li><a class="operate_ul_li" onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);">
+								<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
+									OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
+									+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
+									AGeBY52qDRXPPwJwOKdFtZe97Y80MgEYntzUGLcJfa9ETm2gwobXr2o885wQtiJH3E0HWtLWdHQD
+									V2TwSkdyEqMeNUWvEKhcyLXkC0sKUOF0cPhOm8VrsC8eh2ujryy2fSsmlmVa1ZnEW8PyVXYEGAVH
+									HwfHr1IKMDuyq6DQFfV/CqT/Q+EVzM7TOiG+ZyDTc87o2gx9I3RXHzIt/I6sPGaGPa1KIvQCR5xM
+									zEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC'/>
+									<?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
+								</li>
+                                <li><a class="operate_ul_li" onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
+								<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA1ElEQVQ4T2NkIBMITL1lwMDEKMAI
+									0y847dYkRgbGXLzmMTI0vMtUbQSpQTFAYPJtByZmhqx3WaphhBwkNO12KAMDw6p3Wapgy8GE0PTb
+									9SAaZjouQ2CaGRgYwt5lqa4myQBsmok2AF0zyMUw1xL0Ajabhabd/k9UGOByNlEG4NIMDnRCLoBG
+									637k0EaOGaIMAGn4kKt6AFuUEjSAiMREXCDiSVCoBkD8/D/yXZZaOiHboeGz9F2WqjQ8IUFC9tZM
+									BgbGNEIGQOT/z4JZBs+NxGnEVAUAnb6OlYdp+d4AAAAASUVORK5CYII='/>
+									<?php echo $constStr['Rename'][$constStr['language']]; ?></a>
+								</li>
+                                <li><a class="operate_ul_li" onclick="showdiv(event, 'move',<?php echo $filenum;?>);">
+									<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABR0lEQVQ4T51Tu07DMBQ912VgbMvK
+									Bp6Y+AM+gsDIwNK6YuALWiZ2orioEhIraQcmpDLBxBcweURs1PQH7KAbklKVJA1kiRSfe3zPI4SK
+									pxWaEW3g3XblRRmMyg7a2gQA+gBZiOTKduSkCFtI0AzNgWhA8UAixC05f+I9hvMz+bRKUroBA9va
+									xEzw2dl5+LMEHtjSRgP0OFO792sJeO3VFZnAAXdzJZ+XCZaxqYTMsMAqeVSVSn7G0iAQs7HUiswI
+									BJk4/ETVQPLr1qHZJ49tImymRAnOITClZmgGQuAUhBf+TsAHv2dKpiksbo1MH4Q9EF4zgsA7TL4l
+									XJtDOAS2J49rSwDGVsnxIsYiE1mrB6K1Jla0MfYOuqhA+czaIv2LIK8yG+oc4rTWhBvbldPaVeZu
+									EHDpgTcCNBtW+2fKgVnEsD05KPPpC8/xjRKfuGcxAAAAAElFTkSuQmCC'/>
+									<?php echo $constStr['Move'][$constStr['language']]; ?></a>
+								</li>
+                                <li><a class="operate_ul_li" onclick="showdiv(event, 'delete',<?php echo $filenum;?>);">
+								<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVQ4T9WTPQ6CMBzFH+gBtI4u
+									xthBPYRwCNkdaeIRjHoDp+LmziVk8wTGmDo4OJrqBbCmA6YgGIhxsFM/Xn/9f7xa+HJYefebXGwt
+									wDHPFBDdGHWz+jcACcRcKTgqxtIU23WM9Fr6NLVfCMi+psG5ALIWAzwQAhhWLMceNrxUBIQL9Yjh
+									3qc0KoJpjWT0de93AMJFKBn1dCR6bqM2u7LusXQEptBM7Z8AwWkj/d4kqYFRj3JdaASHzt3vn7Pt
+									/FiDFhdRHGNR5APCxRjASjLaTsBpH2i7KmhRvisVLrCwS9LRkNzfWMXST94qvsAPzf8GAAAAAElF
+									TkSuQmCC'/>
+									<?php echo $constStr['Delete'][$constStr['language']]; ?></a>
+								</li>
                             </ul>
                             </li>&nbsp;&nbsp;&nbsp;
 <?php                       } ?>
@@ -1067,11 +1183,36 @@ function render_list($path, $files)
                     <tr data-to id="tr<?php echo $filenum;?>">
                         <td class="file">
 <?php                           if ($_SERVER['admin']) { ?>
-                            <li class="operate"><?php echo $constStr['Operate'][$constStr['language']]; ?>
+                            <li class="operate">
+								<span class="operate_ul_li"><?php echo $constStr['Operate'][$constStr['language']]; ?></span>
                             <ul>
-                                <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);"><?php echo $constStr['Rename'][$constStr['language']]; ?></a></li>
-                                <li><a onclick="showdiv(event, 'move',<?php echo $filenum;?>);"><?php echo $constStr['Move'][$constStr['language']]; ?></a></li>
-                                <li><a onclick="showdiv(event, 'delete',<?php echo $filenum;?>);"><?php echo $constStr['Delete'][$constStr['language']]; ?></a></li>
+                                <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
+									<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
+										OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
+										+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
+										AGeBY52qDRXPPwJwOKdFtZe97Y80MgEYntzUGLcJfa9ETm2gwobXr2o885wQtiJH3E0HWtLWdHQD
+										V2TwSkdyEqMeNUWvEKhcyLXkC0sKUOF0cPhOm8VrsC8eh2ujryy2fSsmlmVa1ZnEW8PyVXYEGAVH
+										HwfHr1IKMDuyq6DQFfV/CqT/Q+EVzM7TOiG+ZyDTc87o2gx9I3RXHzIt/I6sPGaGPa1KIvQCR5xM
+										zEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC'/>
+									<?php echo $constStr['Rename'][$constStr['language']]; ?></a>
+								</li>
+                                <li><a onclick="showdiv(event, 'move',<?php echo $filenum;?>);">
+									<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABR0lEQVQ4T51Tu07DMBQ912VgbMvK
+										Bp6Y+AM+gsDIwNK6YuALWiZ2orioEhIraQcmpDLBxBcweURs1PQH7KAbklKVJA1kiRSfe3zPI4SK
+										pxWaEW3g3XblRRmMyg7a2gQA+gBZiOTKduSkCFtI0AzNgWhA8UAixC05f+I9hvMz+bRKUroBA9va
+										xEzw2dl5+LMEHtjSRgP0OFO792sJeO3VFZnAAXdzJZ+XCZaxqYTMsMAqeVSVSn7G0iAQs7HUiswI
+										BJk4/ETVQPLr1qHZJ49tImymRAnOITClZmgGQuAUhBf+TsAHv2dKpiksbo1MH4Q9EF4zgsA7TL4l
+										XJtDOAS2J49rSwDGVsnxIsYiE1mrB6K1Jla0MfYOuqhA+czaIv2LIK8yG+oc4rTWhBvbldPaVeZu
+										EHDpgTcCNBtW+2fKgVnEsD05KPPpC8/xjRKfuGcxAAAAAElFTkSuQmCC'/>
+									<?php echo $constStr['Move'][$constStr['language']]; ?></a></li>
+                                <li><a onclick="showdiv(event, 'delete',<?php echo $filenum;?>);">
+								<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVQ4T9WTPQ6CMBzFH+gBtI4u
+									xthBPYRwCNkdaeIRjHoDp+LmziVk8wTGmDo4OJrqBbCmA6YgGIhxsFM/Xn/9f7xa+HJYefebXGwt
+									wDHPFBDdGHWz+jcACcRcKTgqxtIU23WM9Fr6NLVfCMi+psG5ALIWAzwQAhhWLMceNrxUBIQL9Yjh
+									3qc0KoJpjWT0de93AMJFKBn1dCR6bqM2u7LusXQEptBM7Z8AwWkj/d4kqYFRj3JdaASHzt3vn7Pt
+									/FiDFhdRHGNR5APCxRjASjLaTsBpH2i7KmhRvisVLrCwS9LRkNzfWMXST94qvsAPzf8GAAAAAElF
+									TkSuQmCC'/>
+								<?php echo $constStr['Delete'][$constStr['language']]; ?></a></li>
                             </ul>
                             </li>&nbsp;&nbsp;&nbsp;
 <?php                           }
@@ -1215,18 +1356,25 @@ function render_list($path, $files)
                 </form>
             </div>
         </div>
-        <div id="delete_div" class="operatediv" style="display:none">
-            <div>
-                <br><a onclick="operatediv_close('delete')" class="operatediv_close"><?php echo $constStr['Close'][$constStr['language']]; ?></a>
-                <label id="delete_label"></label>
-                <form id="delete_form" onsubmit="return submit_operate('delete');">
-                <label id="delete_input"><?php echo $constStr['Delete'][$constStr['language']]; ?>?</label>
-                <input id="delete_sid" name="delete_sid" type="hidden" value="">
-                <input id="delete_hidden" name="delete_name" type="hidden" value="">
-                <input name="operate_action" type="submit" value="<?php echo $constStr['Submit'][$constStr['language']]; ?>">
-                </form>
-            </div>
-        </div>
+        <div id="delete_div" class="disLogBg" style="display:none">
+			<div class="disLogBody">
+				<img class="disLog_btn_close" onclick="closeDisLog(this)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRCOEYxMDFENTRGNjExRTBCNzA3RTM1Q0E5NTYwM0RGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRCOEYxMDFFNTRGNjExRTBCNzA3RTM1Q0E5NTYwM0RGIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6REI4RjEwMUI1NEY2MTFFMEI3MDdFMzVDQTk1NjAzREYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6REI4RjEwMUM1NEY2MTFFMEI3MDdFMzVDQTk1NjAzREYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6sfbEgAAAF9klEQVR42syZ6UskRxTAu9uezMRdj0THY+O6STDZ7MG62cSQgH/ACmFBA4KwERQE2S/6IeBnz+g3ERWjooJkUfJBQvZDPL8YjUdgFe/7AKOb9VzvuSqvmqqhpqZ6Zlpd2IJHt9NV3b969d6rV08ZISS9y02lN7IsGxkn+/lNb9aGtIGVpxqckCy4yjrQiLlSkY2CqhcAo6IwV4XrR4FcgqshjaoXBAsiojBXhfuwi4iTEZkDlv1BqgbgKIxKriZyrzKArAYplIMTJ6dln5pUA4CjH6cw7xE4E3NPNUrHuRg4G4idudpJPye35ChQQB6Oao0CmUEs+JqdnX0zLS3t64SEhAehoaE3goODrQ6H4+z4+Pi/7e3t5X+gNTY2To6Oju5B/zOQc/I+CuvwC4ldmYuFMqMxDHMN5AOQGJCPQe5EREQktba2/rS5uTlyfn6+53K5nIhrBPTV+Pj489zc3FQY9wDkM5CbIFaQUJD3mRWQ+UigcXGAtFMQ0RYL9ynI/by8vB82Njb+QgYaTGK/v7+/EsY/ArkNEs9AWgikEiigQgbg2YWBRIN8guHq6uqegVb+RRds8/Pzv4M5fEcgsSYjQa6TlVJ5SD1AurQhZJa3QO5VVFRk2Wy2A3TJtra21oVNBN75OcgNskLBIi3ygKz2gsnAj/BsMzMzUw4ODpbRFTVwml/gvYlkZaKYpVb9AQYx2osiL0icmppqR1fY7Hb7YWlpaSZ2OJA4kA9FWhQBqmQm4UT9twsKCtLBI0/5j5hMJk2qq6sR2CVyOr0cGTU1Nbn77e3tITAR97Pl5eU/4f0PGS2GEMcM8gVoIp4bQTzt/uTk5HORFuLi4twfLy4uRmACHpDgUO7nMTEx6OXLlxokbdDXBnH0CXGYWOKQFl+ACpnBdeIceGYPd3d3p0SAQ0NDKDo62g1RXl7uhmxpaXH/HhUVhWpqatDw8LAHIG49PT0V8I27xKPpMqv+AENIaEkA+er09PS1CPDs7Az19fUhq9XqhikrK9Ng6N/4WW1tLYIYiL1XG8O2xcXFFySA3yIh5xpZRV1AM/GoGBL1k0T2hxvsHujk5AR1dXVpS0ih2GXF9onhVldXtb54DNu2traGGTu0ktXzAFR8JAtaJ0VRhAkFzsAtFouUnJwsdXR0eD0HL5USExOl+Ph4CZZZ68tn7XrvZkON4iM119QKs3bo5mMEcnp62uvZ7OysBEssRUZGCuFwA3u1+zsaKDpg7oQTQsORr4SyoaFBgmRAu4dsRhPcKisrpba2NglMRNI7mB0dHb1iElvkL5uhu4iHF+/s7EzpBVyA87C5+vp61Nzc7GGTJSUlXiGItu7u7p+NeLEwDk5MTLSK4CDPc0PAMmpxDzvEwsIC/rCHd4M9ekHC/XlWVtb3ZE8OKA4Kd5L8/Pw02JqO9XYS1ltxKMHeigVDxsbGuvvNzc1pOw5tMJE/LrKTCPdi2E1+5QHB8DUAGufYUEJDUG9vrzYBs9mMBgYGEJiLNhbs+k1RUdFTePcXRvdiPpvRtJiRkfF4f39/gQXEu8LY2BgaGRlB6+vrXnGOQuJnuA/uS3eSwcHBahKg2WzG7C+bEWmR5oN3CwsLf8TpPQXAGz/+IBb43SsIU0j8jPbDY5aWll7Akj8iG4GhfNBvRl1VVZVzeHi4ftE0a2Zm5jdY8m9IghBHnNFwRs2fScLJ1och7+Xk5DxZWVnpNAIGzrEJiUE5jP+SS/dDmEQ1oDOJ3qkunD3V4Q9BUvAMHKMP7Ow13hEESekRhJYlsL/61NTUx8ypLo7AsQcm3VOdTOG4rUj2cy7WJD09PTYlJeVOUlLSt2FhYbFgWyH4xAnQu3Akne/s7Py7vb19FQ5Lb5hzsY05Fzu5XQQZAdSrLPBVBX+VBTtXXWBLILpw/spvSFDoQYIPq4yG5QBqM2whia12Ga7NSILqk0sAyVa4ZKY/W91iK1yixODC1S1+MK9VJ1cjFBUwXYIaIbrK+qAvUKpVXxVWJLh/KxVWvRejS4x9K4CX+tilAN/Vf0f8L8AA17MWcpwxFUIAAAAASUVORK5CYII=">
+				<div class="disLogContent">
+					<div class="titleText">
+						<span id="delete_label"></span><?php echo $constStr['Delete'][$constStr['language']]; ?>?
+					</div>
+					<div class="contentTest">
+						（删除后不可恢复）
+					</div>
+				</div>
+				<form id="delete_form" onsubmit="return submit_operate('delete');">
+					<input id="delete_sid" name="delete_sid" type="hidden" value="">
+					<input id="delete_hidden" name="delete_name" type="hidden" value="">
+					<div class="disLog_btn_submit" id="delete_input" tabindex="1" onclick="document.getElementById('delete_form').submit();"><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
+					<div class="disLog_btn_cancel" id="disLog_btn_cancel"tabindex="0" onclick="closeDisLog(this)">取消</div>
+				</form>
+			</div>
+		</div>
         <div id="encrypt_div" class="operatediv" style="display:none">
             <div>
                 <label id="encrypt_label"></label><br><br><a onclick="operatediv_close('encrypt')" class="operatediv_close"><?php echo $constStr['Close'][$constStr['language']]; ?></a>
@@ -1800,9 +1948,6 @@ function binupfile(file,url,tdnum){
         for ($i=0;$i<$operatediv.length;$i++) {
             $operatediv[$i].style.display='none';
         }
-        document.getElementById('mask').style.display='';
-        //document.getElementById('mask').style.width=document.documentElement.scrollWidth+'px';
-        document.getElementById('mask').style.height=document.documentElement.scrollHeight<window.innerHeight?window.innerHeight:document.documentElement.scrollHeight+'px';
         if (num=='') {
             var str='';
         } else {
@@ -1817,27 +1962,12 @@ function binupfile(file,url,tdnum){
             }
             if (str.substr(-1)==' ') str=str.substr(0,str.length-1);
         }
-        document.getElementById(action + '_div').style.display='';
+		this.openDisLog(action + '_div');
         document.getElementById(action + '_label').innerText=str;//.replace(/&/,'&amp;');
         document.getElementById(action + '_sid').value=num;
         document.getElementById(action + '_hidden').value=str;
         if (action=='rename') document.getElementById(action + '_input').value=str;
-        var $e = event || window.event;
-        var $scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
-        var $scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-        var $x = $e.pageX || $e.clientX + $scrollX;
-        var $y = $e.pageY || $e.clientY + $scrollY;
-        if (action=='create') {
-            document.getElementById(action + '_div').style.left=(document.body.clientWidth-document.getElementById(action + '_div').offsetWidth)/2 +'px';
-            document.getElementById(action + '_div').style.top=(window.innerHeight-document.getElementById(action + '_div').offsetHeight)/2+$scrollY +'px';
-        } else {
-            if ($x + document.getElementById(action + '_div').offsetWidth > document.body.clientWidth) {
-                document.getElementById(action + '_div').style.left=document.body.clientWidth-document.getElementById(action + '_div').offsetWidth+'px';
-            } else {
-                document.getElementById(action + '_div').style.left=$x+'px';
-            }
-            document.getElementById(action + '_div').style.top=$y+'px';
-        }
+
         document.getElementById(action + '_input').focus();
     }
     function submit_operate(str) {
@@ -1934,27 +2064,6 @@ function binupfile(file,url,tdnum){
         this.openDisLog('login_div');
 		document.getElementById('login_input').focus();
     }
-	function closeDisLog(obj) {
-		var popInner = obj.parentNode;
-		while(true){
-			popInner = popInner.parentNode;
-			if(popInner.className == 'disLogBg') break;
-		}
-		popInner.style.display = "none"; 
-	}
-		
-	function openDisLog(id) {
-		if(id == '' || id == null) return false;
-		document.getElementById(id).style.display="block";
-	}
-	
-	<!-- 按窗口宽度加载窗口位置 start -->
-	var x = document.getElementsByClassName("disLogBody");
-	var i;console.log(x.length)
-	for (i = 0; i < x.length; i++) {
-		x[i].style.marginTop = document.body.clientHeight/3 + "px";
-	}
-	<!-- 按窗口宽度加载窗口位置 end -->
 <?php }  if(getenv('user')!='') if ($_SERVER['user']){ ?>
 	function userLoginOut() {
 		document.cookie = "<?php echo $_SERVER['function_name'] . 'user';?>=; path=/";
@@ -1996,6 +2105,28 @@ function binupfile(file,url,tdnum){
 		document.getElementById('flieText').value = a[a.length-1];
 	}
 <?php } ?>
+	<!-- 按窗口高度加载窗口位置 start -->
+	var x = document.getElementsByClassName("disLogBody");
+	
+	for (var i = 0; i < x.length; i++) {
+		x[i].style.marginTop = document.body.clientHeight/3 + "px";
+	}
+	<!-- 按窗口高度加载窗口位置 end -->
+	
+	<!-- 共有打开/关闭弹出层方法 start -->
+	function openDisLog(id) {
+		if(id == '' || id == null) return false;
+		document.getElementById(id).style.display="block";
+	}
+	function closeDisLog(obj) {
+		var popInner = obj.parentNode;
+		while(true){
+			popInner = popInner.parentNode;
+			if(popInner.className == 'disLogBg') break;
+		}
+		popInner.style.display = "none"; 
+	}
+	<!-- 共有打开/关闭弹出层方法 end -->
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
 </html>
@@ -2004,3 +2135,444 @@ function binupfile(file,url,tdnum){
     if ($_SERVER['Set-Cookie']!='') return output($html, $statusCode, [ 'Set-Cookie' => $_SERVER['Set-Cookie'], 'Content-Type' => 'text/html' ]);
     return output($html,$statusCode);
 }
+cache->fetch('nextlink_' . $path . '_page_' . $page3);
+            if ($url == '') {
+                if ($page1==1) {
+                    $url = $_SERVER['api_url'];
+                    if ($path !== '/') {
+                        $url .= ':' . $path;
+                        if (substr($url,-1)=='/') $url=substr($url,0,-1);
+                        $url .= ':/children?$select=name,size,file,folder,parentReference,lastModifiedDateTime';
+                    } else {
+                        $url .= '/children?$select=name,size,file,folder,parentReference,lastModifiedDateTime';
+                    }
+                    $children = json_decode(curl_request($url, false, ['Authorization' => 'Bearer ' . $_SERVER['access_token']]), true);
+                    // echo $url . '<br><pre>' . json_encode($children, JSON_PRETTY_PRINT) . '</pre>';
+                    $cache->save('files_' . $path . '_page_' . $page1, $children['value'], 60);
+                    $nextlink=$cache->fetch('nextlink_' . $path . '_page_' . $page1);
+                    if ($nextlink!=$children['@odata.nextLink']) {
+                        $cache->save('nextlink_' . $path . '_page_' . $page1, $children['@odata.nextLink'], 60);
+                        $pageinfocache['nextlink_' . $path . '_page_' . $page1] = $children['@odata.nextLink'];
+                        $pageinfocache = clearbehindvalue($path,$page1,$maxpage,$pageinfocache);
+                        $pageinfochange = 1;
+                    }
+                    $url = $children['@odata.nextLink'];
+                    for ($page2=$page1+1;$page2<=$page;$page2++) {
+                        sleep(1);
+                        $children = json_decode(curl_request($url, false, ['Authorization' => 'Bearer ' . $_SERVER['access_token']]), true);
+                        $cache->save('files_' . $path . '_page_' . $page2, $children['value'], 60);
+                        $nextlink=$cache->fetch('nextlink_' . $path . '_page_' . $page2);
+                        if ($nextlink!=$children['@odata.nextLink']) {
+                            $cache->save('nextlink_' . $path . '_page_' . $page2, $children['@odata.nextLink'], 60);
+                            $pageinfocache['nextlink_' . $path . '_page_' . $page2] = $children['@odata.nextLink'];
+                            $pageinfocache = clearbehindvalue($path,$page2,$maxpage,$pageinfocache);
+                            $pageinfochange = 1;
+                        }
+                        $url = $children['@odata.nextLink'];
+                    }
+                    //echo $url . '<br><pre>' . json_encode($children, JSON_PRETTY_PRINT) . '</pre>';
+                    $files['children'] = $children['value'];
+                    $files['folder']['page']=$page;
+                    $pageinfocache['filenum'] = $files['folder']['childCount'];
+                    $pageinfocache['dirsize'] = $files['size'];
+                    $pageinfocache['cachesize'] = $cachefile['size'];
+                    $pageinfocache['size'] = $files['size']-$cachefile['size'];
+                    if ($pageinfochange == 1) MSAPI('PUT', path_format($path.'/'.$cachefilename), json_encode($pageinfocache, JSON_PRETTY_PRINT), $_SERVER['access_token'])['body'];
+                    return $files;
+                }
+            } else {
+                for ($page2=$page3+1;$page2<=$page;$page2++) {
+                    sleep(1);
+                    $children = json_decode(curl_request($url, false, ['Authorization' => 'Bearer ' . $_SERVER['access_token']]), true);
+                    $cache->save('files_' . $path . '_page_' . $page2, $children['value'], 60);
+                    $nextlink=$cache->fetch('nextlink_' . $path . '_page_' . $page2);
+                    if ($nextlink!=$children['@odata.nextLink']) {
+                        $cache->save('nextlink_' . $path . '_page_' . $page2, $children['@odata.nextLink'], 60);
+                        $pageinfocache['nextlink_' . $path . '_page_' . $page2] = $children['@odata.nextLink'];
+                        $pageinfocache = clearbehindvalue($path,$page2,$maxpage,$pageinfocache);
+                        $pageinfochange = 1;
+                    }
+                    $url = $children['@odata.nextLink'];
+                }
+                //echo $url . '<br><pre>' . json_encode($children, JSON_PRETTY_PRINT) . '</pre>';
+                $files['children'] = $children['value'];
+                $files['folder']['page']=$page;
+                $pageinfocache['filenum'] = $files['folder']['childCount'];
+                $pageinfocache['dirsize'] = $files['size'];
+                $pageinfocache['cachesize'] = $cachefile['size'];
+                $pageinfocache['size'] = $files['size']-$cachefile['size'];
+                if ($pageinfochange == 1) MSAPI('PUT', path_format($path.'/'.$cachefilename), json_encode($pageinfocache, JSON_PRETTY_PRINT), $_SERVER['access_token'])['body'];
+                return $files;
+            }
+        }
+    } else {
+        $files['folder']['page']=$page;
+        for ($page4=1;$page4<=$maxpage;$page4++) {
+            if (!($url = $cache->fetch('nextlink_' . $path . '_page_' . $page4))) {
+                if ($files['folder'][$path.'_'.$page4]!='') $cache->save('nextlink_' . $path . '_page_' . $page4, $files['folder'][$path.'_'.$page4], 60);
+            } else {
+                $files['folder'][$path.'_'.$page4] = $url;
+            }
+        }
+    }
+    return $files;
+}
+function list_files($path)
+{
+    global $exts;
+    global $constStr;
+    $path = path_format($path);
+    $cache = null;
+    $cache = new \Doctrine\Common\Cache\FilesystemCache(sys_get_temp_dir(), '.qdrive');
+    if (!($_SERVER['access_token'] = $cache->fetch('access_token'))) {
+        $ret = json_decode(curl_request(
+            $_SERVER['oauth_url'] . 'token',
+            'client_id='. $_SERVER['client_id'] .'&client_secret='. $_SERVER['client_secret'] .'&grant_type=refresh_token&requested_token_use=on_behalf_of&refresh_token=' . $_SERVER['refresh_token']
+        ), true);
+        if (!isset($ret['access_token'])) {
+            error_log('failed to get access_token. response' . json_encode($ret));
+            throw new Exception('failed to get access_token.');
+        }
+        $_SERVER['access_token'] = $ret['access_token'];
+        $cache->save('access_token', $_SERVER['access_token'], $ret['expires_in'] - 60);
+    }
+    if ($_SERVER['ajax']) {
+        if ($_GET['action']=='del_upload_cache'&&substr($_GET['filename'],-4)=='.tmp') {
+            // del '.tmp' without login. 无需登录即可删除.tmp后缀文件
+            $tmp = MSAPI('DELETE',path_format(path_format($_SERVER['list_path'] . path_format($path)) . '/' . spurlencode($_GET['filename']) ),'',$_SERVER['access_token']);
+            return output($tmp['body'],$tmp['stat']);
+        }
+        if ($_GET['action']=='uploaded_rename') {
+            // rename .scfupload file without login.
+            // 无需登录即可重命名.scfupload后缀文件，filemd5为用户提交，可被构造，问题不大，以后处理
+            $oldname = spurlencode($_GET['filename']);
+            $pos = strrpos($oldname, '.');
+            if ($pos>0) $ext = strtolower(substr($oldname, $pos));
+            $oldname = path_format(path_format($_SERVER['list_path'] . path_format($path)) . '/' . $oldname . '.scfupload' );
+            $data = '{"name":"' . $_GET['filemd5'] . $ext . '"}';
+            //echo $oldname .'<br>'. $data;
+            $tmp = MSAPI('PATCH',$oldname,$data,$_SERVER['access_token']);
+            if ($tmp['stat']==409) MSAPI('DELETE',$oldname,'',$_SERVER['access_token'])['body'];
+            return output($tmp['body'],$tmp['stat']);
+        }
+        if ($_GET['action']=='upbigfile') return bigfileupload($path);
+    }
+    if ($_SERVER['admin']) {
+        $tmp = adminoperate($path);
+        if ($tmp['statusCode'] > 0) {
+            $path1 = path_format($_SERVER['list_path'] . path_format($path));
+            $cache->save('path_' . $path1, json_decode('{}',true), 1);
+            return $tmp;
+        }
+    } else {
+        if ($_SERVER['ajax']) return output($constStr['RefleshtoLogin'][$constStr['language']],401);
+    }
+    $_SERVER['ishidden'] = passhidden($path);
+    if ($_GET['thumbnails']) {
+        if ($_SERVER['ishidden']<4) {
+            if (in_array(strtolower(substr($path, strrpos($path, '.') + 1)), $exts['img'])) {
+                return get_thumbnails_url($path);
+            } else return output(json_encode($exts['img']),400);
+        } else return output('',401);
+    }
+    if ($_SERVER['is_imgup_path']&&!$_SERVER['admin']) {
+        $files = json_decode('{"folder":{}}', true);
+    } elseif ($_SERVER['ishidden']==4) {
+        $files = json_decode('{"folder":{}}', true);
+    } else {
+        $files = fetch_files($path);
+    }
+    if (isset($files['file']) && !$_GET['preview']) {
+        // is file && not preview mode
+        if ($_SERVER['ishidden']<4) return output('', 302, [ 'Location' => $files['@microsoft.graph.downloadUrl'] ]);
+    }
+    if ( isset($files['folder']) || isset($files['file']) ) {
+        return render_list($path, $files);
+    } elseif (isset($files['error'])) {
+	    return output('<div style="margin:8px;">' . $files['error']['message'] . '</div>', 404);
+    } else {
+        echo 'Error $files' . json_encode($files, JSON_PRETTY_PRINT);
+        $_SERVER['retry']++;
+        if ($_SERVER['retry']>3) return list_files($path);
+    }
+}
+function adminform($name = '', $pass = '', $path = '')
+{
+    global $constStr;
+    $statusCode = 401;
+    $html = '<html><head><title>'.$constStr['AdminLogin'][$constStr['language']].'</title><meta charset=utf-8></head>';
+    if ($name!=''&&$pass!='') {
+        $html .= '<body>'.$constStr['LoginSuccess'][$constStr['language']].'</body></html>';
+        $statusCode = 302;
+        date_default_timezone_set('UTC');
+        $header = [
+            'Set-Cookie' => $name.'='.$pass.'; path=/; expires='.date(DATE_COOKIE,strtotime('+1hour')),
+            'Location' => $path,
+            'Content-Type' => 'text/html'
+        ];
+        return output($html,$statusCode,$header);
+    }
+    $html .= '
+    <body>
+	<div>
+	  <center><h4>'.$constStr['InputPassword'][$constStr['language']].'</h4>
+	  <form action="" method="post">
+		  <div>
+		    <input name="password1" type="password"/>
+		    <input type="submit" value="'.$constStr['Login'][$constStr['language']].'">
+          </div>
+	  </form>
+      </center>
+	</div>
+';
+    $html .= '</body></html>';
+    return output($html,$statusCode);
+}
+function bigfileupload($path)
+{
+    $path1 = path_format($_SERVER['list_path'] . path_format($path));
+    if (substr($path1,-1)=='/') $path1=substr($path1,0,-1);
+    if ($_GET['upbigfilename']!=''&&$_GET['filesize']>0) {
+        $fileinfo['name'] = $_GET['upbigfilename'];
+        $fileinfo['size'] = $_GET['filesize'];
+        $fileinfo['lastModified'] = $_GET['lastModified'];
+        $filename = spurlencode( $fileinfo['name'] );
+        $cachefilename = '.' . $fileinfo['lastModified'] . '_' . $fileinfo['size'] . '_' . $filename . '.tmp';
+        $getoldupinfo=fetch_files(path_format($path . '/' . $cachefilename));
+        //echo json_encode($getoldupinfo, JSON_PRETTY_PRINT);
+        if (isset($getoldupinfo['file'])&&$getoldupinfo['size']<5120) {
+            $getoldupinfo_j = curl_request($getoldupinfo['@microsoft.graph.downloadUrl']);
+            $getoldupinfo = json_decode($getoldupinfo_j , true);
+            if ( json_decode( curl_request($getoldupinfo['uploadUrl']), true)['@odata.context']!='' ) return output($getoldupinfo_j);
+        }
+        $response=MSAPI('createUploadSession',path_format($path1 . '/' . $filename),'{"item": { "@microsoft.graph.conflictBehavior": "fail"  }}',$_SERVER['access_token']);
+        $responsearry = json_decode($response['body'],true);
+        if (isset($responsearry['error'])) return output($response['body'], $response['stat']);
+        $fileinfo['uploadUrl'] = $responsearry['uploadUrl'];
+        MSAPI('PUT', path_format($path1 . '/' . $cachefilename), json_encode($fileinfo, JSON_PRETTY_PRINT), $_SERVER['access_token'])['body'];
+        return output($response['body'], $response['stat']);
+    }
+    return output('error', 400);
+}
+function adminoperate($path)
+{
+    global $constStr;
+    $path1 = path_format($_SERVER['list_path'] . path_format($path));
+    if (substr($path1,-1)=='/') $path1=substr($path1,0,-1);
+    $tmparr['statusCode'] = 0;
+    if ($_GET['rename_newname']!=$_GET['rename_oldname'] && $_GET['rename_newname']!='') {
+        // rename 重命名
+        $oldname = spurlencode($_GET['rename_oldname']);
+        $oldname = path_format($path1 . '/' . $oldname);
+        $data = '{"name":"' . $_GET['rename_newname'] . '"}';
+                //echo $oldname;
+        $result = MSAPI('PATCH',$oldname,$data,$_SERVER['access_token']);
+        return output($result['body'], $result['stat']);
+    }
+    if ($_GET['delete_name']!='') {
+        // delete 删除
+        $filename = spurlencode($_GET['delete_name']);
+        $filename = path_format($path1 . '/' . $filename);
+                //echo $filename;
+        $result = MSAPI('DELETE', $filename, '', $_SERVER['access_token']);
+        return output($result['body'], $result['stat']);
+    }
+    if ($_GET['operate_action']==$constStr['encrypt'][$constStr['language']]) {
+        // encrypt 加密
+        if (getenv('passfile')=='') return message($constStr['SetpassfileBfEncrypt'][$constStr['language']],'',403);
+        if ($_GET['encrypt_folder']=='/') $_GET['encrypt_folder']=='';
+        $foldername = spurlencode($_GET['encrypt_folder']);
+        $filename = path_format($path1 . '/' . $foldername . '/' . getenv('passfile'));
+                //echo $foldername;
+        $result = MSAPI('PUT', $filename, $_GET['encrypt_newpass'], $_SERVER['access_token']);
+        return output($result['body'], $result['stat']);
+    }
+    if ($_GET['move_folder']!='') {
+        // move 移动
+        $moveable = 1;
+        if ($path == '/' && $_GET['move_folder'] == '/../') $moveable=0;
+        if ($_GET['move_folder'] == $_GET['move_name']) $moveable=0;
+        if ($moveable) {
+            $filename = spurlencode($_GET['move_name']);
+            $filename = path_format($path1 . '/' . $filename);
+            $foldername = path_format('/'.urldecode($path1).'/'.$_GET['move_folder']);
+            $data = '{"parentReference":{"path": "/drive/root:'.$foldername.'"}}';
+            $result = MSAPI('PATCH', $filename, $data, $_SERVER['access_token']);
+            return output($result['body'], $result['stat']);
+        } else {
+            return output('{"error":"Can not Move!"}', 403);
+        }
+    }
+    if ($_POST['editfile']!='') {
+        // edit 编辑
+        $data = $_POST['editfile'];
+        /*TXT一般不会超过4M，不用二段上传
+        $filename = $path1 . ':/createUploadSession';
+        $response=MSAPI('POST',$filename,'{"item": { "@microsoft.graph.conflictBehavior": "replace"  }}',$_SERVER['access_token']);
+        $uploadurl=json_decode($response,true)['uploadUrl'];
+        echo MSAPI('PUT',$uploadurl,$data,$_SERVER['access_token']);*/
+        $result = MSAPI('PUT', $path1, $data, $_SERVER['access_token'])['body'];
+        //echo $result;
+        $resultarry = json_decode($result,true);
+        if (isset($resultarry['error'])) return message($resultarry['error']['message']. '<hr><a href="javascript:history.back(-1)">上一页</a>','Error',403);
+    }
+    if ($_GET['create_name']!='') {
+        // create 新建
+        if ($_GET['create_type']=='file') {
+            $filename = spurlencode($_GET['create_name']);
+            $filename = path_format($path1 . '/' . $filename);
+            $result = MSAPI('PUT', $filename, $_GET['create_text'], $_SERVER['access_token']);
+        }
+        if ($_GET['create_type']=='folder') {
+            $data = '{ "name": "' . $_GET['create_name'] . '",  "folder": { },  "@microsoft.graph.conflictBehavior": "rename" }';
+            $result = MSAPI('children', $path1, $data, $_SERVER['access_token']);
+        }
+        return output($result['body'], $result['stat']);
+    }
+    return $tmparr;
+}
+function MSAPI($method, $path, $data = '', $access_token)
+{
+    if (substr($path,0,7) == 'http://' or substr($path,0,8) == 'https://') {
+        $url=$path;
+        $lenth=strlen($data);
+        $headers['Content-Length'] = $lenth;
+        $lenth--;
+        $headers['Content-Range'] = 'bytes 0-' . $lenth . '/' . $headers['Content-Length'];
+    } else {
+        $url = $_SERVER['api_url'];
+        if ($path=='' or $path=='/') {
+            $url .= '/';
+        } else {
+            $url .= ':' . $path;
+            if (substr($url,-1)=='/') $url=substr($url,0,-1);
+        }
+        if ($method=='PUT') {
+            if ($path=='' or $path=='/') {
+                $url .= 'content';
+            } else {
+                $url .= ':/content';
+            }
+            $headers['Content-Type'] = 'text/plain';
+        } elseif ($method=='PATCH') {
+            $headers['Content-Type'] = 'application/json';
+        } elseif ($method=='POST') {
+            $headers['Content-Type'] = 'application/json';
+        } elseif ($method=='DELETE') {
+            $headers['Content-Type'] = 'application/json';
+        } else {
+            if ($path=='' or $path=='/') {
+                $url .= $method;
+            } else {
+                $url .= ':/' . $method;
+            }
+            $method='POST';
+            $headers['Content-Type'] = 'application/json';
+        }
+    }
+    $headers['Authorization'] = 'Bearer ' . $access_token;
+    if (!isset($headers['Accept'])) $headers['Accept'] = '*/*';
+    if (!isset($headers['Referer'])) $headers['Referer'] = $url;
+    $sendHeaders = array();
+    foreach ($headers as $headerName => $headerVal) {
+        $sendHeaders[] = $headerName . ': ' . $headerVal;
+    }
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST,$method);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,$data);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $sendHeaders);
+    $response['body'] = curl_exec($ch);
+    $response['stat'] = curl_getinfo($ch,CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    error_log($response['stat'].'
+'.$response['body'].'
+');
+    return $response;
+}
+function get_thumbnails_url($path = '/')
+{
+    $path1 = path_format($path);
+    $path = path_format($_SERVER['list_path'] . path_format($path));
+    $url = $_SERVER['api_url'];
+    if ($path !== '/') {
+        $url .= ':' . $path;
+        if (substr($url,-1)=='/') $url=substr($url,0,-1);
+    }
+    $url .= ':/thumbnails/0/medium';
+    $files = json_decode(curl_request($url, false, ['Authorization' => 'Bearer ' . $_SERVER['access_token']]), true);
+    if (isset($files['url'])) return output($files['url']);
+    return output('', 404);
+}
+function EnvOpt($function_name, $needUpdate = 0)
+{
+    global $constStr;
+    $constEnv = [
+        //'admin',
+        'adminloginpage', 'domain_path', 'imgup_path', 'passfile', 'private_path', 'public_path', 'sitename', 'language'
+    ];
+    asort($constEnv);
+    $html = '<title>Heroku '.$constStr['Setup'][$constStr['language']].'</title>';
+    /*if ($_POST['updateProgram']==$constStr['updateProgram'][$constStr['language']]) {
+        $response = json_decode(updataProgram($function_name, $Region, $namespace), true)['Response'];
+        if (isset($response['Error'])) {
+            $html = $response['Error']['Code'] . '<br>
+' . $response['Error']['Message'] . '<br><br>
+function_name:' . $_SERVER['function_name'] . '<br>
+Region:' . $_SERVER['Region'] . '<br>
+namespace:' . $namespace . '<br>
+<button onclick="location.href = location.href;">'.$constStr['Reflesh'][$constStr['language']].'</button>';
+            $title = 'Error';
+        } else {
+            $html .= $constStr['UpdateSuccess'][$constStr['language']] . '<br>
+<button onclick="location.href = location.href;">'.$constStr['Reflesh'][$constStr['language']].'</button>';
+            $title = $constStr['Setup'][$constStr['language']];
+        }
+        return message($html, $title);
+    }*/
+    if ($_POST['submit1']) {
+        foreach ($_POST as $k => $v) {
+            if (in_array($k, $constEnv)) {
+                $tmp[$k] = $v;
+            }
+        }
+        $response = json_decode(setHerokuConfig($function_name, $tmp, getenv('APIKey')), true);
+        if (isset($response['id'])&&isset($response['message'])) {
+            $html = $response['id'] . '<br>
+' . $response['message'] . '<br><br>
+function_name:' . $_SERVER['function_name'] . '<br>
+<button onclick="location.href = location.href;">'.$constStr['Reflesh'][$constStr['language']].'</button>';
+            $title = 'Error';
+        } else {
+            $html .= '<script>location.href=location.href</script>';
+        }
+    }
+    $html .= '
+        <a href="https://github.com/qkqpttgf/herokuOnedrive">Github</a><br>';
+    /*if ($needUpdate) {
+        $html .= '<pre>' . $_SERVER['github_version'] . '</pre>
+        <form action="" method="post">
+            <input type="submit" name="updateProgram" value="'.$constStr['updateProgram'][$constStr['language']].'">
+        </form>';
+    } else {
+        $html .= $constStr['NotNeedUpdate'][$constStr['language']];
+    }*/
+    $html .= '
+    <form action="" method="post">
+    <table border=1 width=100%>';
+    foreach ($constEnv as $key) {
+        if ($key=='language') {
+            $html .= '
+        <tr>
+            <td><label>' . $key . '</label></td>
+            <td width=100%>
+                <select name="' . $key .'">';
+            foreach ($constStr['languages'] as $key1 => $value1) {
+                $html .= '
+                    <option value="'.$key1.'" '.($key1==getenv($key)?'selected="selected"':'').'>'.$value1
