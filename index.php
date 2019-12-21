@@ -765,7 +765,7 @@ function render_list($path, $files)
 	left: 0px;
 	top: 0px;
 	background: rgb(0,0,0,0.6);
-	overflow: hidden;
+	overflow: auto;
 	text-align: center;
 	display: none;
 }
@@ -1968,6 +1968,7 @@ function binupfile(file,url,tdnum){
             if (str.substr(-1)==' ') str=str.substr(0,str.length-1);
         }
         this.openDisLog(action + '_div');
+		document.getElementById('body').style.overflowY='hidden';
         document.getElementById(action + '_label').innerText=str;//.replace(/&/,'&amp;');
         document.getElementById(action + '_sid').value=num;
         document.getElementById(action + '_hidden').value=str;
