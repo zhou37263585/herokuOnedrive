@@ -836,7 +836,6 @@ function render_list($path, $files)
 }
 <!-- loginInputTextCss end-->
 
-<!-- DisLog start -->
 .disLog_btn_cancel{
 	float: right;
 	width: 50%;
