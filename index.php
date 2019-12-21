@@ -743,10 +743,12 @@ function render_list($path, $files)
 .disLog_btn_cancel:hover{
 	filter: alpha(Opacity=60);
 	opacity: 0.5;
+	border-right: 1px solid #3366FF;
 }
 .disLog_btn_submit:hover{
 	filter: alpha(Opacity=60);
 	opacity: 0.5;
+	border-right: 1px solid #3366FF;
 }
 .disLog_btn_cancel{
 	float: left;
@@ -1374,8 +1376,8 @@ function render_list($path, $files)
 					<input id="delete_hidden" name="delete_name" type="hidden" value="">
 				</div>
 				<form id="delete_form" onsubmit="return submit_operate('delete');">
-					<div class="disLog_btn_submit" id="delete_div" onclick="document.getElementById(delete_form).submit();" ><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
-					<div class="disLog_btn_cancel" onclick="closeDisLog(this)">取消</div>
+					<div class="disLog_btn_submit" tabindex="1" id="delete_input" onclick="document.getElementById(delete_form).submit();" ><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
+					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)">取消</div>
 				</form>
 			</div>
 		</div>
