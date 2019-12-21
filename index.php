@@ -727,6 +727,7 @@ function render_list($path, $files)
 	float: right;
 	width: 50%;
 	height: 39px;
+	line-height: 39px;
 	font-size: 1rem;
 	cursor:pointer;
 }
@@ -734,17 +735,20 @@ function render_list($path, $files)
 	float: left;
 	width: 49%;
 	height: 39px;
-	border-right: 1px solid #CCCCCC;
+	border-right: 1px solid #87CEEB;
+	line-height: 39px;
 	font-size: 1rem;
 	cursor:pointer;
 }
 .disLog_btn_cancel:hover{
 	filter: alpha(Opacity=60);
 	opacity: 0.5;
+	border: 1px solid #CCCCCC;
 }
 .disLog_btn_submit:hover{
 	filter: alpha(Opacity=60);
 	opacity: 0.5;
+	border: 1px solid #87CEEB;
 }
 .disLogBg{
 	border: 1px solid;
@@ -1361,11 +1365,11 @@ function render_list($path, $files)
 						（删除后不可恢复）
 					</div>
 					<form id="delete_form" onsubmit="return submit_operate('delete');">
-						<div class="disLog_btn_cancel" onclick="closeDisLog(this)">取消</div>
-						<div class="disLog_btn_submit" id="delete_input" tabindex="2" onclick="document.getElementById('delete_form').submit();"><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
+						<input id="delete_sid" name="delete_sid" type="hidden" value="">
+						<input id="delete_hidden" name="delete_name" type="hidden" value="">
+						<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)">取消</div>
+						<div class="disLog_btn_submit" id="delete_input" tabindex="1" onclick="document.getElementById('delete_form').submit();"><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
 					</form>
-					<input id="delete_sid" name="delete_sid" type="hidden" value="">
-					<input id="delete_hidden" name="delete_name" type="hidden" value="">
 				</div>
 			</div>
 		</div>
