@@ -702,27 +702,7 @@ function render_list($path, $files)
         .list-table .file ion-icon{font-size:15px;margin-right:5px;vertical-align:bottom}
         .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
 <?php if ($_SERVER['admin']) { ?>
-        .operate{display:inline-table;margin:3px 0 0 0;list-style:none;cursor:pointer;}
-        .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin: -9px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
-        .operate:hover ul{position:absolute;display:inline-table;}
-        .operate ul li{padding:7px;list-style:none;display:inline-table;}
-		.operate_ul_li:hover{filter: alpha(Opacity=60);opacity:  0.5;}
-		.operate_ico{margin-bottom: -3px;}
-<?php } ?>
-		.userLoginOut_ico{margin-bottom: -3px;}
-		.userLoginOut_a:hover{filter: alpha(Opacity=60);opacity:  0.5;}
-        .operatediv{position:absolute;border:1px #CCCCCC;background-color:#FFFFCC;z-index:2;}
-        .operatediv div{margin:16px}
-        .operatediv_close{position:absolute;right:3px;top:3px;}
-        .readme{padding:8px;background-color:#fff;}
-        #readme{padding:20px;text-align:left}
-        @media only screen and (max-width:480px){
-            .title{margin-bottom:24px}
-            .list-wrapper{width:95%; margin-bottom:24px;}
-            .list-table {padding:8px}
-            .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
-        }
-<!-- DisLog start-->
+<!-- disLogBtnCss start-->
 .disLog_btn_cancel{
 	float: right;
 	width: 50%;
@@ -750,6 +730,28 @@ function render_list($path, $files)
 	opacity: 0.5;
 	border: 1px solid #87CEEB;
 }
+<!-- disLogBtnCss end-->
+        .operate{display:inline-table;margin:3px 0 0 0;list-style:none;cursor:pointer;}
+        .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin: -9px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
+        .operate:hover ul{position:absolute;display:inline-table;}
+        .operate ul li{padding:7px;list-style:none;display:inline-table;}
+		.operate_ul_li:hover{filter: alpha(Opacity=60);opacity:  0.5;}
+		.operate_ico{margin-bottom: -3px;}
+<?php } ?>
+		.userLoginOut_ico{margin-bottom: -3px;}
+		.userLoginOut_a:hover{filter: alpha(Opacity=60);opacity:  0.5;}
+        .operatediv{position:absolute;border:1px #CCCCCC;background-color:#FFFFCC;z-index:2;}
+        .operatediv div{margin:16px}
+        .operatediv_close{position:absolute;right:3px;top:3px;}
+        .readme{padding:8px;background-color:#fff;}
+        #readme{padding:20px;text-align:left}
+        @media only screen and (max-width:480px){
+            .title{margin-bottom:24px}
+            .list-wrapper{width:95%; margin-bottom:24px;}
+            .list-table {padding:8px}
+            .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
+        }
+<!-- DisLog start-->
 .disLogBg{
 	border: 1px solid;
 	width: 100%;
