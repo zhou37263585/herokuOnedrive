@@ -1368,7 +1368,7 @@ function render_list($path, $files)
 					<input id="delete_sid" name="delete_sid" type="hidden" value="">
 					<input id="delete_hidden" name="delete_name" type="hidden" value="">
 					<div class="disLog_btn_cancel" onclick="closeDisLog(this)">取消</div>
-					<div class="disLog_btn_submit" id="delete_id" onclick="document.getElementById('delete_form').submit();"><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
+					<div class="disLog_btn_submit" id="delete_input" tabindex="2" onclick="document.getElementById('delete_form').submit();"><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
 				</form>
 			</div>
 		</div>
