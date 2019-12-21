@@ -836,15 +836,9 @@ function render_list($path, $files)
 }
 <!-- loginInputTextCss end-->
 
-.disLog_btn_cancel{
-	float: right;
-	width: 50%;
-	height: 39px;
-	line-height: 39px;
-	font-size: 1rem;
-	cursor:pointer;
-}
-.disLog_btn_submit{
+<!-- DisLog start -->
+
+.disLog_btn{
 	float: left;
 	width: 49%;
 	height: 39px;
@@ -853,7 +847,7 @@ function render_list($path, $files)
 	font-size: 1rem;
 	cursor:pointer;
 }
-.disLog_btn_cancel:hover{
+.disLog_btn:hover{
 	filter: alpha(Opacity=60);
 	opacity: 0.5;
 	border: 1px solid #CCCCCC;
@@ -1369,8 +1363,8 @@ function render_list($path, $files)
 				<form id="delete_form" onsubmit="return submit_operate('delete');">
 					<input id="delete_sid" name="delete_sid" type="hidden" value="">
 					<input id="delete_hidden" name="delete_name" type="hidden" value="">
-					<div class="disLog_btn_submit" id="delete_input" tabindex="1" onclick="document.getElementById('delete_form').submit();"><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
-					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)">取消</div>
+					<div class="disLog_btn" id="delete_input" tabindex="1" onclick="document.getElementById('delete_form').submit();"><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
+					<div class="disLog_btn" tabindex="0" onclick="closeDisLog(this)">取消</div>
 				</form>
 			</div>
 		</div>
