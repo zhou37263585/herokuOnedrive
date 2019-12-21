@@ -702,7 +702,12 @@ function render_list($path, $files)
         .list-table .file ion-icon{font-size:15px;margin-right:5px;vertical-align:bottom}
         .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
 <?php if ($_SERVER['admin']) { ?>
-<!-- disLogBtnCss start-->
+        .operate{display:inline-table;margin:3px 0 0 0;list-style:none;cursor:pointer;}
+        .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin: -9px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
+        .operate:hover ul{position:absolute;display:inline-table;}
+        .operate ul li{padding:7px;list-style:none;display:inline-table;}
+		.operate_ul_li:hover{filter: alpha(Opacity=60);opacity:  0.5;}
+		.operate_ico{margin-bottom: -3px;}
 .disLog_btn_cancel{
 	float: right;
 	width: 50%;
@@ -730,13 +735,6 @@ function render_list($path, $files)
 	opacity: 0.5;
 	border: 1px solid #87CEEB;
 }
-<!-- disLogBtnCss end-->
-        .operate{display:inline-table;margin:3px 0 0 0;list-style:none;cursor:pointer;}
-        .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin: -9px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
-        .operate:hover ul{position:absolute;display:inline-table;}
-        .operate ul li{padding:7px;list-style:none;display:inline-table;}
-		.operate_ul_li:hover{filter: alpha(Opacity=60);opacity:  0.5;}
-		.operate_ico{margin-bottom: -3px;}
 <?php } ?>
 		.userLoginOut_ico{margin-bottom: -3px;}
 		.userLoginOut_a:hover{filter: alpha(Opacity=60);opacity:  0.5;}
@@ -751,7 +749,8 @@ function render_list($path, $files)
             .list-table {padding:8px}
             .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
         }
-<!-- DisLog start-->
+<!-- DisLog start -->
+
 .disLogBg{
 	border: 1px solid;
 	width: 100%;
@@ -792,8 +791,8 @@ function render_list($path, $files)
 	filter: alpha(Opacity=60);
 	opacity:  0.85;
 }
-<!-- DisLog end-->
-<!-- loginInputTextCss start-->
+<!-- DisLog end -->
+<!-- loginInputTextCss start -->
 .form-field {
   display: block;
   width: 90%;
@@ -860,7 +859,7 @@ function render_list($path, $files)
   margin-top: 0;
   margin-bottom: 0;
 	
-<!-- 代码重复 尚未解决 不可删除  start-->
+<!-- 代码重复 尚未解决 不可删除  start -->
   --input-color: #99A3BA;
   --input-border: #CDD9ED;
   --input-background: #fff;
@@ -872,7 +871,7 @@ function render_list($path, $files)
   --group-color-focus: #fff;
   --group-border-focus: var(--input-border-focus);
   --group-background-focus: #678EFE;
-<!-- 代码重复 尚未解决 不可删除 end-->	
+<!-- 代码重复 尚未解决 不可删除 end -->	
 }
 .form-group > span {
   text-align: center;
