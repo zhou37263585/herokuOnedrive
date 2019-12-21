@@ -1968,9 +1968,8 @@ function binupfile(file,url,tdnum){
             if (str.substr(-1)==' ') str=str.substr(0,str.length-1);
         }
         this.openDisLog(action + '_div');
-		<!-- 禁止页面滚动 start 
-		window.addEventListener(‘touchmove’, func, { passive: false })
-		document.body.onmousewheel = function () {return false;}
+		<!-- 禁止页面滚动 start -->
+		document.body.addEventListener('touchmove',bodyScroll,false); 
 		<!-- 禁止页面滚动 end -->
         document.getElementById(action + '_label').innerText=str;//.replace(/&/,'&amp;');
         document.getElementById(action + '_sid').value=num;
@@ -1978,6 +1977,11 @@ function binupfile(file,url,tdnum){
         if (action=='rename') document.getElementById(action + '_input').value=str;
         document.getElementById(action + '_input').focus();
     }
+	<!-- 禁止页面滚动 start -->
+	function bodyScroll(event){ 
+		event.preventDefault(); 
+	}
+	<!-- 禁止页面滚动 end -->
     function submit_operate(str) {
         var num=document.getElementById(str+'_sid').value;
         var xhr = new XMLHttpRequest();
