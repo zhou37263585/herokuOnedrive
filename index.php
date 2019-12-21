@@ -2054,34 +2054,12 @@ function binupfile(file,url,tdnum){
         }
         return queryComponents.join('&');
     }
-	<!-- 共有打开/关闭弹出层方法 start -->
-	function openDisLog(id) {
-		if(id == '' || id == null) return false;
-		document.getElementById(id).style.display="block";
-	}
-	function closeDisLog(obj) {
-		var popInner = obj.parentNode;
-		while(true){
-			popInner = popInner.parentNode;
-			if(popInner.className == 'disLogBg') break;
-		}
-		popInner.style.display = "none"; 
-	}
-	<!-- 共有打开/关闭弹出层方法 end -->
 <?php   }
     } else if (getenv('admin')!='') if (getenv('adminloginpage')=='') { ?>
     function login() {
         this.openDisLog('login_div');
 		document.getElementById('login_input').focus();
     }
-	
-	<!-- 按窗口宽度加载窗口位置 start -->
-	var x = document.getElementsByClassName("disLogBody");
-	var i;
-	for (i = 0; i < x.length; i++) {
-		x[i].style.marginTop = document.body.clientHeight/3 + "px";
-	}
-	<!-- 按窗口宽度加载窗口位置 end -->
 <?php }  if(getenv('user')!='') if ($_SERVER['user']){ ?>
 	function userLoginOut() {
 		document.cookie = "<?php echo $_SERVER['function_name'] . 'user';?>=; path=/";
@@ -2123,6 +2101,28 @@ function binupfile(file,url,tdnum){
 		document.getElementById('flieText').value = a[a.length-1];
 	}
 <?php } ?>
+	<!-- 按窗口高度加载窗口位置 start -->
+	var x = document.getElementsByClassName("disLogBody");
+	
+	for (var i = 0; i < x.length; i++) {
+		x[i].style.marginTop = document.body.clientHeight/3 + "px";
+	}
+	<!-- 按窗口高度加载窗口位置 end -->
+	
+	<!-- 共有打开/关闭弹出层方法 start -->
+	function openDisLog(id) {
+		if(id == '' || id == null) return false;
+		document.getElementById(id).style.display="block";
+	}
+	function closeDisLog(obj) {
+		var popInner = obj.parentNode;
+		while(true){
+			popInner = popInner.parentNode;
+			if(popInner.className == 'disLogBg') break;
+		}
+		popInner.style.display = "none"; 
+	}
+	<!-- 共有打开/关闭弹出层方法 end -->
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
 </html>
