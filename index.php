@@ -723,7 +723,14 @@ function render_list($path, $files)
             .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
         }
 <!-- DisLog start-->		
-.disLog_btn{
+.disLog_btn_cancel{
+	float: right;
+	width: 50%;
+	height: 39px;
+	font-size: 1rem;
+	cursor:pointer;
+}
+.disLog_btn_submit{
 	float: left;
 	width: 49%;
 	height: 39px;
@@ -731,7 +738,11 @@ function render_list($path, $files)
 	font-size: 1rem;
 	cursor:pointer;
 }
-.disLog_btn:hover{
+.disLog_btn_cancel:hover{
+	filter: alpha(Opacity=60);
+	opacity: 0.5;
+}
+.disLog_btn_submit:hover{
 	filter: alpha(Opacity=60);
 	opacity: 0.5;
 }
@@ -1350,11 +1361,11 @@ function render_list($path, $files)
 						（删除后不可恢复）
 					</div>
 					<form id="delete_form" onsubmit="return submit_operate('delete');">
-						<input id="delete_sid" name="delete_sid" type="hidden" value="">
-						<input id="delete_hidden" name="delete_name" type="hidden" value="">
-						<div class="disLog_btn" onclick="closeDisLog(this)">取消</div>
-						<div class="disLog_btn" id="delete_input" tabindex="2" onclick="document.getElementById('delete_form').submit();"><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
+						<div class="disLog_btn_cancel" onclick="closeDisLog(this)">取消</div>
+						<div class="disLog_btn_submit" id="delete_input" tabindex="2" onclick="document.getElementById('delete_form').submit();"><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
 					</form>
+					<input id="delete_sid" name="delete_sid" type="hidden" value="">
+					<input id="delete_hidden" name="delete_name" type="hidden" value="">
 				</div>
 			</div>
 		</div>
