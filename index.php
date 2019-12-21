@@ -752,14 +752,13 @@ function render_list($path, $files)
 	border: 1px solid;
 	width: 100%;
 	height: 100%;
-	position: fixed;
-	left: 0px;
-	top: 0px;
 	background: rgb(0,0,0,0.6);
 	overflow: auto;
 	text-align: center;
+	position:absolute;
+	left:0px;
+	top:0px;
 	display: none;
-	position:absolute;left:0px;top:0px;
 }
 .disLogBody{
 	background: white;
