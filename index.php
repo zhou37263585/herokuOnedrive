@@ -723,6 +723,14 @@ function render_list($path, $files)
             .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
         }
 <!-- DisLog start-->
+.disLog_btn_cancel{
+	float: right;
+	width: 50%;
+	height: 39px;
+	line-height: 39px;
+	font-size: 1rem;
+	cursor:pointer;
+}
 .disLog_btn_submit{
 	float: left;
 	width: 49%;
@@ -732,15 +740,6 @@ function render_list($path, $files)
 	font-size: 1rem;
 	cursor:pointer;
 }
-.disLog_btn_cancel{
-	float: right;
-	width: 50%;
-	height: 39px;
-	line-height: 39px;
-	font-size: 1rem;
-	cursor:pointer;
-}
-
 .disLog_btn_cancel:hover{
 	filter: alpha(Opacity=60);
 	opacity: 0.5;
