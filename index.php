@@ -722,6 +722,9 @@ function render_list($path, $files)
             .list-table {padding:8px}
             .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
         }
+body ::-webkit-scrollbar {
+	display: none;
+}
 <!-- DisLog start-->
 .disLog_btn{
 	float: left;
@@ -1968,7 +1971,11 @@ function binupfile(file,url,tdnum){
             if (str.substr(-1)==' ') str=str.substr(0,str.length-1);
         }
         this.openDisLog(action + '_div');
-		document.getElementsByTagName('body').style.overflowY='hidden';
+		<!-- 禁止页面滚动 start -->
+		document.body.addEventListener('touchmove', function(e){
+			e.preventDefault();
+		}, { passive: false });
+		<!-- 禁止页面滚动 end -->
         document.getElementById(action + '_label').innerText=str;//.replace(/&/,'&amp;');
         document.getElementById(action + '_sid').value=num;
         document.getElementById(action + '_hidden').value=str;
