@@ -131,6 +131,10 @@ $constStr = [
         'en-us' => 'Input Password',
         'zh-cn' => '输入密码',
     ],
+    'Input' => [
+        'en-us' => 'Please Input!',
+        'zh-cn' => '请输入!',
+    ],
     'Login' => [
         'en-us' => 'Login',
         'zh-cn' => '登录',
