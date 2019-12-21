@@ -716,12 +716,7 @@ function render_list($path, $files)
         .operatediv_close{position:absolute;right:3px;top:3px;}
         .readme{padding:8px;background-color:#fff;}
         #readme{padding:20px;text-align:left}
-        @media only screen and (max-width:480px){
-            .title{margin-bottom:24px}
-            .list-wrapper{width:95%; margin-bottom:24px;}
-            .list-table {padding:8px}
-            .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
-        }
+.disLog_btn{}
 <!-- DisLog start-->
 .disLog_btn_cancel{
 	float: right;
@@ -903,6 +898,13 @@ function render_list($path, $files)
   border-color: var(--group-border-focus);
 }
 <!-- loginInputTextCss end-->
+        @media only screen and (max-width:480px){
+            .title{margin-bottom:24px}
+            .list-wrapper{width:95%; margin-bottom:24px;}
+            .list-table {padding:8px}
+            .list-table td, .list-table th{padding:0 10px;text-align:left;white-space:nowrap;overflow:auto;max-width:80px}
+        }
+
     </style>
 </head>
 <body>
