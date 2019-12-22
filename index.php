@@ -1303,13 +1303,13 @@ function render_list($path, $files)
 							<?php echo $constStr['Operate'][$constStr['language']]; ?></span>
                             <ul>
                                 <li><a class="operate_ul_li" onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);">
-								<span class="operate_ico operate_ico_encrypt" style="background-image:url('data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
+								<div class="operate_ico operate_ico_encrypt" style="background-image:url('data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
 									OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
 									+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
 									AGeBY52qDRXPPwJwOKdFtZe97Y80MgEYntzUGLcJfa9ETm2gwobXr2o885wQtiJH3E0HWtLWdHQD
 									V2TwSkdyEqMeNUWvEKhcyLXkC0sKUOF0cPhOm8VrsC8eh2ujryy2fSsmlmVa1ZnEW8PyVXYEGAVH
 									HwfHr1IKMDuyq6DQFfV/CqT/Q+EVzM7TOiG+ZyDTc87o2gx9I3RXHzIt/I6sPGaGPa1KIvQCR5xM
-									zEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC')"> &nbsp;</span>
+									zEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC');background-size: cover;"> &nbsp;</div>
 									<?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
 								</li>
                                 <li><a class="operate_ul_li" onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
