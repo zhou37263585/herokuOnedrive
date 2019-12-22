@@ -1088,6 +1088,7 @@ function render_list($path, $files)
 .operate_ico_encrypt{
 	width: 16px;
 	height: 16px;
+	display: block;
 	background-image: url('data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
 									OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
 									+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
@@ -1314,7 +1315,7 @@ function render_list($path, $files)
 							<?php echo $constStr['Operate'][$constStr['language']]; ?></span>
                             <ul>
                                 <li><a class="operate_ul_li" onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);">
-									<span class="operate_ico operate_ico_encrypt"></span>
+									<div class="operate_ico operate_ico_encrypt"></div>
 									<?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
 								</li>
                                 <li><a class="operate_ul_li" onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
