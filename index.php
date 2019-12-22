@@ -683,7 +683,7 @@ function render_list($path, $files)
         body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1em;background-color:#f7f7f9;color:#000}
         a{color:#24292e;cursor:pointer;text-decoration:none}
         a:hover{color:#24292e}
-        .changelanguage{position:absolute;right:50px;top:3px}
+        .changelanguage{position:absolute;right: 2px;top:5px}
         .title{text-align:center;margin-top:1rem;letter-spacing:2px;margin-bottom:2rem}
         .title a{color:#333;text-decoration:none}
         .list-wrapper{width:80%;margin:0 auto 40px;position:relative;box-shadow:0 0 32px 0 rgb(128,128,128);border-radius:15px;}
@@ -945,6 +945,7 @@ function render_list($path, $files)
 	overflow: hidden;
 	text-overflow: ellipsis;
 	background: #fff;
+	border-radius: 6px;
 }
 
 /* Placeholder and selected option */
@@ -987,7 +988,7 @@ function render_list($path, $files)
 .cs-skin-elastic {
 	background: transparent;
 	color: #5b8583;
-	width: 150px;
+	width: 130px;
 }
 
 .cs-skin-elastic > span {
@@ -2573,6 +2574,7 @@ function binupfile(file,url,tdnum){
 				// update placeholder text
 				this.selPlaceholder.textContent = this.selOpts[ this.current ].textContent;
 				document.getElementById('languageSelect').value = this.selOpts[ this.current ].getAttribute("data-value");
+				document.getElementById("province").fireEvent('onchange');
 			}
 			classie.remove( this.selEl, 'cs-active' );
 		}
