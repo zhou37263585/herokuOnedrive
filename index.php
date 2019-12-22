@@ -1570,12 +1570,10 @@ function render_list($path, $files)
 					<?php echo $constStr['SetpassfileBfEncrypt'][$constStr['language']]; ?>
 				</div>
 				<div class="form-group" style="padding-top: 5%;">
-					<div class="disLog_btn_cancel" id="encrypt_input" tabindex="0" onclick="closeDisLog(this)">取消</div>
+					<div class="disLog_btn_cancel" style="float:right" id="encrypt_input" tabindex="0" onclick="closeDisLog(this)">取消</div>
 				</div>
 				<?php } else {?>
 				<form id="encrypt_form" onsubmit="return submit_operate('encrypt');">
-					<input id="encrypt_sid" name="encrypt_sid" type="hidden" value="">
-					<input id="encrypt_hidden" name="encrypt_folder" type="hidden" value="">
 					<div class="form-group" style="padding-top: 5%;">
 						<input class="form-field basic-style" id="encrypt_input" name="encrypt_newpass" type="text" placeholder="<?php echo $constStr['InputPasswordUWant'][$constStr['language']]; ?>" />
 						<span class="basic-style" onclick="document.getElementById('encrypt_operate_action').click();"><?php echo $constStr['encrypt'][$constStr['language']]; ?></span>
@@ -1583,6 +1581,8 @@ function render_list($path, $files)
 					</div>
 				</form>
 				<?php } ?>
+				<input id="encrypt_sid" name="encrypt_sid" type="hidden" value="">
+				<input id="encrypt_hidden" name="encrypt_folder" type="hidden" value="">
 			</div>
 		</div>
         <div id="move_div" class="operatediv" style="display:none">
@@ -2321,7 +2321,7 @@ function binupfile(file,url,tdnum){
 	<!-- 按窗口宽度加载窗口位置 start -->
 	var x = document.getElementsByClassName("disLogBody");
 	for (var i = 0; i < x.length; i++) {
-		x[i].style.marginTop = document.body.clientHeight/2 + "px";
+		x[i].style.marginTop = document.body.clientHeight/3.5 + "px";
 	}
 	<!-- 按窗口宽度加载窗口位置 end -->
 	<!-- 语言切换css start-->
