@@ -683,7 +683,7 @@ function render_list($path, $files)
         body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1em;background-color:#f7f7f9;color:#000}
         a{color:#24292e;cursor:pointer;text-decoration:none}
         a:hover{color:#24292e}
-        .changelanguage{position:absolute;right:100px;top:3px}
+        .changelanguage{position:absolute;right:50px;top:3px}
         .title{text-align:center;margin-top:1rem;letter-spacing:2px;margin-bottom:2rem}
         .title a{color:#333;text-decoration:none}
         .list-wrapper{width:80%;margin:0 auto 40px;position:relative;box-shadow:0 0 32px 0 rgb(128,128,128);border-radius:15px;}
@@ -945,7 +945,6 @@ function render_list($path, $files)
 	overflow: hidden;
 	text-overflow: ellipsis;
 	background: #fff;
-	border: 1px solid #CCCCCC;
 }
 
 /* Placeholder and selected option */
@@ -988,7 +987,7 @@ function render_list($path, $files)
 .cs-skin-elastic {
 	background: transparent;
 	color: #5b8583;
-	width: 100px;
+	width: 150px;
 }
 
 .cs-skin-elastic > span {
@@ -1174,7 +1173,7 @@ function render_list($path, $files)
 <?php
     } ?>
 	
-		<select class="cs-select cs-skin-elastic changelanguage" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
+		<select class="cs-select cs-skin-elastic changelanguage" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
 			<option value="" disabled selected>Select a Country</option>
 <?php
 	foreach ($constStr['languages'] as $key1 => $value1) { ?>
@@ -2573,6 +2572,7 @@ function binupfile(file,url,tdnum){
 			if( this.current !== -1 ) {
 				// update placeholder text
 				this.selPlaceholder.textContent = this.selOpts[ this.current ].textContent;
+				document.getElementById('languageSelect').value = this.selOpts[ this.current ].getAttribute("data-value");
 			}
 			classie.remove( this.selEl, 'cs-active' );
 		}
