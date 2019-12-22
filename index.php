@@ -1108,7 +1108,7 @@ function render_list($path, $files)
 	background: url("data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVQ4T9WTPQ6CMBzFH+gBtI4uxthBPYRwCNkdaeIRjHoDp+LmziVk8wTGmDo4OJrqBbCmA6YgGIhxsFM/Xn/9f7xa+HJYefebXGwtwDHPFBDdGHWz+jcACcRcKTgqxtIU23WM9Fr6NLVfCMi+psG5ALIWAzwQAhhWLMceNrxUBIQL9Yjh3qc0KoJpjWT0de93AMJFKBn1dCR6bqM2u7LusXQEptBM7Z8AwWkj/d4kqYFRj3JdaASHzt3vn7Pt/FiDFhdRHGNR5APCxRjASjLaTsBpH2i7KmhRvisVLrCwS9LRkNzfWMXST94qvsAPzf8GAAAAAElFTkSuQmCC");
 	height: 16px;
 	width: 16px;
-	border: 0;
+	border：3px;
 }
 
 
@@ -1330,19 +1330,19 @@ function render_list($path, $files)
 							<?php echo $constStr['Operate'][$constStr['language']]; ?></span>
                             <ul>
                                 <li><a class="operate_ul_li" onclick="showdiv(event,'encrypt',<?php echo $filenum;?>);">
-								<img class="operate_ico operate_ico_encrypt" />
+								<img alt="" class="operate_ico operate_ico_encrypt" />
 									<?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
 								</li>
                                 <li><a class="operate_ul_li" onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
-								<img class="operate_ico operate_ico_rename"/>
+								<img alt="" class="operate_ico operate_ico_rename"/>
 									<?php echo $constStr['Rename'][$constStr['language']]; ?></a>
 								</li>
                                 <li><a class="operate_ul_li" onclick="showdiv(event, 'move',<?php echo $filenum;?>);">
-									<img class="operate_ico operate_ico_move" />
+									<img alt="" class="operate_ico operate_ico_move" />
 									<?php echo $constStr['Move'][$constStr['language']]; ?></a>
 								</li>
                                 <li><a class="operate_ul_li" onclick="showdiv(event, 'delete',<?php echo $filenum;?>);">
-								<img class="operate_ico operate_ico_delete"/>
+								<img alt="" class="operate_ico operate_ico_delete"/>
 									<?php echo $constStr['Delete'][$constStr['language']]; ?></a>
 								</li>
                             </ul>
@@ -1374,31 +1374,14 @@ function render_list($path, $files)
 								<span class="operate_ul_li"><?php echo $constStr['Operate'][$constStr['language']]; ?></span>
                             <ul>
                                 <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
-									<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEq
-										OwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc
-										+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9
-										AGeBY52qDRXPPwJwOKdFtZe97Y80MgEYntzUGLcJfa9ETm2gwobXr2o885wQtiJH3E0HWtLWdHQD
-										V2TwSkdyEqMeNUWvEKhcyLXkC0sKUOF0cPhOm8VrsC8eh2ujryy2fSsmlmVa1ZnEW8PyVXYEGAVH
-										HwfHr1IKMDuyq6DQFfV/CqT/Q+EVzM7TOiG+ZyDTc87o2gx9I3RXHzIt/I6sPGaGPa1KIvQCR5xM
-										zEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC'/>
+									<img class="operate_ico operate_ico_rename" alt="" />
 									<?php echo $constStr['Rename'][$constStr['language']]; ?></a>
 								</li>
                                 <li><a onclick="showdiv(event, 'move',<?php echo $filenum;?>);">
-									<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABR0lEQVQ4T51Tu07DMBQ912VgbMvK
-										Bp6Y+AM+gsDIwNK6YuALWiZ2orioEhIraQcmpDLBxBcweURs1PQH7KAbklKVJA1kiRSfe3zPI4SK
-										pxWaEW3g3XblRRmMyg7a2gQA+gBZiOTKduSkCFtI0AzNgWhA8UAixC05f+I9hvMz+bRKUroBA9va
-										xEzw2dl5+LMEHtjSRgP0OFO792sJeO3VFZnAAXdzJZ+XCZaxqYTMsMAqeVSVSn7G0iAQs7HUiswI
-										BJk4/ETVQPLr1qHZJ49tImymRAnOITClZmgGQuAUhBf+TsAHv2dKpiksbo1MH4Q9EF4zgsA7TL4l
-										XJtDOAS2J49rSwDGVsnxIsYiE1mrB6K1Jla0MfYOuqhA+czaIv2LIK8yG+oc4rTWhBvbldPaVeZu
-										EHDpgTcCNBtW+2fKgVnEsD05KPPpC8/xjRKfuGcxAAAAAElFTkSuQmCC'/>
+									<img class="operate_ico operate_ico_move" alt=""/>
 									<?php echo $constStr['Move'][$constStr['language']]; ?></a></li>
                                 <li><a onclick="showdiv(event, 'delete',<?php echo $filenum;?>);">
-								<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVQ4T9WTPQ6CMBzFH+gBtI4u
-									xthBPYRwCNkdaeIRjHoDp+LmziVk8wTGmDo4OJrqBbCmA6YgGIhxsFM/Xn/9f7xa+HJYefebXGwt
-									wDHPFBDdGHWz+jcACcRcKTgqxtIU23WM9Fr6NLVfCMi+psG5ALIWAzwQAhhWLMceNrxUBIQL9Yjh
-									3qc0KoJpjWT0de93AMJFKBn1dCR6bqM2u7LusXQEptBM7Z8AwWkj/d4kqYFRj3JdaASHzt3vn7Pt
-									/FiDFhdRHGNR5APCxRjASjLaTsBpH2i7KmhRvisVLrCwS9LRkNzfWMXST94qvsAPzf8GAAAAAElF
-									TkSuQmCC'/>
+								<img class="operate_ico operate_ico_delete" alt=""/>
 								<?php echo $constStr['Delete'][$constStr['language']]; ?></a></li>
                             </ul>
                             </li>&nbsp;&nbsp;&nbsp;
