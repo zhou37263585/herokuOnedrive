@@ -1090,25 +1090,25 @@ function render_list($path, $files)
 	background: url("data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEqOwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9AGeBY52qDRXPPwJwOKdFtZe97Y80MgEYntzUGLcJfa9ETm2gwobXr2o885wQtiJH3E0HWtLWdHQDV2TwSkdyEqMeNUWvEKhcyLXkC0sKUOF0cPhOm8VrsC8eh2ujryy2fSsmlmVa1ZnEW8PyVXYEGAVHHwfHr1IKMDuyq6DQFfV/CqT/Q+EVzM7TOiG+ZyDTc87o2gx9I3RXHzIt/I6sPGaGPa1KIvQCR5xMzEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC");
 	height: 16px;
 	width: 16px;
-	border: 0;
+	border-width: 0px;
 }
 .operate_ico_rename{
 	background: url("data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA1ElEQVQ4T2NkIBMITL1lwMDEKMAI0y847dYkRgbGXLzmMTI0vMtUbQSpQTFAYPJtByZmhqx3WaphhBwkNO12KAMDw6p3Wapgy8GE0PTb9SAaZjouQ2CaGRgYwt5lqa4myQBsmok2AF0zyMUw1xL0Ajabhabd/k9UGOByNlEG4NIMDnRCLoBG637k0EaOGaIMAGn4kKt6AFuUEjSAiMREXCDiSVCoBkD8/D/yXZZaOiHboeGz9F2WqjQ8IUFC9tZMBgbGNEIGQOT/z4JZBs+NxGnEVAUAnb6OlYdp+d4AAAAASUVORK5CYII=");
 	height: 16px;
 	width: 16px;
-	border: 0;
+	border-width: 0px;
 }
 .operate_ico_move{
 	background: url("data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABR0lEQVQ4T51Tu07DMBQ912VgbMvKBp6Y+AM+gsDIwNK6YuALWiZ2orioEhIraQcmpDLBxBcweURs1PQH7KAbklKVJA1kiRSfe3zPI4SKpxWaEW3g3XblRRmMyg7a2gQA+gBZiOTKduSkCFtI0AzNgWhA8UAixC05f+I9hvMz+bRKUroBA9vaxEzw2dl5+LMEHtjSRgP0OFO792sJeO3VFZnAAXdzJZ+XCZaxqYTMsMAqeVSVSn7G0iAQs7HUiswIBJk4/ETVQPLr1qHZJ49tImymRAnOITClZmgGQuAUhBf+TsAHv2dKpiksbo1MH4Q9EF4zgsA7TL4lXJtDOAS2J49rSwDGVsnxIsYiE1mrB6K1Jla0MfYOuqhA+czaIv2LIK8yG+oc4rTWhBvbldPaVeZuEHDpgTcCNBtW+2fKgVnEsD05KPPpC8/xjRKfuGcxAAAAAElFTkSuQmCC");
 	height: 16px;
 	width: 16px;
-	border: 0;
+	border-width: 0px;
 }
 .operate_ico_delete{
 	background: url("data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVQ4T9WTPQ6CMBzFH+gBtI4uxthBPYRwCNkdaeIRjHoDp+LmziVk8wTGmDo4OJrqBbCmA6YgGIhxsFM/Xn/9f7xa+HJYefebXGwtwDHPFBDdGHWz+jcACcRcKTgqxtIU23WM9Fr6NLVfCMi+psG5ALIWAzwQAhhWLMceNrxUBIQL9Yjh3qc0KoJpjWT0de93AMJFKBn1dCR6bqM2u7LusXQEptBM7Z8AwWkj/d4kqYFRj3JdaASHzt3vn7Pt/FiDFhdRHGNR5APCxRjASjLaTsBpH2i7KmhRvisVLrCwS9LRkNzfWMXST94qvsAPzf8GAAAAAElFTkSuQmCC");
 	height: 16px;
 	width: 16px;
-	border：3px;
+	border-width: 0px;
 }
 
 
@@ -1189,12 +1189,7 @@ function render_list($path, $files)
 			<?php echo $constStr['Setup'][$constStr['language']]; ?></a>
 		</li>
         <li><a class="operate_ul_li" onclick="logout()">
-		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA9ElEQVQ4T2NkoBAwwvQLTL+uwMTA
-			Eo/NPMZ//x++zVZbgFUOJig47fZtRgYGFVwO+s/AmP4+S2UWujzcBULTbv//95fB8UOu6gF0RYLT
-			bu9nZGQ48C5TtXGoGjD9jjUj4//3/34ziDGxMNgje4WoMIDH1OTbDkzMDPsZGBknvstUKQCJ4zRA
-			cPoNa8b/zEewBNrV/wwM2v/+MRR+yFGdgNcFApNvO6AYwMwoz8Twr4GBgenOu1c/vRkatH+R7AVG
-			ZoZ6xv+Mce+yVR7j9QKyzULTbi1nYGS8QfN0cIWBgUEbV1JmZGSIe5upuhhnSqQ4M5GbqwFydp4R
-			iVZAFgAAAABJRU5ErkJggg=='/>
+		<img class="operate_ico" src='c'/>
 			<?php echo $constStr['Logout'][$constStr['language']]; ?></a>
 		</li>
     </ul></li>
@@ -1373,14 +1368,14 @@ function render_list($path, $files)
                             <li class="operate">
 								<span class="operate_ul_li"><?php echo $constStr['Operate'][$constStr['language']]; ?></span>
                             <ul>
-                                <li><a onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
+                                <li><a class="operate_ul_li" onclick="showdiv(event, 'rename',<?php echo $filenum;?>);">
 									<img class="operate_ico operate_ico_rename" alt="" />
 									<?php echo $constStr['Rename'][$constStr['language']]; ?></a>
 								</li>
-                                <li><a onclick="showdiv(event, 'move',<?php echo $filenum;?>);">
+                                <li><a class="operate_ul_li" onclick="showdiv(event, 'move',<?php echo $filenum;?>);">
 									<img class="operate_ico operate_ico_move" alt=""/>
 									<?php echo $constStr['Move'][$constStr['language']]; ?></a></li>
-                                <li><a onclick="showdiv(event, 'delete',<?php echo $filenum;?>);">
+                                <li><a class="operate_ul_li" onclick="showdiv(event, 'delete',<?php echo $filenum;?>);">
 								<img class="operate_ico operate_ico_delete" alt=""/>
 								<?php echo $constStr['Delete'][$constStr['language']]; ?></a></li>
                             </ul>
