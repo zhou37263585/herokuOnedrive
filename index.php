@@ -918,7 +918,7 @@ function render_list($path, $files)
 	text-align: left;
 	background: #fff;
 	z-index: 100;
-	width: 150px;
+	width: 100%;
 	max-width: 150px;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -988,6 +988,7 @@ function render_list($path, $files)
 .cs-skin-elastic {
 	background: transparent;
 	color: #5b8583;
+	width: 100px;
 }
 
 .cs-skin-elastic > span {
@@ -1173,7 +1174,7 @@ function render_list($path, $files)
 <?php
     } ?>
 	
-		<select class="cs-select cs-skin-elastic" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
+		<select class="cs-select cs-skin-elastic changelanguage" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
 			<option value="" disabled selected>Select a Country</option>
 <?php
 	foreach ($constStr['languages'] as $key1 => $value1) { ?>
