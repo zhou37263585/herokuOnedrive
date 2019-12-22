@@ -2574,7 +2574,7 @@ function binupfile(file,url,tdnum){
 				// update placeholder text
 				this.selPlaceholder.textContent = this.selOpts[ this.current ].textContent;
 				document.getElementById('languageSelect').value = this.selOpts[ this.current ].getAttribute("data-value");
-				document.getElementById("province").fireEvent('onchange');
+				document.getElementById('languageSelect').fireEvent('onchange');
 			}
 			classie.remove( this.selEl, 'cs-active' );
 		}
