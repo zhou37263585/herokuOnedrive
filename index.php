@@ -769,7 +769,7 @@ function render_list($path, $files)
 	overflow: auto;
 	text-align: center;
 	display: none;
-	z-index: 1;
+	z-index: 2;
 }
 .disLogBody{
 	background: white;
@@ -778,6 +778,7 @@ function render_list($path, $files)
 	margin: auto;
 	border-radius: 5px;
 	position:relative
+	z-index: 3;
 }
 .disLogContent{
 	height: 110px;border-bottom: 1px solid #CCCCCC;
@@ -861,7 +862,6 @@ function render_list($path, $files)
 }
 .form-group .form-field {
   position: relative;
-  z-index: 1;
   flex: 1 1 auto;
   width: 1%;
   margin-top: 0;
@@ -919,7 +919,6 @@ function render_list($path, $files)
 	position: relative;
 	text-align: left;
 	background: #fff;
-	z-index: 100;
 	width: 100%;
 	max-width: 150px;
 	-webkit-touch-callout: none;
@@ -939,13 +938,12 @@ function render_list($path, $files)
 	display: block;
 	position: relative;
 	cursor: pointer;
-	padding: 0.4em;
+	padding: 0.5em;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	background: #fff;
 	border-radius: 6px;
-	z-index: -1;
 }
 /* Placeholder and selected option */
 /* Options */
@@ -977,11 +975,10 @@ function render_list($path, $files)
 .cs-skin-elastic {
 	background: transparent;
 	color: #5b8583;
-	width: 130px;
+	width: 120px;
 }
 .cs-skin-elastic > span {
 	background-color: #fff;
-	z-index: 100;
 }
 .cs-skin-elastic > span::after {
 	font-family: 'icomoon';
