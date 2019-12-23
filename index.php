@@ -777,8 +777,7 @@ function render_list($path, $files)
 	height: 150px;
 	margin: auto;
 	border-radius: 5px;
-	position:relative
-	z-index: 3;
+	position:relative;
 }
 .disLogContent{
 	height: 110px;border-bottom: 1px solid #CCCCCC;
