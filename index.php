@@ -769,6 +769,7 @@ function render_list($path, $files)
 	overflow: auto;
 	text-align: center;
 	display: none;
+	z-index: 1;
 }
 .disLogBody{
 	background: white;
@@ -938,12 +939,13 @@ function render_list($path, $files)
 	display: block;
 	position: relative;
 	cursor: pointer;
-	padding: 0.5em;
+	padding: 0.4em;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	background: #fff;
 	border-radius: 6px;
+	z-index: -1;
 }
 /* Placeholder and selected option */
 /* Options */
