@@ -18,12 +18,6 @@ imgup_path     ：设置图床路径，不设置这个值时该目录内容会�
 passfile       ：自定义密码文件的名字，可以是'pppppp'，也可以是'aaaa.txt'等等；  
         　       密码是这个文件的内容，可以空格、可以中文；列目录时不会显示，只有知道密码才能查看或下载此文件。  
 */
-/*if (!function_exists('getenv')) {
-    function getenv($str)
-    {
-        return $_SERVER[$str];
-    }
-}*/
 include 'vendor/autoload.php';
 include 'conststr.php';
 include 'functions.php';
@@ -591,8 +585,15 @@ function_name:' . $_SERVER['function_name'] . '<br>
             $html .= '<script>location.href=location.href</script>';
         }
     }
+	
+	if ($_GET['preview']) {
+        $preurl = $_SERVER['PHP_SELF'] . '?preview';
+    } else {
+        $preurl = path_format($_SERVER['PHP_SELF'] . '/');
+    }
+	
     $html .= '
-        <a href="'.$_SERVER['PHP_SELF'].'">'.$constStr['BackHome'][$constStr['language']].'</a>&nbsp;&nbsp;&nbsp;
+        <a href="'.$preurl.'">'.$constStr['Back'][$constStr['language']].'</a>&nbsp;&nbsp;&nbsp;
         <a href="https://github.com/qkqpttgf/herokuOnedrive">Github</a><br>';
     /*if ($needUpdate) {
         $html .= '<pre>' . $_SERVER['github_version'] . '</pre>
@@ -1186,7 +1187,7 @@ function render_list($path, $files)
 			<?php echo $constStr['encrypt'][$constStr['language']]; ?></a>
 		</li>
 <?php   } ?>
-        <li><a class="operate_ul_li" <?php if (getenv('APIKey')!='') { ?>href="?setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>>
+        <li><a class="operate_ul_li" <?php if (getenv('APIKey')!='') { ?>href="<?php echo $_GET['preview']?'?preview&':'?';?>setup" target="_blank"<?php } else { ?>onclick="alert('<?php echo $constStr['SetSecretsFirst'][$constStr['language']]; ?>');"<?php } ?>>
 		<img class="operate_ico" src='data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB7klEQVQ4T41TQY7TQBCsHhtyNdkP
 			eKV1JE6bvID8APMCwjHOJfwgvIBckhwxPzAvwPwgnCKtVyIfWMdXa+Mp1M5OZFAWMbeZ7q6u7qoR
 			PHP662IrQKVhAsMyiYJLqeIeg8+/AtM7fgeQW/KrQBaHWRRrvL8qFtYg9yiBBd+z9j9UH69b8BZA
@@ -1942,7 +1943,7 @@ function render_list($path, $files)
             tr1.appendChild(td2);
             td2.setAttribute('id','upfile_td2_'+timea+'_'+i);
             td2.innerHTML='<?php echo $constStr['GetUploadLink'][$constStr['language']]; ?> ...';
-            if (file.size>15*1024*1024*1024) {
+            if (file.size>100*1024*1024*1024) {
                 td2.innerHTML='<font color="red"><?php echo $constStr['UpFileTooLarge'][$constStr['language']]; ?></font>';
                 uploadbuttonshow();
                 return;
