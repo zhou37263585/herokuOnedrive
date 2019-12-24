@@ -701,7 +701,7 @@ function render_list($path, $files)
         .list-table .file ion-icon{font-size:15px;margin-right:5px;vertical-align:bottom}
         .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
 <?php if ($_SERVER['admin']) { ?>
-        .operate{display:inline-table;list-style:none;cursor:pointer;}
+        .operate{display:inline-table;line-height: 1.5;list-style:none;cursor:pointer;}
         .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin: -9px 0 0 0;padding:0 7px;color:#205D67;z-index:1;}
         .operate:hover ul{position:absolute;display:inline-table;}
         .operate ul li{padding:7px;list-style:none;display:inline-table;}
@@ -709,6 +709,7 @@ function render_list($path, $files)
 		.operate_ico{margin-bottom: -3px;}
 <?php } ?>
 		.userLoginOut_ico{margin-bottom: -3px;}
+		.userLoginOut_a{line-height: 1.5;}
 		.userLoginOut_a:hover{filter: alpha(Opacity=60);opacity:  0.5;}
 		.header{margin-top: 0.5%;}
         .operatediv{position:absolute;border:1px #CCCCCC;background-color:#FFFFCC;z-index:2;}
@@ -1092,6 +1093,14 @@ function render_list($path, $files)
 </head>
 <body>
 <div class="header">
+<select class="cs-select cs-skin-elastic" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
+			<option value="" disabled selected>Select a Country</option>
+<?php
+	foreach ($constStr['languages'] as $key1 => $value1) { ?>
+		<option value="<?php echo $key1; ?>"><?php echo $value1; ?></option>
+<?php
+	} ?>
+		</select>
 <?php
     if (getenv('admin')!='') if (!$_SERVER['admin'] && !$_SERVER['user']) {
         if (getenv('adminloginpage')=='') { ?>
@@ -1105,14 +1114,7 @@ function render_list($path, $files)
 				<?php echo $constStr['Logout'][$constStr['language']]; ?></a>
 
  <?php   } else { ?>
- 		<select class="cs-select cs-skin-elastic changelanguage" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
-			<option value="" disabled selected>Select a Country</option>
-<?php
-	foreach ($constStr['languages'] as $key1 => $value1) { ?>
-		<option value="<?php echo $key1; ?>"><?php echo $value1; ?></option>
-<?php
-	} ?>
-		</select>
+ 		
     <div class="operate">
 		<span class="operate_ul_li">
 		<svg t="1577090686623" class="icon userLoginOut_ico" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5171" width="16" height="16"><path d="M975.13472 794.5216A339.34336 339.34336 0 0 0 804.7616 501.11488a263.61856 263.61856 0 0 1-110.77632 52.59264 432.5888 432.5888 0 0 1 154.95168 333.02528v14.0288a487.28064 487.28064 0 0 0 124.44672-62.75072c1.47456-14.4384 2.05824-28.95872 1.75104-43.4688z" fill="#1296db" p-id="5172"></path><path d="M635.0848 61.8496a233.82016 233.82016 0 0 0-41.70752 4.20864 295.87456 295.87456 0 0 1 27.3408 455.7312h14.37696c127.3856 0 230.66624-103.2704 230.66624-230.66624 0-127.39584-103.2704-230.66624-230.66624-230.66624v1.40288z" fill="#1296db" p-id="5173"></path><path d="M613.35552 539.32032a381.75744 381.75744 0 0 1 188.61056 380.0064c-111.52384 73.58464-645.66272 72.16128-757.92384-4.1984a391.63904 391.63904 0 0 1-2.79552-45.23008 381.06112 381.06112 0 0 1 191.04768-330.57792c110.82752 90.7264 270.24384 90.7264 381.06112 0z" fill="#1296db" p-id="5174"></path><path d="M494.52032 613.9904l-24.8832 67.30752 25.23136 157.05088-66.60096 80.97792-70.11328-80.97792 29.09184-156.70272-29.7984-67.65568z" fill="#1296db" p-id="5175"></path><path d="M422.656 564.92032c-143.08352-0.77824-258.52928-117.26848-258.01728-260.352 0.512-143.09376 116.79744-258.74432 259.8912-258.48832 143.08352 0.256 258.93888 116.3264 258.93888 259.42016a259.42016 259.42016 0 0 1-260.8128 259.42016z" fill="#1296db" p-id="5176"></path></svg>
