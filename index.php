@@ -683,8 +683,6 @@ function render_list($path, $files)
     <style type="text/css">
         body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1em;background-color:#f7f7f9;color:#000}
         a{color:#24292e;cursor:pointer;text-decoration:none}
-        a:hover{color:#24292e}
-        .changelanguage{position:absolute;right: 5px;top:5px}
         .title{text-align:center;margin-top:1rem;letter-spacing:2px;margin-bottom:2rem}
         .title a{color:#333;text-decoration:none}
         .list-wrapper{width:80%;margin:0 auto 40px;position:relative;box-shadow:0 0 32px 0 rgb(128,128,128);border-radius:15px;}
@@ -712,9 +710,7 @@ function render_list($path, $files)
 <?php } ?>
 		.userLoginOut_ico{margin-bottom: -3px;}
 		.userLoginOut_a:hover{filter: alpha(Opacity=60);opacity:  0.5;}
-		.header{
-			margin-top: 2%;
-		}
+		.header{margin-top: 0.5%;}
         .operatediv{position:absolute;border:1px #CCCCCC;background-color:#FFFFCC;z-index:2;}
         .operatediv div{margin:16px}
         .operatediv_close{position:absolute;right:3px;top:3px;}
@@ -922,12 +918,9 @@ function render_list($path, $files)
 	background: #fff;
 	width: 100%;
 	max-width: 150px;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
 	user-select: none;
+	float: right;
+    margin-right: 0.5%;
 }
 .cs-select:focus {
 	outline: none; 
@@ -1026,6 +1019,7 @@ function render_list($path, $files)
 	transform: translate3d(0,-25px,0);
 	-webkit-transition: opacity 0.15s, -webkit-transform 0.15s;
 	transition: opacity 0.15s, transform 0.15s;
+	z-index: 1;
 }
 .cs-skin-elastic.cs-active .cs-options ul li {
 	-webkit-transform: translate3d(0,0,0);
