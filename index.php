@@ -2566,8 +2566,6 @@ function binupfile(file,url,tdnum){
 	<!-- 语言切换css end-->
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
-<script>document.body.hidden = 'hidden';</script>
-<script src="//cdn.jsdelivr.net/gh/vcheckzen/CDN@0.01/logi.js"></script>
 </html>
 <?php
     $html=ob_get_clean();
