@@ -702,9 +702,9 @@ function render_list($path, $files)
         .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
 <?php if ($_SERVER['admin']) { ?>
         .operate{display:inline-table;line-height: 1.8;list-style:none;cursor:pointer;}
-        .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin: -3px 0 0 0;padding:0 5px;color:#205D67;z-index: 2;}
+        .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin: -2px 0 0 0;padding:0 5px;color:#205D67;z-index: 2;}
         .operate:hover ul{position:absolute;display:inline-table;}
-        .operate ul li{padding:2px;list-style:none;display:inline-table;}
+        .operate ul li{padding: 0 4px;list-style:none;display:inline-table;}
 		.operate_ul_li:hover{filter: alpha(Opacity=60);opacity:  0.5;}
 		.operate_ico{margin-bottom: -3px;}
 <?php } ?>
