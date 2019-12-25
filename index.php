@@ -2570,6 +2570,7 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 		var self = this, options = '', createOptionHTML = function(el) {
 			var optclass = '', classes = '', link = '';
 			if( el.selectedOpt && !this.foundSelected && !this.hasDefaultPlaceholder ) {
+				console.log(el)
 				classes += 'cs-selected ';
 				this.foundSelected = true;
 			}
@@ -2642,7 +2643,7 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 				// update placeholder text
 				this.selPlaceholder.textContent = this.selOpts[ this.current ].textContent;
 				var languageSelect = document.getElementById("languageSelect");
-				if(languageSelect != null && languageSelect != '' ){
+				if(languageSelect.value != null && languageSelect.value != '' ){
 					languageSelect.value = this.selOpts[ this.current ].getAttribute("data-value");
 					languageSelect.addEventListener("change",changelanguage(languageSelect.options[languageSelect.options.selectedIndex].value));
 				}
