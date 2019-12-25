@@ -1600,7 +1600,7 @@ function render_list($path, $files)
 	</div>
 <?php   }
     } ?>
-
+    <font color="#f7f7f9"><?php echo date("Y-m-d H:i:s")." ".$constStr['Week'][date("w")][$constStr['language']]." ".$_SERVER['REMOTE_ADDR'];?></font>
 </body>
 <link rel="stylesheet" href="//unpkg.zhimg.com/github-markdown-css@3.0.1/github-markdown.css">
 <script type="text/javascript" src="//unpkg.zhimg.com/marked@0.6.2/marked.min.js"></script>
@@ -2365,9 +2365,9 @@ const ADD_TIME_AND_IP = () => {
     document.body.insertBefore(CENTER, document.body.querySelector('#mask'));
 
     // 时间走动
-	const ELEMENT = document.querySelector('#date');
     setInterval(() => {
         const ADDZERO = num => num < 10 ? '0' + num : num; 
+		const FUN_WEEK = week => '日一二三四五六'[week];
 
         const DATE = new Date();
         const YEAR = DATE.getFullYear();
@@ -2377,7 +2377,8 @@ const ADD_TIME_AND_IP = () => {
         const MINUTES = DATE.getMinutes();
         const SECONDS = DATE.getSeconds();
         const WEEK = DATE.getDay();
-  
+
+        const ELEMENT = document.querySelector('#date');
         const IP = ELEMENT.innerHTML.split(' ').pop();
         ELEMENT.innerHTML = 'yyyy-mm-dd hh:MM:ss w'
             .replace('yyyy', YEAR)
@@ -2386,11 +2387,9 @@ const ADD_TIME_AND_IP = () => {
             .replace('hh', ADDZERO(HOURS))
             .replace('MM', ADDZERO(MINUTES))
             .replace('ss', ADDZERO(SECONDS))
+            .replace('w', FUN_WEEK(WEEK))
             + '  IP: ' + IP;
-    }, 1000); 
-	console.log(ELEMENT.innerHTML)
-	ELEMENT.innerHTML = ELEMENT.innerHTML.replace('w', '<?php echo $constStr['Week'][date("w")][$constStr['language']]; ?>')
-	console.log(ELEMENT.innerHTML)
+    }, 1000);
 };
 
 // 其他 UI
