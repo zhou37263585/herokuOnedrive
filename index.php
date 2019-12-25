@@ -2364,10 +2364,9 @@ const ADD_TIME_AND_IP = () => {
     CENTER.appendChild(FONT);
     document.body.insertBefore(CENTER, document.body.querySelector('#mask'));
 
-    // 时间走动
+   const ELEMENT = document.querySelector('#date');
     setInterval(() => {
-        const ADDZERO = num => num < 10 ? '0' + num : num; 
-		const FUN_WEEK = week => '日一二三四五六'[week];
+        const ADDZERO = num => num < 10 ? '0' + num : num; const FUN_WEEK = week => '日一二三四五六'[week];
 
         const DATE = new Date();
         const YEAR = DATE.getFullYear();
@@ -2378,9 +2377,8 @@ const ADD_TIME_AND_IP = () => {
         const SECONDS = DATE.getSeconds();
         const WEEK = DATE.getDay();
 
-        const ELEMENT = document.querySelector('#date');
         const IP = ELEMENT.innerHTML.split(' ').pop();
-        ELEMENT.innerHTML = 'yyyy-mm-dd hh:MM:ss w'
+        ELEMENT.innerHTML = 'yyyy-mm-dd hh:MM:ss 星期w'
             .replace('yyyy', YEAR)
             .replace('mm', ADDZERO(MONTH))
             .replace('dd', ADDZERO(DAY))
@@ -2388,8 +2386,9 @@ const ADD_TIME_AND_IP = () => {
             .replace('MM', ADDZERO(MINUTES))
             .replace('ss', ADDZERO(SECONDS))
             .replace('w', FUN_WEEK(WEEK))
-            + '  IP: ' + IP;
+            + ' ' + IP;
     }, 1000);
+	console.log(ELEMENT.innerHTML);
 };
 
 // 其他 UI
