@@ -2386,9 +2386,10 @@ const ADD_TIME_AND_IP = () => {
             .replace('MM', ADDZERO(MINUTES))
             .replace('ss', ADDZERO(SECONDS))
             .replace('w', FUN_WEEK(WEEK))
-            + ' ' + IP;
+            + ' IP: ' + IP;
     }, 1000);
 	console.log(ELEMENT.innerHTML);
+	ELEMENT.innerHTML = ELEMENT.innerHTML.replace('w', FUN_WEEK(WEEK));
 };
 
 // 其他 UI
