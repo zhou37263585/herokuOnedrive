@@ -2389,7 +2389,7 @@ const ADD_TIME_AND_IP = () => {
             + ' IP: ' + IP;
     }, 1000);
 	console.log(ELEMENT.innerHTML);
-	ELEMENT.innerHTML = ELEMENT.innerHTML.replace('w', FUN_WEEK(WEEK));
+	ELEMENT.innerHTML = ELEMENT.innerHTML.replace('w', '<?php echo $constStr['Week'][date("w")][$constStr['language']] ?>');
 };
 
 // 其他 UI
