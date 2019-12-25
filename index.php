@@ -2375,8 +2375,8 @@ const ADD_TIME_AND_IP = () => {
         const HOURS = DATE.getHours();
         const MINUTES = DATE.getMinutes();
         const SECONDS = DATE.getSeconds();
-        const WEEK = DATE.getDay();
-
+		const week = <?php echo $constStr['Week'][date("w")][$constStr['language']] ?>；
+		
         const IP = ELEMENT.innerHTML.split(' ').pop();
         ELEMENT.innerHTML = 'yyyy-mm-dd hh:MM:ss w'
             .replace('yyyy', YEAR)
@@ -2385,10 +2385,9 @@ const ADD_TIME_AND_IP = () => {
             .replace('hh', ADDZERO(HOURS))
             .replace('MM', ADDZERO(MINUTES))
             .replace('ss', ADDZERO(SECONDS))
+			.replace('w', week)
             + ' IP: ' + IP;
     }, 1000);
-	console.log(ELEMENT.innerHTML);
-	ELEMENT.innerHTML = ELEMENT.innerHTML.replace('w', '<?php echo $constStr['Week'][date("w")][$constStr['language']] ?>');
 };
 
 // 其他 UI
