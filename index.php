@@ -1528,7 +1528,7 @@ function render_list($path, $files)
 			<div class="disLogBody" style="height: 120px;">
 				<img class="disLog_btn_close" onclick="closeDisLog(this)" alt="">
 				<div class="titleText" id="move_label"></div>
-				<form id="move_form" onsubmit="return submit_operate('rename');">
+				<form id="move_form" onsubmit="return submit_operate('move');">
 					<input id="move_sid" name="move_sid" type="hidden" value="">
 					<input id="move_hidden" name="move_name" type="hidden" value="">
 					<div class="form-group" style="padding-top: 5%;">
@@ -1542,7 +1542,8 @@ function render_list($path, $files)
 						<?php       }
 								} ?>
 						</select>
-						<span class="basic-style" ><?php echo $constStr['Move'][$constStr['language']]; ?></span>
+						<span class="basic-style" onclick="document.getElementById('move_operate_action').click();"><?php echo $constStr['Move'][$constStr['language']]; ?></span>
+						<input name="operate_action" type="submit" id="move_operate_action" value="<?php echo $constStr['Move'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				</form>
 			</div>
