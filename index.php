@@ -1093,7 +1093,10 @@ function render_list($path, $files)
 /* 移动select Css */
 .move_div_select{
     border: 1px solid #CDD9ED;
-	border-focus: 1px solid #275EFE;
+	border-radius: 0 6px 6px 0;
+}
+.move_div_select:focus{
+	border: 1px solid #275EFE;
 }
 /* 水平居中 Css */
 .move_div_select span{
