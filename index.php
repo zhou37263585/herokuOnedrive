@@ -2570,7 +2570,9 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 		var self = this, options = '', createOptionHTML = function(el) {
 			var optclass = '', classes = '', link = '';
 			if( el.selectedOpt && !this.foundSelected && !this.hasDefaultPlaceholder ) {
-				console.log(el.prop("id"))
+				if(el.id == 'move_input'){
+					alert("asd");
+				}
 				classes += 'cs-selected ';
 				this.foundSelected = true;
 			}
@@ -2716,7 +2718,6 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 	(function() {
 		[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
 			new SelectFx(el);
-			console.log(el.id)
 		} );
 	})();
 	<!-- select Css end-->
