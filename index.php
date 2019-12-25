@@ -1473,7 +1473,7 @@ function render_list($path, $files)
 					<div class="contentTest">
 						（删除后不可恢复）
 					</div>
-					 <input id="delete_sid" name="delete_sid" type="hidden" value="">
+					<input id="delete_sid" name="delete_sid" type="hidden" value="">
 					<input id="delete_hidden" name="delete_name" type="hidden" value="">
 				</div>
 				<form id="delete_form" onsubmit="return submit_operate('delete');">
@@ -1508,7 +1508,6 @@ function render_list($path, $files)
 				</form>
 			</div>
 		</div>
- 
 		
 		<div id="move_div" class="disLogBg" style="display:none">
 			<div class="disLogBody" style="height: 120px;">
@@ -1517,15 +1516,18 @@ function render_list($path, $files)
 				<form id="rename_form" onsubmit="return submit_operate('rename');">
 					<input id="move_sid" name="move_sid" type="hidden" value="">
 					<input id="move_hidden" name="move_name" type="hidden" value="">
-					<div class="form-group" style="padding-top: 5%;">
-						<select class="cs-select cs-skin-elastic" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
-							<option value="" disabled selected>Select a Country</option>
-							<?php
-								foreach ($constStr['languages'] as $key1 => $value1) { ?>
-									<option value="<?php echo $key1; ?>"><?php echo $value1; ?></option>
-							<?php
+					<div class="form-group" style="padding-top: 5%;">						
+						<select class="cs-select cs-skin-elastic" id="move_input" name="move_folder">
+						<?php   if ($path != '/') { ?>
+											<option value="/../"><?php echo $constStr['ParentDir'][$constStr['language']]; ?></option>
+						<?php   }
+								if (isset($files['children'])) foreach ($files['children'] as $file) {
+									if (isset($file['folder'])) { ?>
+											<option value="<?php echo str_replace('&','&amp;', $file['name']);?>"><?php echo str_replace('&','&amp;', $file['name']);?></option>
+						<?php       }
 								} ?>
 						</select>
+						<span class="basic-style" ><?php echo $constStr['encrypt'][$constStr['language']]; ?></span>
 					</div>
 				</form>
 			</div>
