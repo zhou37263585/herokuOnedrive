@@ -2365,7 +2365,6 @@ const ADD_TIME_AND_IP = () => {
     document.body.insertBefore(CENTER, document.body.querySelector('#mask'));
 
     // 时间走动
-	const FUN_WEEK  => { retrun <?php echo $constStr['Week'][date("w")][$constStr['language']]; ?>;}
     setInterval(() => {
         const ADDZERO = num => num < 10 ? '0' + num : num; 
 
@@ -2389,7 +2388,7 @@ const ADD_TIME_AND_IP = () => {
             .replace('ss', ADDZERO(SECONDS))
             + '  IP: ' + IP;
     }, 1000); 
-	ELEMENT.innerHTML = ELEMENT.innerHTML.replace('w', FUN_WEEK())
+	ELEMENT.innerHTML = ELEMENT.innerHTML.replace('w', ()=> <?php echo $constStr['Week'][date("w")][$constStr['language']]; ?>)
 };
 
 // 其他 UI
