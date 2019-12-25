@@ -1600,7 +1600,7 @@ function render_list($path, $files)
 	</div>
 <?php   }
     } ?>
-   
+    <font color="#f7f7f9"><?php echo date("Y-m-d H:i:s")." ".$constStr['Week'][date("w")][$constStr['language']]." ".$_SERVER['REMOTE_ADDR'];?></font>
 </body>
 <link rel="stylesheet" href="//unpkg.zhimg.com/github-markdown-css@3.0.1/github-markdown.css">
 <script type="text/javascript" src="//unpkg.zhimg.com/marked@0.6.2/marked.min.js"></script>
