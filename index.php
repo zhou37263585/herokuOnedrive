@@ -1508,34 +1508,29 @@ function render_list($path, $files)
 				</form>
 			</div>
 		</div>
-        <div id="move_div" class="operatediv" style="display:none">
-            <div>
-                <label id="move_label"></label><br><br><a onclick="operatediv_close('move')" class="operatediv_close"><?php echo $constStr['Close'][$constStr['language']]; ?></a>
-                <form id="move_form" onsubmit="return submit_operate('move');">
-                <input id="move_sid" name="move_sid" type="hidden" value="">
-                <input id="move_hidden" name="move_name" type="hidden" value="">
-                <select id="move_input" name="move_folder">
-<?php   if ($path != '/') { ?>
-                    <option value="/../"><?php echo $constStr['ParentDir'][$constStr['language']]; ?></option>
-<?php   }
-        if (isset($files['children'])) foreach ($files['children'] as $file) {
-            if (isset($file['folder'])) { ?>
-                    <option value="<?php echo str_replace('&','&amp;', $file['name']);?>"><?php echo str_replace('&','&amp;', $file['name']);?></option>
-<?php       }
-        } ?>
-                </select>
-                <input name="operate_action" type="submit" value="<?php echo $constStr['Move'][$constStr['language']]; ?>">
-                </form>
-				<select class="cs-select cs-skin-elastic" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
-			<option value="" disabled selected>Select a Country</option>
-			<?php
-				foreach ($constStr['languages'] as $key1 => $value1) { ?>
-					<option value="<?php echo $key1; ?>"><?php echo $value1; ?></option>
-			<?php
-				} ?>
-			</select>
-            </div>
-        </div>
+ 
+		
+		<div id="move_div" class="disLogBg" style="display:none">
+			<div class="disLogBody" style="height: 120px;">
+				<img class="disLog_btn_close" onclick="closeDisLog(this)" alt="">
+				<div class="titleText" id="move_label"></div>
+				<form id="rename_form" onsubmit="return submit_operate('rename');">
+					<input id="move_sid" name="move_sid" type="hidden" value="">
+					<input id="move_hidden" name="move_name" type="hidden" value="">
+					<div class="form-group" style="padding-top: 5%;">
+						<select class="cs-select cs-skin-elastic" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
+							<option value="" disabled selected>Select a Country</option>
+							<?php
+								foreach ($constStr['languages'] as $key1 => $value1) { ?>
+									<option value="<?php echo $key1; ?>"><?php echo $value1; ?></option>
+							<?php
+								} ?>
+						</select>
+					</div>
+				</form>
+			</div>
+		</div>
+		
         <div id="create_div" class="operatediv" style="display:none">
             <div>
                 <a onclick="operatediv_close('create')" class="operatediv_close"><?php echo $constStr['Close'][$constStr['language']]; ?></a>
