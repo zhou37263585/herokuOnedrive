@@ -2570,7 +2570,6 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 		var self = this, options = '', createOptionHTML = function(el) {
 			var optclass = '', classes = '', link = '';
 			if( el.selectedOpt && !this.foundSelected && !this.hasDefaultPlaceholder ) {
-				console.log(el.prop("id"))
 				classes += 'cs-selected ';
 				this.foundSelected = true;
 			}
@@ -2718,7 +2717,7 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 			new SelectFx(el);
 			console.log(el.id)
 			if('move_input'==el.id){
-				el.className = el.className+'move_div_select';
+				el.className = el.className+' move_div_select';
 				console.log(el.className)
 			}
 		} );
