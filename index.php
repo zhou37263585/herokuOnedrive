@@ -1089,6 +1089,17 @@ function render_list($path, $files)
     padding:8px 8px 8px 8px; 
     border-style:none;
 }
+
+/* 移动select Css */
+.move_div_select{
+		--input-border-focus: #275EFE;
+}
+/* 水平居中 Css */
+.move_div_select span{
+	position: relative;
+    top: 50%; 
+    transform: translateY(-50%);
+}
     </style>
 </head>
 <body>
@@ -2719,7 +2730,6 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 			if('move_input'==el.id){
 				el = el.parentNode;
 				el.className = el.className+' move_div_select';
-				console.log(el.className)
 			}
 		} );
 	})();
