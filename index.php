@@ -1532,8 +1532,7 @@ function render_list($path, $files)
 					<input id="move_sid" name="move_sid" type="hidden" value="">
 					<input id="move_hidden" name="move_name" type="hidden" value="">
 					<div class="form-group" style="padding-top: 5%;">
-						<div style="margin: auto">
-						<select class="cs-select cs-skin-elastic" id="move_input" name="move_folder" >
+						<select class="cs-select cs-skin-elastic" id="move_input" name="move_folder" style="width: 120px;">
 						<?php   if ($path != '/') { ?>
 											<option value="/../"><?php echo $constStr['ParentDir'][$constStr['language']]; ?></option>
 						<?php   }
@@ -1544,7 +1543,6 @@ function render_list($path, $files)
 								} ?>
 						</select>
 						<span class="basic-style" ><?php echo $constStr['Move'][$constStr['language']]; ?></span>
-						</div>
 					</div>
 				</form>
 			</div>
