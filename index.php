@@ -2366,7 +2366,7 @@ const ADD_TIME_AND_IP = () => {
 
     // 时间走动
     setInterval(() => {
-        const ADDZERO = num => num < 10 ? '0' + num : num; const FUN_WEEK = week => '日一二三四五六'[week];
+        const ADDZERO = num => num < 10 ? '0' + num : num; const FUN_WEEK = week => '星期日星期一二星期三四五六'[week];
 
         const DATE = new Date();
         const YEAR = DATE.getFullYear();
@@ -2379,7 +2379,7 @@ const ADD_TIME_AND_IP = () => {
 
         const ELEMENT = document.querySelector('#date');
         const IP = ELEMENT.innerHTML.split(' ').pop();
-        ELEMENT.innerHTML = 'yyyy-mm-dd hh:MM:ss 星期w'
+        ELEMENT.innerHTML = 'yyyy-mm-dd hh:MM:ss w'
             .replace('yyyy', YEAR)
             .replace('mm', ADDZERO(MONTH))
             .replace('dd', ADDZERO(DAY))
@@ -2387,7 +2387,7 @@ const ADD_TIME_AND_IP = () => {
             .replace('MM', ADDZERO(MINUTES))
             .replace('ss', ADDZERO(SECONDS))
             .replace('w', FUN_WEEK(WEEK))
-            + ' ' + IP;
+            + '  IP: ' + IP;
     }, 1000);
 };
 
@@ -2731,7 +2731,6 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 	(function() {
 		[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
 			new SelectFx(el);
-			console.log(el.id)
 			if('move_input'==el.id){
 				el = el.parentNode;
 				el.className = el.className+' move_div_select';
