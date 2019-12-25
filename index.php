@@ -2365,7 +2365,7 @@ const ADD_TIME_AND_IP = () => {
     document.body.insertBefore(CENTER, document.body.querySelector('#mask'));
 
     // 时间走动
-	FUN_WEEK()  =>  retrun ;
+	const ELEMENT = document.querySelector('#date');
     setInterval(() => {
         const ADDZERO = num => num < 10 ? '0' + num : num; 
 
@@ -2377,8 +2377,7 @@ const ADD_TIME_AND_IP = () => {
         const MINUTES = DATE.getMinutes();
         const SECONDS = DATE.getSeconds();
         const WEEK = DATE.getDay();
-
-        const ELEMENT = document.querySelector('#date');
+  
         const IP = ELEMENT.innerHTML.split(' ').pop();
         ELEMENT.innerHTML = 'yyyy-mm-dd hh:MM:ss w'
             .replace('yyyy', YEAR)
@@ -2390,7 +2389,7 @@ const ADD_TIME_AND_IP = () => {
             + '  IP: ' + IP;
     }, 1000); 
 	console.log(ELEMENT.innerHTML)
-	ELEMENT.innerHTML = ELEMENT.innerHTML.replace('w', <?php echo $constStr['Week'][date("w")][$constStr['language']]; ?>)
+	ELEMENT.innerHTML = ELEMENT.innerHTML.replace('w', '<?php echo $constStr['Week'][date("w")][$constStr['language']]; ?>')
 	console.log(ELEMENT.innerHTML)
 };
 
