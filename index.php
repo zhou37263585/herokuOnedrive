@@ -1092,7 +1092,15 @@ function render_list($path, $files)
 
 /* 移动select Css */
 .move_div_select{
-		--input-border-focus: #275EFE;
+    --select-border: #CDD9ED;
+    --select-background: #fff;
+    --select-placeholder: #CBD1DC;
+    --select-border-focus: #275EFE;
+    --group-border: var(--select-border);
+    --group-background: #EEF4FF;
+    --group-color-focus: #fff;
+    --group-border-focus: var(--select-border-focus);
+    --group-background-focus: #678EFE;
 }
 /* 水平居中 Css */
 .move_div_select span{
