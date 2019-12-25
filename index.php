@@ -1513,7 +1513,7 @@ function render_list($path, $files)
 			<div class="disLogBody" style="height: 120px;">
 				<img class="disLog_btn_close" onclick="closeDisLog(this)" alt="">
 				<div class="titleText" id="move_label"></div>
-				<form id="rename_form" onsubmit="return submit_operate('rename');">
+				<form id="move_form" onsubmit="return submit_operate('rename');">
 					<input id="move_sid" name="move_sid" type="hidden" value="">
 					<input id="move_hidden" name="move_name" type="hidden" value="">
 					<div class="form-group" style="padding-top: 5%;">						
