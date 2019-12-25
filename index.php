@@ -1100,7 +1100,7 @@ function render_list($path, $files)
 		<option value="<?php echo $key1; ?>"><?php echo $value1; ?></option>
 <?php
 	} ?>
-		</select>
+</select>
 <?php
     if (getenv('admin')!='') if (!$_SERVER['admin'] && !$_SERVER['user']) {
         if (getenv('adminloginpage')=='') { ?>
@@ -1526,6 +1526,14 @@ function render_list($path, $files)
                 </select>
                 <input name="operate_action" type="submit" value="<?php echo $constStr['Move'][$constStr['language']]; ?>">
                 </form>
+				<select class="cs-select cs-skin-elastic" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
+			<option value="" disabled selected>Select a Country</option>
+			<?php
+				foreach ($constStr['languages'] as $key1 => $value1) { ?>
+					<option value="<?php echo $key1; ?>"><?php echo $value1; ?></option>
+			<?php
+				} ?>
+			</select>
             </div>
         </div>
         <div id="create_div" class="operatediv" style="display:none">
