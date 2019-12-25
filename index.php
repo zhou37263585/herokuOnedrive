@@ -1092,15 +1092,8 @@ function render_list($path, $files)
 
 /* 移动select Css */
 .move_div_select{
-    --select-border: #CDD9ED;
-    --select-background: #fff;
-    --select-placeholder: #CBD1DC;
-    --select-border-focus: #275EFE;
-    --group-border: var(--select-border);
-    --group-background: #EEF4FF;
-    --group-color-focus: #fff;
-    --group-border-focus: var(--select-border-focus);
-    --group-background-focus: #678EFE;
+    border: 1px solid #CDD9ED;
+	border-focus: 1px solid #275EFE;
 }
 /* 水平居中 Css */
 .move_div_select span{
