@@ -2365,9 +2365,9 @@ const ADD_TIME_AND_IP = () => {
     document.body.insertBefore(CENTER, document.body.querySelector('#mask'));
 
     // 时间走动
+	const FUN_WEEK  => <?php echo $constStr['Week'][date("w")][$constStr['language']]; ?>;
     setInterval(() => {
         const ADDZERO = num => num < 10 ? '0' + num : num; 
-		const FUN_WEEK = week => <?php echo $constStr['Week'][date("w")][$constStr['language']]; ?>;
 
         const DATE = new Date();
         const YEAR = DATE.getFullYear();
@@ -2387,9 +2387,9 @@ const ADD_TIME_AND_IP = () => {
             .replace('hh', ADDZERO(HOURS))
             .replace('MM', ADDZERO(MINUTES))
             .replace('ss', ADDZERO(SECONDS))
-            .replace('w', FUN_WEEK(WEEK))
             + '  IP: ' + IP;
-    }, 1000);
+    }, 1000); 
+	ELEMENT.innerHTML = ELEMENT.innerHTML.replace('w', FUN_WEEK())
 };
 
 // 其他 UI
