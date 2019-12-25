@@ -2375,7 +2375,7 @@ const ADD_TIME_AND_IP = () => {
         const HOURS = DATE.getHours();
         const MINUTES = DATE.getMinutes();
         const SECONDS = DATE.getSeconds();
-		const week = '<?php echo $constStr['Week'][date("w")][$constStr['language']] ?>'；
+		const week = '<?php echo $constStr['Week'][date("w")][$constStr['language']] ?>';
 		
         const IP = ELEMENT.innerHTML.split(' ').pop();
         ELEMENT.innerHTML = 'yyyy-mm-dd hh:MM:ss w'
