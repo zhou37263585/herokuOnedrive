@@ -2367,7 +2367,7 @@ const ADD_TIME_AND_IP = () => {
     // 时间走动
     setInterval(() => {
         const ADDZERO = num => num < 10 ? '0' + num : num; 
-		const FUN_WEEK = week => <?php echo $constStr['Week'][?> <?php echo week][$constStr['language']]; ?>;
+		const FUN_WEEK = week => <?php echo $constStr['Week'][date("w")][$constStr['language']]; ?>;
 
         const DATE = new Date();
         const YEAR = DATE.getFullYear();
