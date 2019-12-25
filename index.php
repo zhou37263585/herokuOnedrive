@@ -2717,6 +2717,7 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 			new SelectFx(el);
 			console.log(el.id)
 			if('move_input'==el.id){
+				el = el.parentNode;
 				el.className = el.className+' move_div_select';
 				console.log(el.className)
 			}
