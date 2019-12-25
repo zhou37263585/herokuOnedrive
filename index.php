@@ -2366,7 +2366,7 @@ const ADD_TIME_AND_IP = () => {
 
     // 时间走动
     setInterval(() => {
-        const ADDZERO = num => num < 10 ? '0' + num : num; const FUN_WEEK = week => '星期日星期一二星期三四五六'[week];
+        const ADDZERO = num => num < 10 ? '0' + num : num; const FUN_WEEK = week => '星期日,星期一,二,星期三,四,五,六'[week];
 
         const DATE = new Date();
         const YEAR = DATE.getFullYear();
