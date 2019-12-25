@@ -1527,7 +1527,7 @@ function render_list($path, $files)
 						<?php       }
 								} ?>
 						</select>
-						<span class="basic-style" ><?php echo $constStr['move'][$constStr['language']]; ?></span>
+						<span class="basic-style" ><?php echo $constStr['Move'][$constStr['language']]; ?></span>
 					</div>
 				</form>
 			</div>
@@ -2570,7 +2570,7 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 		var self = this, options = '', createOptionHTML = function(el) {
 			var optclass = '', classes = '', link = '';
 			if( el.selectedOpt && !this.foundSelected && !this.hasDefaultPlaceholder ) {
-				console.log(el)
+				console.log(el.prop("id"))
 				classes += 'cs-selected ';
 				this.foundSelected = true;
 			}
@@ -2716,7 +2716,7 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 	(function() {
 		[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
 			new SelectFx(el);
-			console.log(el)
+			console.log(el.target.id)
 		} );
 	})();
 	<!-- select Css end-->
