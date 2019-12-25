@@ -698,7 +698,7 @@ function render_list($path, $files)
         .list-table tr:first-child{background:#fff}
         .list-table td,.list-table th{padding:0 10px;text-align:left}
         .list-table .size,.list-table .updated_at{text-align:right}
-        .list-table .file ion-icon{font-size:15px;margin-right:5px;vertical-align:bottom}
+        .list-table .file ion-icon{font-size:15px;margin-right:5px;vertical-align: middle}
         .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
 <?php if ($_SERVER['admin']) { ?>
         .operate{display:inline-table;line-height: 1.8;list-style:none;cursor:pointer;}
@@ -1531,7 +1531,8 @@ function render_list($path, $files)
 				<form id="move_form" onsubmit="return submit_operate('rename');">
 					<input id="move_sid" name="move_sid" type="hidden" value="">
 					<input id="move_hidden" name="move_name" type="hidden" value="">
-					<div class="form-group" style="padding-top: 5%;">						
+					<div class="form-group" style="padding-top: 5%;">
+						<div style="margin: auto">
 						<select class="cs-select cs-skin-elastic" id="move_input" name="move_folder" >
 						<?php   if ($path != '/') { ?>
 											<option value="/../"><?php echo $constStr['ParentDir'][$constStr['language']]; ?></option>
@@ -1543,6 +1544,7 @@ function render_list($path, $files)
 								} ?>
 						</select>
 						<span class="basic-style" ><?php echo $constStr['Move'][$constStr['language']]; ?></span>
+						</div>
 					</div>
 				</form>
 			</div>
