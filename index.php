@@ -2716,6 +2716,7 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 	(function() {
 		[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
 			new SelectFx(el);
+			console.log(el)
 		} );
 	})();
 	<!-- select Css end-->
