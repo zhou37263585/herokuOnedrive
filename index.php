@@ -35,11 +35,14 @@ if ($_SERVER['USER']!='qcloud') {
     $event['path'] = $_SERVER['REDIRECT_URL'];
     $getstr = substr($_SERVER['REQUEST_URI'], strlen($_SERVER['REDIRECT_URL']));
     while (substr($getstr,0,1)=='/' ||substr($getstr,0,1)=='?') $getstr = substr($getstr,1);
-    $getstrarr = explode("&",$getstr);
-    foreach ($getstrarr as $getvalues) {
-        $pos = strpos($getvalues,"=");
-		//echo $pos;
-        if ($getvalues!=''&&$pos>0) {
+    $getstr = substr(urldecode($_SERVER['REQUEST_URI']), 
+strlen(urldecode($_SERVER['REDIRECT_URL'])));
+	 while (substr($getstr,0,1)=='/' || substr($getstr,0,1)=='?') $getstr = 
+		 substr($getstr,1);
+	$getstrarr = explode("&",$getstr);
+	foreach ($getstrarr as $getvalues) if ($getvalues!='') {
+		  $pos = strpos($getvalues,"=");
+	if ($pos>0) {
             $getarry[urldecode(substr($getvalues,0,$pos))] = urldecode(substr($getvalues,$pos+1));
         } else $getarry[urldecode($getvalues)] = true;
     }
