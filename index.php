@@ -22,32 +22,31 @@ include 'vendor/autoload.php';
 include 'conststr.php';
 include 'functions.php';
 include 'herokuapi.php';
-//error_log( json_encode($_SERVER, JSON_PRETTY_PRINT) );
+//echo '<pre>' . json_encode($_SERVER, JSON_PRETTY_PRINT) . '</pre>';
 if ($_SERVER['USER']!='qcloud') {
     if ($_SERVER['Onedrive_ver']=='') $_SERVER['Onedrive_ver'] = 'MS';
     $event['headers'] = [
         'cookie' => $_COOKIE,
         'host' => $_SERVER['HTTP_HOST'],
-        'x-requested-with' => '',
+        'x-requested-with' => $_SERVER['HTTP_X_REQUESTED_WITH'],
     ];
-    if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) $event['headers']['x-requested-with'] = $_SERVER['HTTP_X_REQUESTED_WITH'];
-    if (!isset($_SERVER['REDIRECT_URL'])) $_SERVER['REDIRECT_URL'] = 'index.php';
-    $_SERVER['REDIRECT_URL']=spurlencode($_SERVER['REDIRECT_URL'], '/');
     if ($_SERVER['REDIRECT_URL']=='') $_SERVER['REDIRECT_URL']='/';
+    else $_SERVER['REDIRECT_URL']=spurlencode($_SERVER['REDIRECT_URL'], '/');
     $event['path'] = $_SERVER['REDIRECT_URL'];
-    $getstr = substr(urldecode($_SERVER['REQUEST_URI']), strlen(urldecode($_SERVER['REDIRECT_URL'])));
-    while (substr($getstr,0,1)=='/' || substr($getstr,0,1)=='?') $getstr = substr($getstr,1);
-    $getstrarr = explode("&",$getstr);
-    foreach ($getstrarr as $getvalues) if ($getvalues!='') {
-        $pos = strpos($getvalues,"=");
-		//echo $pos;
-        if ($pos>0) {
+    $getstr = substr($_SERVER['REQUEST_URI'], strlen($_SERVER['REDIRECT_URL']));
+    while (substr($getstr,0,1)=='/' ||substr($getstr,0,1)=='?') $getstr = substr($getstr,1);
+    $getstr = substr(urldecode($_SERVER['REQUEST_URI']), 
+strlen(urldecode($_SERVER['REDIRECT_URL'])));
+	 while (substr($getstr,0,1)=='/' || substr($getstr,0,1)=='?') $getstr = 
+		 substr($getstr,1);
+	$getstrarr = explode("&",$getstr);
+	foreach ($getstrarr as $getvalues) if ($getvalues!='') {
+		  $pos = strpos($getvalues,"=");
+	if ($pos>0) {
             $getarry[urldecode(substr($getvalues,0,$pos))] = urldecode(substr($getvalues,$pos+1));
         } else $getarry[urldecode($getvalues)] = true;
     }
-    if (isset($getarry)) {
-        $event['queryString'] = $getarry;
-    } else $event['queryString'] = '';
+    $event['queryString'] = $getarry;
     $event['requestContext']['sourceIp'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
     $context['function_name'] = getenv('function_name');
 	if ($context['function_name']=='') {
