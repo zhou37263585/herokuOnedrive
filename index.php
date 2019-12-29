@@ -1748,10 +1748,10 @@ textarea{
 									<input type="text" readonly value='<?php echo $constStr['Folder'][$constStr['language']]; ?>'>
 								</li>
 							</ul>
-							<div class="form-group" style="padding-top: 5%;" id="create_text_div">
+							<div class="form-group" style="padding-top: 5%;" >
 								<input class="form-field basic-style" id="create_input" name="create_name" type="text" placeholder="<?php echo $constStr['Name'][$constStr['language']]; ?>" style="border-radius: 6px;"/>
 							</div>
-							<div class="form-group" style="padding-top: 5%;">
+							<div class="form-group" style="padding-top: 5%;" id="create_text_div">
 								<textarea class="form-field basic-style" id="create_text" name="create_text" rows="3" placeholder="<?php echo $constStr['Content'][$constStr['language']]; ?>" style="white-space: pre-wrap;"></textarea>
 							</div>
 						</div>	
