@@ -1744,7 +1744,7 @@ textarea{
 									<input type="text" readonly value='<?php echo $constStr['File'][$constStr['language']]; ?>'>
 								</li>
 								<li>
-									<input type="radio" id="create_type_folder" name="create_type" value="folder" onclick="document.getElementById('create_text_div').style.display='none';document.getElementById('create_disLogBody').style.height='130px';">
+									<input type="radio" id="create_type_folder" name="create_type" value="folder" onclick="document.getElementById('create_text_div').style.display='none';document.getElementById('create_disLogBody').style.height='140px';">
 									<input type="text" readonly value='<?php echo $constStr['Folder'][$constStr['language']]; ?>'>
 								</li>
 							</ul>
