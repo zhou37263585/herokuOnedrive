@@ -1281,7 +1281,7 @@ textarea{
 }
     </style>
 </head>
-<body>
+<body style="display:none">
 <div class="header">
 <select class="cs-select cs-skin-elastic" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
 			<option value="" disabled selected>Select a Country</option>
@@ -1435,7 +1435,7 @@ textarea{
                     $filenum = $_POST['filenum'];
                     if (!$filenum and $files['folder']['page']) $filenum = ($files['folder']['page']-1)*200;
                     $readme = false; ?>
-                <table class="list-table" id="list-table" style="display:none">
+                <table class="list-table" id="list-table">
                     <tr id="tr0">
                         <th class="file" onclick="sortby('a');"><?php echo $constStr['File'][$constStr['language']]; ?>&nbsp;&nbsp;&nbsp;<button onclick="showthumbnails(this);"><?php echo $constStr['ShowThumbnails'][$constStr['language']]; ?></button></th>
                         <th class="updated_at" width="25%" onclick="sortby('time');"><?php echo $constStr['EditTime'][$constStr['language']]; ?></th>
@@ -2446,7 +2446,6 @@ function binupfile(file,url,tdnum){
 	<!-- 按窗口宽度加载窗口位置 end -->
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
-<script>document.body.hidden = 'hidden';</script>
 <script type="text/javascript">
 // 粒子特效 start
 // 忽略异常
