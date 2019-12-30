@@ -1435,7 +1435,7 @@ textarea{
                     $filenum = $_POST['filenum'];
                     if (!$filenum and $files['folder']['page']) $filenum = ($files['folder']['page']-1)*200;
                     $readme = false; ?>
-                <table class="list-table" id="list-table">
+                <table class="list-table" id="list-table" style="display:none">
                     <tr id="tr0">
                         <th class="file" onclick="sortby('a');"><?php echo $constStr['File'][$constStr['language']]; ?>&nbsp;&nbsp;&nbsp;<button onclick="showthumbnails(this);"><?php echo $constStr['ShowThumbnails'][$constStr['language']]; ?></button></th>
                         <th class="updated_at" width="25%" onclick="sortby('time');"><?php echo $constStr['EditTime'][$constStr['language']]; ?></th>
