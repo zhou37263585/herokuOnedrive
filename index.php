@@ -1065,7 +1065,7 @@ function render_list($path, $files)
 /* 语言切换css end */
 /* 管理ul css end */
 .operate_ico_encrypt{
-	background: url("data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABOElEQVQ4T9XSsU3DQBQG4P/ZICEqOwgKqoB8RShAIAZwJmAABgA7hIYBEAPQEBLDAAzABMkACAQFKc6CVBQgbFcICeyHTiiRndiRJSpc+v77fOf/Ef74UNF+05O7xNhR60y4Dh1xlZfNBRba/gETtwAeAJoiqsTUfG9Y5+PIBLB8eTP/mRh9AGeBY52qDRXPPwJwOKdFtZe97Y80MgEYntzUGLcJfa9ETm2gwobXr2o885wQtiJH3E0HWtLWdHQDV2TwSkdyEqMeNUWvEKhcyLXkC0sKUOF0cPhOm8VrsC8eh2ujryy2fSsmlmVa1ZnEW8PyVXYEGAVHHwfHr1IKMDuyq6DQFfV/CqT/Q+EVzM7TOiG+ZyDTc87o2gx9I3RXHzIt/I6sPGaGPa1KIvQCR5xMzEGZ/vMyPxiKoRFP/h7NAAAAAElFTkSuQmCC");
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg t='1577700494187' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='6956' width='200' height='200'%3E%3Cpath d='M298.666667 426.666667V298.666667a213.333333 213.333333 0 1 1 426.666666 0v128h42.666667a85.333333 85.333333 0 0 1 85.333333 85.333333v341.333333a85.333333 85.333333 0 0 1-85.333333 85.333334H256a85.333333 85.333333 0 0 1-85.333333-85.333334v-341.333333a85.333333 85.333333 0 0 1 85.333333-85.333333h42.666667z m-42.666667 85.333333v341.333333h512v-341.333333H256z m128-85.333333h256V298.666667a128 128 0 0 0-256 0v128z m213.333333 170.666666h85.333334v170.666667h-85.333334v-170.666667z' fill='%231296db' p-id='6957'%3E%3C/path%3E%3C/svg%3E");
 	font-size:0;
     width:0px;
     height:0px;
@@ -1073,7 +1073,7 @@ function render_list($path, $files)
     border-style:none;
 }
 .operate_ico_rename{
-	background: url("data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA1ElEQVQ4T2NkIBMITL1lwMDEKMAI0y847dYkRgbGXLzmMTI0vMtUbQSpQTFAYPJtByZmhqx3WaphhBwkNO12KAMDw6p3Wapgy8GE0PTb9SAaZjouQ2CaGRgYwt5lqa4myQBsmok2AF0zyMUw1xL0Ajabhabd/k9UGOByNlEG4NIMDnRCLoBG637k0EaOGaIMAGn4kKt6AFuUEjSAiMREXCDiSVCoBkD8/D/yXZZaOiHboeGz9F2WqjQ8IUFC9tZMBgbGNEIGQOT/z4JZBs+NxGnEVAUAnb6OlYdp+d4AAAAASUVORK5CYII=");
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg t='1577700464397' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='6184' width='200' height='200'%3E%3Cpath d='M849.9 132.5L375.1 607.3c-12.5 12.5-12.5 32.9 0.1 45.4 12.5 12.5 32.9 12.5 45.4 0l474.7-474.8c12.5-12.5 12.5-32.9 0-45.4s-32.9-12.5-45.4 0z' fill='%231296db' p-id='6185'%3E%3C/path%3E%3Cpath d='M932.8 62.8a32.2 32.1 0 1 0 64.4 0 32.2 32.1 0 1 0-64.4 0Z' fill='%231296db' p-id='6186'%3E%3C/path%3E%3Cpath d='M866.9 352c-17.8 0-32.2 14.4-32.2 32.1v0.1h-0.3v446.4c0 35.2-28.8 64-64 64H223.2c-35.2 0-64-28.8-64-64V192c0-35.2 28.8-64 64-64h482.4c17.6-0.3 31.7-14.5 31.7-32.1 0-17.7-14.4-32.1-32.2-32.1-0.8 0-1.6 0-2.4 0.1H227c-70.4 0-128 57.6-128 128v639.7c0 70.4 57.6 128 128 128h574c70.4 0 98-57.6 98-128V386.5c0.1-0.8 0.1-1.6 0.1-2.4 0-17.7-14.4-32.1-32.2-32.1z' fill='%231296db' p-id='6187'%3E%3C/path%3E%3C/svg%3E");
 	font-size:0;
     width:0px;
     height:0px;
@@ -1081,7 +1081,7 @@ function render_list($path, $files)
     border-style:none;
 }
 .operate_ico_move{
-	background: url("data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABR0lEQVQ4T51Tu07DMBQ912VgbMvKBp6Y+AM+gsDIwNK6YuALWiZ2orioEhIraQcmpDLBxBcweURs1PQH7KAbklKVJA1kiRSfe3zPI4SKpxWaEW3g3XblRRmMyg7a2gQA+gBZiOTKduSkCFtI0AzNgWhA8UAixC05f+I9hvMz+bRKUroBA9vaxEzw2dl5+LMEHtjSRgP0OFO792sJeO3VFZnAAXdzJZ+XCZaxqYTMsMAqeVSVSn7G0iAQs7HUiswIBJk4/ETVQPLr1qHZJ49tImymRAnOITClZmgGQuAUhBf+TsAHv2dKpiksbo1MH4Q9EF4zgsA7TL4lXJtDOAS2J49rSwDGVsnxIsYiE1mrB6K1Jla0MfYOuqhA+czaIv2LIK8yG+oc4rTWhBvbldPaVeZuEHDpgTcCNBtW+2fKgVnEsD05KPPpC8/xjRKfuGcxAAAAAElFTkSuQmCC");
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg t='1577700398415' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='5743' width='200' height='200'%3E%3Cpath d='M886.4 489.6l-128-128c-12.8-12.8-32-12.8-44.8 0s-12.8 32 0 44.8l73.6 73.6H544V236.8l73.6 73.6c6.4 6.4 12.8 9.6 22.4 9.6s16-3.2 22.4-9.6c12.8-12.8 12.8-32 0-44.8l-128-128c-12.8-12.8-32-12.8-44.8 0l-128 128c-12.8 12.8-12.8 32 0 44.8s32 12.8 44.8 0L480 236.8V480H236.8l73.6-73.6c12.8-12.8 12.8-32 0-44.8s-32-12.8-44.8 0l-128 128c-3.2 3.2-6.4 6.4-6.4 9.6-3.2 6.4-3.2 16 0 25.6 3.2 3.2 3.2 6.4 6.4 9.6l128 128c6.4 6.4 12.8 9.6 22.4 9.6s16-3.2 22.4-9.6c12.8-12.8 12.8-32 0-44.8L236.8 544H480v243.2l-73.6-73.6c-12.8-12.8-32-12.8-44.8 0s-12.8 32 0 44.8l128 128c3.2 3.2 6.4 6.4 9.6 6.4 3.2 3.2 9.6 3.2 12.8 3.2 3.2 0 9.6 0 12.8-3.2 3.2-3.2 6.4-3.2 9.6-6.4l128-128c12.8-12.8 12.8-32 0-44.8s-32-12.8-44.8 0L544 787.2V544h243.2l-73.6 73.6c-12.8 12.8-12.8 32 0 44.8 6.4 6.4 16 9.6 22.4 9.6s16-3.2 22.4-9.6l128-128c12.8-12.8 12.8-32 0-44.8z' p-id='5744' fill='%231296db'%3E%3C/path%3E%3C/svg%3E");
 	font-size:0;
     width:0px;
     height:0px;
@@ -1089,14 +1089,13 @@ function render_list($path, $files)
     border-style:none;
 }
 .operate_ico_delete{
-	background: url("data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVQ4T9WTPQ6CMBzFH+gBtI4uxthBPYRwCNkdaeIRjHoDp+LmziVk8wTGmDo4OJrqBbCmA6YgGIhxsFM/Xn/9f7xa+HJYefebXGwtwDHPFBDdGHWz+jcACcRcKTgqxtIU23WM9Fr6NLVfCMi+psG5ALIWAzwQAhhWLMceNrxUBIQL9Yjh3qc0KoJpjWT0de93AMJFKBn1dCR6bqM2u7LusXQEptBM7Z8AwWkj/d4kqYFRj3JdaASHzt3vn7Pt/FiDFhdRHGNR5APCxRjASjLaTsBpH2i7KmhRvisVLrCwS9LRkNzfWMXST94qvsAPzf8GAAAAAElFTkSuQmCC");
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg t='1577700358294' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='4988' width='200' height='200'%3E%3Cpath d='M677.647059 256l0-90.352941c0-37.436235-23.461647-60.235294-61.771294-60.235294L408.094118 105.411765c-38.249412 0-61.741176 22.799059-61.741176 60.235294l0 90.352941-180.705882 0 0 60.235294 60.235294 0 0 512c0 54.272 33.972706 90.352941 90.352941 90.352941l391.529412 0c55.085176 0 90.352941-33.490824 90.352941-90.352941l0-512 60.235294 0 0-60.235294L677.647059 256zM406.588235 165.647059l210.823529 0-1.264941 90.352941L406.588235 256 406.588235 165.647059zM737.882353 858.352941l-451.764706 0 0-542.117647 451.764706 0L737.882353 858.352941zM466.823529 376.470588l-58.729412 0-1.505882 391.529412 60.235294 0L466.823529 376.470588zM617.411765 376.470588l-60.235294 0 0 391.529412 60.235294 0L617.411765 376.470588z' p-id='4989' fill='%231296db'%3E%3C/path%3E%3C/svg%3E");
 	font-size:0;
     width:0px;
     height:0px;
     padding:8px 8px 8px 8px; 
     border-style:none;
 }
-
 /* 移动select Css */
 .move_div_select{
     border: 1px solid #CDD9ED;
@@ -1111,7 +1110,6 @@ function render_list($path, $files)
     top: 50%; 
     transform: translateY(-50%);
 }
-
 /* 单选多选开关 Css */
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
   input[type='checkbox'],
@@ -1189,7 +1187,6 @@ function render_list($path, $files)
   input[type='radio']:not(.switch):checked:after {
     opacity: 1;
   }
-
   input[type='checkbox']:not(.switch) {
     border-radius: 6px;
   }
@@ -1228,7 +1225,6 @@ function render_list($path, $files)
   input[type='checkbox'].switch:disabled:not(:checked):after {
     opacity: .6;
   }
-
   input[type='radio'] {
     border-radius: 50%;
   }
@@ -1247,7 +1243,6 @@ function render_list($path, $files)
             transform: scale(0.5);
   }
 }
-
 /* 单选 Css */
 .radio_ul {
 	list-style: none;
@@ -1277,7 +1272,6 @@ function render_list($path, $files)
   outline: none;
   width: 50px;
 }
-
 textarea{
 	outline:none;
 	resize:none;
@@ -2457,7 +2451,6 @@ function binupfile(file,url,tdnum){
 // 粒子特效 start
 // 忽略异常
 const IGNORE_EXCEPTION = (funs) => funs.forEach(fun => { try { fun(); } catch (error) { } });
-
 // 资源加载后回调
 const LOADED = (element, callback) => {
     let loaded = false;
@@ -2471,10 +2464,8 @@ const LOADED = (element, callback) => {
         }
     }
 };
-
 // 字符串模板
 const HEREDOC = (fn) => fn.toString().split('\n').slice(1, -1).join('\n') + '\n';
-
 // 自定义字体
 const FONT_PINGYONG = HEREDOC(() => {/*
     <style type="text/css">
@@ -2487,7 +2478,6 @@ const FONT_PINGYONG = HEREDOC(() => {/*
         }
     </style>
  */});
-
 // 雨伞背景
 const ADD_UMBRELLA_BACKGROUND = (callback) => {
     const SCRIPT = document.createElement('script');
@@ -2498,7 +2488,6 @@ const ADD_UMBRELLA_BACKGROUND = (callback) => {
     LOADED(SCRIPT, callback);
     document.body.appendChild(SCRIPT);
 };
-
 const ADD_IMGAGE_BACKGROUND = () => {
     const IMAGE = 'url(https://img12.360buyimg.com/img/jfs/t1/56992/25/15607/359235/5dc93624E8223dc25/41cac0ada12d3ad9.jpg)'
     const DIV = document.createElement('div');
@@ -2519,7 +2508,6 @@ const ADD_IMGAGE_BACKGROUND = () => {
     DIV.style.opacity = '0.2';
     document.body.appendChild(DIV);
 };
-
 // 移除 README.md
 const REMOVE_README = () => {
     const TBODY = document.querySelector('#list-table').querySelector('tbody');
@@ -2534,7 +2522,6 @@ const REMOVE_README = () => {
     });
     readme ? TBODY.removeChild(readme) : null;
 };
-
 // 时间和 IP 居中显示，时间走动
 const ADD_TIME_AND_IP = () => {
     // 居中并显示
@@ -2545,11 +2532,9 @@ const ADD_TIME_AND_IP = () => {
     FONT.removeAttribute('color');
     CENTER.appendChild(FONT);
     document.body.insertBefore(CENTER, document.body.querySelector('#mask'));
-
    const ELEMENT = document.querySelector('#date');
     setInterval(() => {
         const ADDZERO = num => num < 10 ? '0' + num : num; 
-
         const DATE = new Date();
         const YEAR = DATE.getFullYear();
         const MONTH = DATE.getMonth() + 1;
@@ -2571,14 +2556,12 @@ const ADD_TIME_AND_IP = () => {
             + ' IP: ' + IP;
     }, 1000);
 };
-
 // 其他 UI
 const CHANGE_OHTER_UI = () => {
     // 标题
     document.head.innerHTML += FONT_PINGYONG
     const TITLE = document.body.querySelector('.title');
     TITLE.style.fontFamily = 'PinyonScript';
-
     // BODY
     document.body.style = '';
     document.body.zIndex = '99';
@@ -2601,7 +2584,6 @@ const CHANGE_OHTER_UI = () => {
     // 文件路径行距
     const THEADER = document.body.querySelector('.list-header-container .table-header');
     THEADER.style.lineHeight = '1.3em';
-
     // 移动端隐藏修改时间
     if (screen.width < 800) {
         const LTUPDATEATs = document.body.querySelectorAll('.list-table .updated_at');
@@ -2616,7 +2598,6 @@ const CHANGE_OHTER_UI = () => {
         BUTTON.style.borderRadius = '2em';
         BUTTON.style.background = 'white';
     });
-
     const FILE_BUTTONs = document.body.querySelectorAll('input[type="button" i]');
     FILE_BUTTONs.forEach(FBUTTON => {
         FBUTTON.style.border = '1px #00000066 solid';
@@ -2625,7 +2606,6 @@ const CHANGE_OHTER_UI = () => {
         FBUTTON.style.minWidth = '5em';
         FBUTTON.style.height = '1.9em';
     });
-
     // URL
     const URL = document.body.querySelector('#url');
     if (URL) {
@@ -2636,7 +2616,6 @@ const CHANGE_OHTER_UI = () => {
         URL.style.borderRadius = '2em';
     }
 };
-
 // 主函数
 const MAIN_HANDLER = () => {
     IGNORE_EXCEPTION([
@@ -2648,12 +2627,9 @@ const MAIN_HANDLER = () => {
     ]);
     document.body.removeAttribute('hidden');
 };
-
 // 文档加载完毕执行主函数
 document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
-
 // 粒子特效 end	
-
 	<!-- select Css start-->
 		function classReg( className ) {
 		  return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
