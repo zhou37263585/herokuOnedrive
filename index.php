@@ -1281,7 +1281,7 @@ textarea{
 }
     </style>
 </head>
-<body style="display:none">
+<body>
 <div class="header">
 <select class="cs-select cs-skin-elastic" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
 			<option value="" disabled selected>Select a Country</option>
@@ -2438,14 +2438,10 @@ function binupfile(file,url,tdnum){
 		document.getElementById(id).style.display="block";
 	}
 	<!-- 弹出层打开、关闭 end -->
-	<!-- 按窗口宽度加载窗口位置 start -->
-	var x = document.getElementsByClassName("disLogBody");
-	for (var i = 0; i < x.length; i++) {
-		x[i].style.marginTop = document.body.clientHeight/4 + "px";
-	}
-	<!-- 按窗口宽度加载窗口位置 end -->
+
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
+<script>document.body.hidden = 'hidden';</script>
 <script type="text/javascript">
 // 粒子特效 start
 // 忽略异常
@@ -2895,6 +2891,13 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 		} );
 	})();
 	<!-- select Css end-->
+	
+	<!-- 按窗口宽度加载窗口位置 start -->
+	var x = document.getElementsByClassName("disLogBody");
+	for (var i = 0; i < x.length; i++) {
+		x[i].style.marginTop = document.body.clientHeight/4 + "px";
+	}
+	<!-- 按窗口宽度加载窗口位置 end -->
 	
 </script>
 </html>
