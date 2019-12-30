@@ -851,7 +851,7 @@ function render_list($path, $files)
 }
 .form-group > span:not(:first-child):not(:last-child),
 .form-group .form-field:not(:first-child):not(:last-child) {
-  border-radius: 6px;
+  border-radius: 0;
 }
 .form-group > span:first-child,
 .form-group .form-field:first-child {
@@ -1281,7 +1281,8 @@ textarea{
 }
     </style>
 </head>
-<body style="display: none;">
+<body>
+<div id="body" style="display: none;height: 100%;width: 100%;">
 <div class="header">
 <select class="cs-select cs-skin-elastic" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
 			<option value="" disabled selected>Select a Country</option>
@@ -1777,6 +1778,7 @@ textarea{
 <?php   }
     } ?>
     <font color="#f7f7f9"><?php echo date("Y-m-d H:i:s")." ".$constStr['Week'][date("w")][$constStr['language']]." ".$_SERVER['REMOTE_ADDR'];?></font>
+</div>
 </body>
 <link rel="stylesheet" href="//unpkg.zhimg.com/github-markdown-css@3.0.1/github-markdown.css">
 <script type="text/javascript" src="//unpkg.zhimg.com/marked@0.6.2/marked.min.js"></script>
@@ -2619,7 +2621,7 @@ const MAIN_HANDLER = () => {
         REMOVE_README,
         ADD_TIME_AND_IP
     ]);
-    document.body.removeAttribute('hidden');
+    document.getElementById('body').removeAttribute('hidden');
 };
 // 文档加载完毕执行主函数
 document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
