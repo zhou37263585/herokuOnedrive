@@ -2754,17 +2754,7 @@ const CHANGE_OHTER_UI = () => {
         URL.style.borderRadius = '2em';
     }
 };
-// 主函数
-const MAIN_HANDLER = () => {
-    IGNORE_EXCEPTION([
-        ADD_IMGAGE_BACKGROUND,
-        ADD_UMBRELLA_BACKGROUND,
-        CHANGE_OHTER_UI,
-        REMOVE_README,
-        ADD_TIME_AND_IP
-    ]);
-    document.body.removeAttribute('hidden');
-};
+
 // 文档加载完毕执行主函数
 document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 // 粒子特效 end	
@@ -3034,9 +3024,19 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 		} );
 	})();
 	<!-- select Css end-->
-	
+	// 主函数
+	const MAIN_HANDLER = () => {
+		IGNORE_EXCEPTION([
+			ADD_UMBRELLA_BACKGROUND,
+			CHANGE_OHTER_UI,
+			REMOVE_README,
+			ADD_TIME_AND_IP,
+			ADD_IMGAGE_BACKGROUND
+		]);
+	};
 	window.onload = function(){
 		document.getElementById('loading').style.display = "none";
+		document.body.removeAttribute('hidden');
 	}
 </script>
 </html>
