@@ -1282,7 +1282,6 @@ textarea{
     </style>
 </head>
 <body>
-<div id="body" style="display: none;height: 100%;width: 100%;">
 <div class="header">
 <select class="cs-select cs-skin-elastic" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
 			<option value="" disabled selected>Select a Country</option>
@@ -1778,7 +1777,6 @@ textarea{
 <?php   }
     } ?>
     <font color="#f7f7f9"><?php echo date("Y-m-d H:i:s")." ".$constStr['Week'][date("w")][$constStr['language']]." ".$_SERVER['REMOTE_ADDR'];?></font>
-</div>
 </body>
 <link rel="stylesheet" href="//unpkg.zhimg.com/github-markdown-css@3.0.1/github-markdown.css">
 <script type="text/javascript" src="//unpkg.zhimg.com/marked@0.6.2/marked.min.js"></script>
@@ -2440,16 +2438,16 @@ function binupfile(file,url,tdnum){
 		document.getElementById(id).style.display="block";
 	}
 	<!-- 弹出层打开、关闭 end -->
-	
+	<!-- 按窗口宽度加载窗口位置 start -->
+	var x = document.getElementsByClassName("disLogBody");
+	for (var i = 0; i < x.length; i++) {
+		x[i].style.marginTop = document.body.clientHeight/4 + "px";
+	}
+	<!-- 按窗口宽度加载窗口位置 end -->
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
+<script>document.body.hidden = 'hidden';</script>
 <script type="text/javascript">
-<!-- 按窗口宽度加载窗口位置 start -->
-var x = document.getElementsByClassName("disLogBody");
-for (var i = 0; i < x.length; i++) {
-	x[i].style.marginTop = document.body.clientHeight/4 + "px";
-}
-<!-- 按窗口宽度加载窗口位置 end -->
 // 粒子特效 start
 // 忽略异常
 const IGNORE_EXCEPTION = (funs) => funs.forEach(fun => { try { fun(); } catch (error) { } });
@@ -2628,7 +2626,6 @@ const MAIN_HANDLER = () => {
         ADD_TIME_AND_IP
     ]);
     document.body.removeAttribute('hidden');
-	document.getElementById('body').style.display = "";
 };
 // 文档加载完毕执行主函数
 document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
@@ -2899,8 +2896,6 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 		} );
 	})();
 	<!-- select Css end-->
-	
-
 	
 </script>
 </html>
