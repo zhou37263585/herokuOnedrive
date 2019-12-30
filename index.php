@@ -2438,7 +2438,12 @@ function binupfile(file,url,tdnum){
 		document.getElementById(id).style.display="block";
 	}
 	<!-- 弹出层打开、关闭 end -->
-
+	<!-- 按窗口宽度加载窗口位置 start -->
+	var x = document.getElementsByClassName("disLogBody");
+	for (var i = 0; i < x.length; i++) {
+		x[i].style.marginTop = document.body.clientHeight/4 + "px";
+	}
+	<!-- 按窗口宽度加载窗口位置 end -->
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
 <script>document.body.hidden = 'hidden';</script>
@@ -2891,13 +2896,6 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 		} );
 	})();
 	<!-- select Css end-->
-	
-	<!-- 按窗口宽度加载窗口位置 start -->
-	var x = document.getElementsByClassName("disLogBody");
-	for (var i = 0; i < x.length; i++) {
-		x[i].style.marginTop = document.body.clientHeight/4 + "px";
-	}
-	<!-- 按窗口宽度加载窗口位置 end -->
 	
 </script>
 </html>
