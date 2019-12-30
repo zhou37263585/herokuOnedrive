@@ -851,7 +851,7 @@ function render_list($path, $files)
 }
 .form-group > span:not(:first-child):not(:last-child),
 .form-group .form-field:not(:first-child):not(:last-child) {
-  border-radius: 0;
+  border-radius: 6px;
 }
 .form-group > span:first-child,
 .form-group .form-field:first-child {
