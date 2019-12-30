@@ -2584,7 +2584,6 @@ function binupfile(file,url,tdnum){
 	<!-- 按窗口宽度加载窗口位置 end -->
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
-<script>document.body.hidden = 'hidden';</script>
 <script type="text/javascript">
 // 粒子特效 start
 // 忽略异常
@@ -2763,7 +2762,6 @@ const MAIN_HANDLER = () => {
         REMOVE_README,
         ADD_TIME_AND_IP
     ]);
-    
 };
 // 文档加载完毕执行主函数
 document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
@@ -3037,7 +3035,6 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 	
 	window.onload = function(){
 		document.getElementById('loading').style.display = "none";
-		document.body.removeAttribute('hidden');
 	}
 </script>
 </html>
