@@ -2621,7 +2621,8 @@ const MAIN_HANDLER = () => {
         REMOVE_README,
         ADD_TIME_AND_IP
     ]);
-    document.getElementById('body').removeAttribute('hidden');
+    document.body.removeAttribute('hidden');
+	document.getElementById('body').style.display = "";
 };
 // 文档加载完毕执行主函数
 document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
