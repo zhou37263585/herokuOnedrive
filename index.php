@@ -2624,7 +2624,8 @@ const MAIN_HANDLER = () => {
 	var x = document.getElementsByClassName("disLogBody");
 	for (var i = 0; i < x.length; i++) {
 		x[i].style.marginTop = document.body.clientHeight/4 + "px";
-		console.log(x[i].style.marginTop)
+		console.log(x[i].style.marginTop +"aaaaa")
+		console.log(document.body.clientHeight)
 	}
 	
 	<!-- 按窗口宽度加载窗口位置 end -->
