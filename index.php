@@ -2438,12 +2438,7 @@ function binupfile(file,url,tdnum){
 		document.getElementById(id).style.display="block";
 	}
 	<!-- 弹出层打开、关闭 end -->
-	<!-- 按窗口宽度加载窗口位置 start -->
-	var x = document.getElementsByClassName("disLogBody");
-	for (var i = 0; i < x.length; i++) {
-		x[i].style.marginTop = document.body.clientHeight/4 + "px";
-	}
-	<!-- 按窗口宽度加载窗口位置 end -->
+
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
 <script type="text/javascript">
@@ -2625,6 +2620,14 @@ const MAIN_HANDLER = () => {
         ADD_TIME_AND_IP
     ]);
     document.body.removeAttribute('hidden');
+	<!-- 按窗口宽度加载窗口位置 start -->
+	var x = document.getElementsByClassName("disLogBody");
+	for (var i = 0; i < x.length; i++) {
+		x[i].style.marginTop = document.body.clientHeight/4 + "px";
+		console.log(x[i].style.marginTop)
+	}
+	
+	<!-- 按窗口宽度加载窗口位置 end -->
 };
 // 文档加载完毕执行主函数
 document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
