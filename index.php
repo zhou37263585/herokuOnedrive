@@ -776,7 +776,7 @@ function render_list($path, $files)
 .disLogBody{
 	background: white;
 	width: 250px;
-	height: 150px;
+	height: 120px;
 	margin: auto;
 	border-radius: 5px;
 	position:relative;
@@ -849,22 +849,15 @@ function render_list($path, $files)
   white-space: nowrap;
   display: block;
 }
-.form-group > span:not(:first-child):not(:last-child),
-.form-group .form-field:not(:first-child):not(:last-child) {
-  border-radius: 0;
-}
-.form-group > span:first-child,
-.form-group .form-field:first-child {
+
+.form-group .form-field-first {
   border-radius: 6px 0 0 6px;
 }
-.form-group > span:last-child,
-.form-group .form-field:last-child {
+
+.form-group .form-field-last {
   border-radius: 0 6px 6px 0;
 }
-.form-group > span:not(:first-child),
-.form-group .form-field:not(:first-child) {
-  margin-left: -1px;
-}
+
 .form-group .form-field {
   position: relative;
   flex: 1 1 auto;
@@ -1281,7 +1274,7 @@ textarea{
 }
     </style>
 </head>
-<body style="display: none;">
+<body>
 <div class="header">
 <select class="cs-select cs-skin-elastic" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
 			<option value="" disabled selected>Select a Country</option>
@@ -1639,15 +1632,15 @@ textarea{
     if ($_SERVER['admin']) {
         if (!$_GET['preview']) { ?>
 		<div id="rename_div" class="disLogBg" style="display:none">
-			<div class="disLogBody" style="height: 120px;">
+			<div class="disLogBody" >
 				<img class="disLog_btn_close" onclick="closeDisLog(this)" alt="">
 				<div class="titleText" id="rename_label"></div>
 				<form id="rename_form" onsubmit="return submit_operate('rename');">
 					<input id="rename_sid" name="rename_sid" type="hidden" value="">
 					<input id="rename_hidden" name="rename_oldname" type="hidden" value="">
 					<div class="form-group" style="padding-top: 5%;">
-						<input class="form-field basic-style" id="rename_input" name="rename_newname" type="text" placeholder="<?php echo $constStr['Input'][$constStr['language']]; ?>" />
-						<span class="basic-style" onclick="document.getElementById('rename_operate_action').click();"><?php echo $constStr['Rename'][$constStr['language']]; ?></span>
+						<input class="form-field form-field-first basic-style" id="rename_input" name="rename_newname" type="text" placeholder="<?php echo $constStr['Input'][$constStr['language']]; ?>" />
+						<span class="form-field-last basic-style" onclick="document.getElementById('rename_operate_action').click();"><?php echo $constStr['Rename'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="rename_operate_action" value="<?php echo $constStr['Rename'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				</form>
@@ -1661,7 +1654,7 @@ textarea{
 						 <span id="delete_label"></span><?php echo $constStr['Delete'][$constStr['language']]; ?>?
 					</div>
 					<div class="contentTest">
-						（删除后不可恢复）
+						<?php echo $constStr['DeleteMsg'][$constStr['language']]; ?>
 					</div>
 					<input id="delete_sid" name="delete_sid" type="hidden" value="">
 					<input id="delete_hidden" name="delete_name" type="hidden" value="">
@@ -1669,13 +1662,13 @@ textarea{
 				<form id="delete_form" onsubmit="return submit_operate('delete');">
 					<div class="disLog_btn_submit" tabindex="1" id="delete_input" onclick="document.getElementById('delete_operate_action').click();" ><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
 					<input name="operate_action" type="submit" id="delete_operate_action" value="<?php echo $constStr['Submit'][$constStr['language']]; ?>" style="display:none">
-					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)">取消</div>
+					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)"><?php echo $constStr['Cancel'][$constStr['language']]; ?></div>
 				</form>
 			</div>
 		</div>
 
 		<div id="encrypt_div" class="disLogBg" style="display:none">
-			<div class="disLogBody" style="height:132px;">
+			<div class="disLogBody">
 				<img class="disLog_btn_close" onclick="closeDisLog(this)" alt="">
 				<div class="titleText" id="encrypt_label"></div>
 				<form id="encrypt_form" onsubmit="return submit_operate('encrypt');">
@@ -1684,12 +1677,12 @@ textarea{
 					<?php echo $constStr['SetpassfileBfEncrypt'][$constStr['language']]; ?>
 				</div>
 				<div class="form-group" style="padding-top: 8%;">
-					<div class="disLog_btn_cancel" style="margin-left:50%;" id="encrypt_input" tabindex="0" onclick="closeDisLog(this)">取消</div>
+					<div class="disLog_btn_cancel" style="margin-left:50%;" id="encrypt_input" tabindex="0" onclick="closeDisLog(this)"><?php echo $constStr['Cancel'][$constStr['language']]; ?></div>
 				</div>
 				<?php } else {?>
 					<div class="form-group" style="padding-top: 5%;">
-						<input class="form-field basic-style" id="encrypt_input" name="encrypt_newpass" type="text" placeholder="<?php echo $constStr['InputPasswordUWant'][$constStr['language']]; ?>" />
-						<span class="basic-style" onclick="document.getElementById('encrypt_operate_action').click();"><?php echo $constStr['encrypt'][$constStr['language']]; ?></span>
+						<input class="form-field form-field-first basic-style" id="encrypt_input" name="encrypt_newpass" type="text" placeholder="<?php echo $constStr['InputPasswordUWant'][$constStr['language']]; ?>" />
+						<span class="form-field-last basic-style" onclick="document.getElementById('encrypt_operate_action').click();"><?php echo $constStr['encrypt'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="encrypt_operate_action" value="<?php echo $constStr['encrypt'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				<?php } ?>
@@ -1700,7 +1693,7 @@ textarea{
 		</div>
 		
 		<div id="move_div" class="disLogBg" style="display:none">
-			<div class="disLogBody" style="height: 120px;">
+			<div class="disLogBody">
 				<img class="disLog_btn_close" onclick="closeDisLog(this)" alt="">
 				<div class="titleText" id="move_label"></div>
 				<form id="move_form" onsubmit="return submit_operate('move');">
@@ -1717,7 +1710,7 @@ textarea{
 						<?php       }
 								} ?>
 						</select>
-						<span class="basic-style" onclick="document.getElementById('move_operate_action').click();"><?php echo $constStr['Move'][$constStr['language']]; ?></span>
+						<span class="form-field-first basic-style" onclick="document.getElementById('move_operate_action').click();"><?php echo $constStr['Move'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="move_operate_action" value="<?php echo $constStr['Move'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				</form>
@@ -1755,7 +1748,7 @@ textarea{
                     <input id="create_hidden" type="hidden" value="">
 					<div class="disLog_btn_submit" tabindex="1" id="create_input" onclick="document.getElementById('create_operate_action').click();" ><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
 					<input name="operate_action" type="submit" id="create_operate_action" value="<?php echo $constStr['Create'][$constStr['language']]; ?>" style="display:none">
-					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)">取消</div>
+					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)"><?php echo $constStr['Cancel'][$constStr['language']]; ?></div>
 				</form>
 			</div>
         </div>
@@ -1763,13 +1756,13 @@ textarea{
     } else {
         if (getenv('admin')!='') if (getenv('adminloginpage')=='') { ?>
 	<div id="login_div" class="disLogBg" >
-		<div class="disLogBody" style="height: 120px;">
+		<div class="disLogBody" >
 			<img class="disLog_btn_close" onclick="closeDisLog(this)" alt="">
 			<div class="titleText" ><?php echo $constStr['AdminLogin'][$constStr['language']]; ?>！</div>
 			<form action="<?php echo $_GET['preview']?'?preview&':'?';?>admin" method="post" id="loginForm">
 				<div class="form-group" style="padding-top: 5%;">
-					<input class="form-field basic-style" id="login_input" name="password1" type="password" onchange="document.getElementById('loginForm').submit();" placeholder="<?php echo $constStr['InputPassword'][$constStr['language']]; ?>" />
-					<span class="basic-style"><?php echo $constStr['Login'][$constStr['language']]; ?></span>
+					<input class="form-field form-field-first basic-style" id="login_input" name="password1" type="password" onchange="document.getElementById('loginForm').submit();" placeholder="<?php echo $constStr['InputPassword'][$constStr['language']]; ?>" />
+					<span class="form-field-last basic-style"><?php echo $constStr['Login'][$constStr['language']]; ?></span>
 				</div>
 			</form>
 		</div>
@@ -2438,9 +2431,15 @@ function binupfile(file,url,tdnum){
 		document.getElementById(id).style.display="block";
 	}
 	<!-- 弹出层打开、关闭 end -->
-
+	<!-- 按窗口宽度加载窗口位置 start -->
+	var x = document.getElementsByClassName("disLogBody");
+	for (var i = 0; i < x.length; i++) {
+		x[i].style.marginTop = document.body.clientHeight/4 + "px";
+	}
+	<!-- 按窗口宽度加载窗口位置 end -->
 </script>
 <script src="//unpkg.zhimg.com/ionicons@4.4.4/dist/ionicons.js"></script>
+<script>document.body.hidden = 'hidden';</script>
 <script type="text/javascript">
 // 粒子特效 start
 // 忽略异常
@@ -2620,15 +2619,6 @@ const MAIN_HANDLER = () => {
         ADD_TIME_AND_IP
     ]);
     document.body.removeAttribute('hidden');
-	<!-- 按窗口宽度加载窗口位置 start -->
-	var x = document.getElementsByClassName("disLogBody");
-	for (var i = 0; i < x.length; i++) {
-		x[i].style.marginTop = document.body.clientHeight/4 + "px";
-		console.log(x[i].style.marginTop +"aaaaa")
-		console.log(document.body.clientHeight)
-	}
-	
-	<!-- 按窗口宽度加载窗口位置 end -->
 };
 // 文档加载完毕执行主函数
 document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
@@ -2894,4 +2884,16 @@ document.addEventListener('DOMContentLoaded', MAIN_HANDLER);
 			if('move_input'==el.id){
 				el = el.parentNode;
 				el.className = el.className+' move_div_select';
-				el.style = 'width: 80%;'
+				el.style = 'width: 80%;';
+			}
+		} );
+	})();
+	<!-- select Css end-->
+	
+</script>
+</html>
+<?php
+    $html=ob_get_clean();
+    if ($_SERVER['Set-Cookie']!='') return output($html, $statusCode, [ 'Set-Cookie' => $_SERVER['Set-Cookie'], 'Content-Type' => 'text/html' ]);
+    return output($html,$statusCode);
+}
