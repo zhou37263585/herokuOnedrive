@@ -1273,7 +1273,7 @@ textarea{
 <body>
 <div class="header">
 <select class="cs-select cs-skin-elastic" id="languageSelect" name="language" onchange="changelanguage(this.options[this.options.selectedIndex].value)">
-			<option value="" disabled selected>Select a Country</option>
+			<option value="" disabled selected><?php echo $constStr['LanguageSetting'][$constStr['language']]; ?></option>
 <?php
 	foreach ($constStr['languages'] as $key1 => $value1) { ?>
 		<option value="<?php echo $key1; ?>"><?php echo $value1; ?></option>
