@@ -35,6 +35,10 @@ $constStr = [
         'en-us' => 'English',
         'zh-cn' => '中文',
     ],
+    'LanguageSetting' => [
+        'en-us' => 'Language Setting',
+        'zh-cn' => '语言设置',
+    ],
     'Week' => [
         0 => [
             'en-us' => 'Sunday',
