@@ -1654,7 +1654,7 @@ textarea{
 						 <span id="delete_label"></span><?php echo $constStr['Delete'][$constStr['language']]; ?>?
 					</div>
 					<div class="contentTest">
-						（删除后不可恢复）
+						<?php echo $constStr['DeleteMsg'][$constStr['language']]; ?>
 					</div>
 					<input id="delete_sid" name="delete_sid" type="hidden" value="">
 					<input id="delete_hidden" name="delete_name" type="hidden" value="">
@@ -1662,7 +1662,7 @@ textarea{
 				<form id="delete_form" onsubmit="return submit_operate('delete');">
 					<div class="disLog_btn_submit" tabindex="1" id="delete_input" onclick="document.getElementById('delete_operate_action').click();" ><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
 					<input name="operate_action" type="submit" id="delete_operate_action" value="<?php echo $constStr['Submit'][$constStr['language']]; ?>" style="display:none">
-					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)">取消</div>
+					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)"><?php echo $constStr['Cancel'][$constStr['language']]; ?></div>
 				</form>
 			</div>
 		</div>
@@ -1677,7 +1677,7 @@ textarea{
 					<?php echo $constStr['SetpassfileBfEncrypt'][$constStr['language']]; ?>
 				</div>
 				<div class="form-group" style="padding-top: 8%;">
-					<div class="disLog_btn_cancel" style="margin-left:50%;" id="encrypt_input" tabindex="0" onclick="closeDisLog(this)">取消</div>
+					<div class="disLog_btn_cancel" style="margin-left:50%;" id="encrypt_input" tabindex="0" onclick="closeDisLog(this)"><?php echo $constStr['Cancel'][$constStr['language']]; ?></div>
 				</div>
 				<?php } else {?>
 					<div class="form-group" style="padding-top: 5%;">
@@ -1710,7 +1710,7 @@ textarea{
 						<?php       }
 								} ?>
 						</select>
-						<span class="basic-style" onclick="document.getElementById('move_operate_action').click();"><?php echo $constStr['Move'][$constStr['language']]; ?></span>
+						<span class="form-field-first basic-style" onclick="document.getElementById('move_operate_action').click();"><?php echo $constStr['Move'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="move_operate_action" value="<?php echo $constStr['Move'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				</form>
@@ -1748,7 +1748,7 @@ textarea{
                     <input id="create_hidden" type="hidden" value="">
 					<div class="disLog_btn_submit" tabindex="1" id="create_input" onclick="document.getElementById('create_operate_action').click();" ><?php echo $constStr['Submit'][$constStr['language']]; ?></div>
 					<input name="operate_action" type="submit" id="create_operate_action" value="<?php echo $constStr['Create'][$constStr['language']]; ?>" style="display:none">
-					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)">取消</div>
+					<div class="disLog_btn_cancel" tabindex="0" onclick="closeDisLog(this)"><?php echo $constStr['Cancel'][$constStr['language']]; ?></div>
 				</form>
 			</div>
         </div>
