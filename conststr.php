@@ -255,6 +255,10 @@ $constStr = [
         'en-us' => 'Submit',
         'zh-cn' => '确认',
     ],
+    'Cancel' => [
+        'en-us' => 'Cancel',
+        'zh-cn' => '取消',
+    ],       
     'Close' => [
         'en-us' => 'Close',
         'zh-cn' => '关闭',
@@ -262,6 +266,10 @@ $constStr = [
     'InputPasswordUWant' => [
         'en-us' => 'Input Password you Want',
         'zh-cn' => '输入想要设置的密码',
+    ],
+    'DeleteMsg' => [
+        'en-us' => 'Cannot be recovered after deletion!',
+        'zh-cn' => '删除后不可恢复！',
     ],
     'ParentDir' => [
         'en-us' => 'Parent Dir',
