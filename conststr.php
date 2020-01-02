@@ -2,11 +2,9 @@
 /*
 必填环境变量：  
 APIKey         ：heroku 的 API Key。  
-
 安装时程序自动填写：  
 Onedrive_ver   ：Onedrive版本  
 refresh_token  ：把refresh_token放在环境变量，方便更新版本。  
-
 有选择地添加以下某些环境变量来做设置：  
 sitename       ：网站的名称，不添加会显示为‘请在环境变量添加sitename’。  
 admin          ：管理密码，不添加时不显示登录页面且无法登录。  
@@ -19,17 +17,14 @@ imgup_path     ：设置图床路径，不设置这个值时该目录内容会�
 passfile       ：自定义密码文件的名字，可以是'pppppp'，也可以是'aaaa.txt'等等；  
         　       密码是这个文件的内容，可以空格、可以中文；列目录时不会显示，只有知道密码才能查看或下载此文件。  
 */
-
 global $exts;
 global $constStr;
-
 $exts['img'] = ['ico', 'bmp', 'gif', 'jpg', 'jpeg', 'jpe', 'jfif', 'tif', 'tiff', 'png', 'heic', 'webp'];
 $exts['music'] = ['mp3', 'wma', 'flac', 'wav', 'ogg'];
 $exts['office'] = ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'];
 $exts['txt'] = ['txt', 'bat', 'sh', 'php', 'asp', 'js', 'json', 'html', 'c'];
 $exts['video'] = ['mp4', 'webm', 'mkv', 'mov', 'flv', 'blv', 'avi', 'wmv'];
 $exts['zip'] = ['zip', 'rar', '7z', 'gz', 'tar'];
-
 $constStr = [
     'languages' => [
         'en-us' => 'English',
@@ -131,6 +126,10 @@ $constStr = [
         'en-us' => 'Input Password',
         'zh-cn' => '输入密码',
     ],
+    'Input' => [
+        'en-us' => 'Please Input!',
+        'zh-cn' => '请输入!',
+    ],
     'Login' => [
         'en-us' => 'Login',
         'zh-cn' => '登录',
@@ -154,6 +153,10 @@ $constStr = [
     'Setup' => [
         'en-us' => 'Setup',
         'zh-cn' => '设置',
+    ],
+    'Back' => [
+        'en-us' => 'Back',
+        'zh-cn' => '返回',
     ],
     'NotNeedUpdate' => [
         'en-us' => 'Not Need Update',
@@ -247,6 +250,10 @@ $constStr = [
         'en-us' => 'Submit',
         'zh-cn' => '确认',
     ],
+    'Cancel' => [
+        'en-us' => 'Cancel',
+        'zh-cn' => '取消',
+    ],       
     'Close' => [
         'en-us' => 'Close',
         'zh-cn' => '关闭',
@@ -254,6 +261,10 @@ $constStr = [
     'InputPasswordUWant' => [
         'en-us' => 'Input Password you Want',
         'zh-cn' => '输入想要设置的密码',
+    ],
+    'DeleteMsg' => [
+        'en-us' => 'Cannot be recovered after deletion!',
+        'zh-cn' => '删除后不可恢复！',
     ],
     'ParentDir' => [
         'en-us' => 'Parent Dir',
@@ -285,7 +296,7 @@ $constStr = [
     ],
     'UpFileTooLarge' => [
         'en-us' => 'The File is too Large!',
-        'zh-cn' => '大于15G，终止上传。',
+        'zh-cn' => '文件过大，终止上传。',
     ],
     'UploadStart' => [
         'en-us' => 'Upload Start',
@@ -376,5 +387,4 @@ $constStr = [
         'zh-cn' => '选择语言',
     ],
 ];
-
 ?>
