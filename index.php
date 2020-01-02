@@ -776,7 +776,7 @@ function render_list($path, $files)
 .disLogBody{
 	background: white;
 	width: 250px;
-	height: 150px;
+	height: 120px;
 	margin: auto;
 	border-radius: 5px;
 	position:relative;
@@ -1639,7 +1639,7 @@ textarea{
     if ($_SERVER['admin']) {
         if (!$_GET['preview']) { ?>
 		<div id="rename_div" class="disLogBg" style="display:none">
-			<div class="disLogBody" style="height: 120px;">
+			<div class="disLogBody">
 				<img class="disLog_btn_close" onclick="closeDisLog(this)" alt="">
 				<div class="titleText" id="rename_label"></div>
 				<form id="rename_form" onsubmit="return submit_operate('rename');">
@@ -1647,7 +1647,7 @@ textarea{
 					<input id="rename_hidden" name="rename_oldname" type="hidden" value="">
 					<div class="form-group" style="padding-top: 5%;">
 						<input class="form-field basic-style" id="rename_input" name="rename_newname" type="text" placeholder="<?php echo $constStr['Input'][$constStr['language']]; ?>" />
-						<span class="basic-style" onclick="document.getElementById('rename_operate_action').click();"><?php echo $constStr['Rename'][$constStr['language']]; ?></span>
+						<span class="form-field basic-style" onclick="document.getElementById('rename_operate_action').click();"><?php echo $constStr['Rename'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="rename_operate_action" value="<?php echo $constStr['Rename'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				</form>
@@ -1675,7 +1675,7 @@ textarea{
 		</div>
 
 		<div id="encrypt_div" class="disLogBg" style="display:none">
-			<div class="disLogBody" style="height:132px;">
+			<div class="disLogBody">
 				<img class="disLog_btn_close" onclick="closeDisLog(this)" alt="">
 				<div class="titleText" id="encrypt_label"></div>
 				<form id="encrypt_form" onsubmit="return submit_operate('encrypt');">
@@ -1689,7 +1689,7 @@ textarea{
 				<?php } else {?>
 					<div class="form-group" style="padding-top: 5%;">
 						<input class="form-field basic-style" id="encrypt_input" name="encrypt_newpass" type="text" placeholder="<?php echo $constStr['InputPasswordUWant'][$constStr['language']]; ?>" />
-						<span class="basic-style" onclick="document.getElementById('encrypt_operate_action').click();"><?php echo $constStr['encrypt'][$constStr['language']]; ?></span>
+						<span class="form-field basic-style" onclick="document.getElementById('encrypt_operate_action').click();"><?php echo $constStr['encrypt'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="encrypt_operate_action" value="<?php echo $constStr['encrypt'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				<?php } ?>
@@ -1700,14 +1700,14 @@ textarea{
 		</div>
 		
 		<div id="move_div" class="disLogBg" style="display:none">
-			<div class="disLogBody" style="height: 120px;">
+			<div class="disLogBody" >
 				<img class="disLog_btn_close" onclick="closeDisLog(this)" alt="">
 				<div class="titleText" id="move_label"></div>
 				<form id="move_form" onsubmit="return submit_operate('move');">
 					<input id="move_sid" name="move_sid" type="hidden" value="">
 					<input id="move_hidden" name="move_name" type="hidden" value="">
 					<div class="form-group" style="padding-top: 5%;">
-						<select class="cs-select cs-skin-elastic" id="move_input" name="move_folder" style="width: 120px;">
+						<select class="form-field cs-select cs-skin-elastic" id="move_input" name="move_folder" style="width: 120px;">
 						<?php   if ($path != '/') { ?>
 											<option value="/../"><?php echo $constStr['ParentDir'][$constStr['language']]; ?></option>
 						<?php   }
@@ -1717,7 +1717,7 @@ textarea{
 						<?php       }
 								} ?>
 						</select>
-						<span class="basic-style" onclick="document.getElementById('move_operate_action').click();"><?php echo $constStr['Move'][$constStr['language']]; ?></span>
+						<span class="form-field basic-style" onclick="document.getElementById('move_operate_action').click();"><?php echo $constStr['Move'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="move_operate_action" value="<?php echo $constStr['Move'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				</form>
@@ -1744,10 +1744,10 @@ textarea{
 								</li>
 							</ul>
 							<div class="form-group" style="padding-top: 5%;" >
-								<input class="form-field basic-style" id="create_input" name="create_name" type="text" placeholder="<?php echo $constStr['Name'][$constStr['language']]; ?>" style="border-radius: 6px;"/>
+								<input class="basic-style" id="create_input" name="create_name" type="text" placeholder="<?php echo $constStr['Name'][$constStr['language']]; ?>" style="border-radius: 6px;"/>
 							</div>
 							<div class="form-group" style="padding-top: 5%;" id="create_text_div">
-								<textarea class="form-field basic-style" id="create_text" name="create_text" rows="3" placeholder="<?php echo $constStr['Content'][$constStr['language']]; ?>" style="white-space: pre-wrap;"></textarea>
+								<textarea class="basic-style" id="create_text" name="create_text" rows="3" placeholder="<?php echo $constStr['Content'][$constStr['language']]; ?>" style="white-space: pre-wrap;"></textarea>
 							</div>
 						</div>	
 					</div>
@@ -1763,7 +1763,7 @@ textarea{
     } else {
         if (getenv('admin')!='') if (getenv('adminloginpage')=='') { ?>
 	<div id="login_div" class="disLogBg" >
-		<div class="disLogBody" style="height: 120px;">
+		<div class="disLogBody">
 			<img class="disLog_btn_close" onclick="closeDisLog(this)" alt="">
 			<div class="titleText" ><?php echo $constStr['AdminLogin'][$constStr['language']]; ?>！</div>
 			<form action="<?php echo $_GET['preview']?'?preview&':'?';?>admin" method="post" id="loginForm">
@@ -2498,7 +2498,6 @@ const ADD_IMGAGE_BACKGROUND = () => {
     DIV.style.position = 'fixed';
     DIV.style.left = '0';
     DIV.style.top = '0';
-    DIV.style.width = '100%';
     DIV.style.height = '100%';
     DIV.style.filter = 'blur(2px)';
     DIV.style.msFilter = 'blur(2px)';
