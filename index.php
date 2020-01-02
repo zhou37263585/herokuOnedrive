@@ -1642,9 +1642,9 @@ textarea{
 			</div>
 		</div>
 		<div id="delete_div" class="disLogBg" style="display: none;">
-			<div class="disLogBody">
+			<div class="disLogBody" style="height: 130px;">
 				<img class="disLog_btn_close" onclick="closeDisLog(this)" alt="">
-				<div class="disLogContent">
+				<div class="disLogContent" >
 					<div class="titleText">
 						 <span id="delete_label"></span><?php echo $constStr['Delete'][$constStr['language']]; ?>?
 					</div>
