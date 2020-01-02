@@ -1643,7 +1643,7 @@ textarea{
 					<input id="rename_hidden" name="rename_oldname" type="hidden" value="">
 					<div class="form-group" style="padding-top: 5%;">
 						<input class="form-field basic-style" id="rename_input" name="rename_newname" type="text" placeholder="<?php echo $constStr['Input'][$constStr['language']]; ?>" />
-						<span class="basic-style" onclick="document.getElementById('rename_operate_action').click();"><?php echo $constStr['Rename'][$constStr['language']]; ?></span>
+						<span class="form-field basic-style" onclick="document.getElementById('rename_operate_action').click();"><?php echo $constStr['Rename'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="rename_operate_action" value="<?php echo $constStr['Rename'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				</form>
@@ -1685,7 +1685,7 @@ textarea{
 				<?php } else {?>
 					<div class="form-group" style="padding-top: 5%;">
 						<input class="form-field basic-style" id="encrypt_input" name="encrypt_newpass" type="text" placeholder="<?php echo $constStr['InputPasswordUWant'][$constStr['language']]; ?>" />
-						<span class="basic-style" onclick="document.getElementById('encrypt_operate_action').click();"><?php echo $constStr['encrypt'][$constStr['language']]; ?></span>
+						<span class="form-field basic-style" onclick="document.getElementById('encrypt_operate_action').click();"><?php echo $constStr['encrypt'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="encrypt_operate_action" value="<?php echo $constStr['encrypt'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				<?php } ?>
