@@ -844,10 +844,10 @@ function render_list($path, $files)
   width: 80%;
   margin: auto;
 }
+.form-group > span,
 .form-group .form-field {
   white-space: nowrap;
   display: block;
-  border-radius: 6px;
 }
 
 .form-group .form-field-first {
@@ -1270,6 +1270,7 @@ textarea{
 	resize:none;
 	width: 100%;
     overflow-x:hidden;
+	border-radius: 6px;
 }
     </style>
 </head>
@@ -1639,7 +1640,7 @@ textarea{
 					<input id="rename_hidden" name="rename_oldname" type="hidden" value="">
 					<div class="form-group" style="padding-top: 5%;">
 						<input class="form-field form-field-first basic-style" id="rename_input" name="rename_newname" type="text" placeholder="<?php echo $constStr['Input'][$constStr['language']]; ?>" />
-						<span class="form-field form-field-last basic-style" onclick="document.getElementById('rename_operate_action').click();"><?php echo $constStr['Rename'][$constStr['language']]; ?></span>
+						<span class="form-field-last basic-style" onclick="document.getElementById('rename_operate_action').click();"><?php echo $constStr['Rename'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="rename_operate_action" value="<?php echo $constStr['Rename'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				</form>
@@ -1680,8 +1681,8 @@ textarea{
 				</div>
 				<?php } else {?>
 					<div class="form-group" style="padding-top: 5%;">
-						<input class="form-field form-field-frist basic-style" id="encrypt_input" name="encrypt_newpass" type="text" placeholder="<?php echo $constStr['InputPasswordUWant'][$constStr['language']]; ?>" />
-						<span class="form-field form-field-last basic-style" onclick="document.getElementById('encrypt_operate_action').click();"><?php echo $constStr['encrypt'][$constStr['language']]; ?></span>
+						<input class="form-field form-field-first basic-style" id="encrypt_input" name="encrypt_newpass" type="text" placeholder="<?php echo $constStr['InputPasswordUWant'][$constStr['language']]; ?>" />
+						<span class="form-field-last basic-style" onclick="document.getElementById('encrypt_operate_action').click();"><?php echo $constStr['encrypt'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="encrypt_operate_action" value="<?php echo $constStr['encrypt'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				<?php } ?>
@@ -1709,7 +1710,7 @@ textarea{
 						<?php       }
 								} ?>
 						</select>
-						<span class="form-field-first basic-style" onclick="document.getElementById('move_operate_action').click();"><?php echo $constStr['Move'][$constStr['language']]; ?></span>
+						<span class="basic-style" onclick="document.getElementById('move_operate_action').click();"><?php echo $constStr['Move'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="move_operate_action" value="<?php echo $constStr['Move'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				</form>
@@ -1761,7 +1762,7 @@ textarea{
 			<form action="<?php echo $_GET['preview']?'?preview&':'?';?>admin" method="post" id="loginForm">
 				<div class="form-group" style="padding-top: 5%;">
 					<input class="form-field form-field-first basic-style" id="login_input" name="password1" type="password" onchange="document.getElementById('loginForm').submit();" placeholder="<?php echo $constStr['InputPassword'][$constStr['language']]; ?>" />
-					<span class="form-field form-field-last basic-style"><?php echo $constStr['Login'][$constStr['language']]; ?></span>
+					<span class="form-field-last basic-style"><?php echo $constStr['Login'][$constStr['language']]; ?></span>
 				</div>
 			</form>
 		</div>
