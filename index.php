@@ -1647,7 +1647,7 @@ textarea{
 					<input id="rename_hidden" name="rename_oldname" type="hidden" value="">
 					<div class="form-group" style="padding-top: 5%;">
 						<input class="form-field basic-style" id="rename_input" name="rename_newname" type="text" placeholder="<?php echo $constStr['Input'][$constStr['language']]; ?>" />
-						<span class="basic-style" onclick="document.getElementById('rename_operate_action').click();"><?php echo $constStr['Rename'][$constStr['language']]; ?></span>
+						<span class="form-field basic-style" onclick="document.getElementById('rename_operate_action').click();"><?php echo $constStr['Rename'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="rename_operate_action" value="<?php echo $constStr['Rename'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				</form>
@@ -1689,7 +1689,7 @@ textarea{
 				<?php } else {?>
 					<div class="form-group" style="padding-top: 5%;">
 						<input class="form-field basic-style" id="encrypt_input" name="encrypt_newpass" type="text" placeholder="<?php echo $constStr['InputPasswordUWant'][$constStr['language']]; ?>" />
-						<span class="basic-style" onclick="document.getElementById('encrypt_operate_action').click();"><?php echo $constStr['encrypt'][$constStr['language']]; ?></span>
+						<span class="form-field basic-style" onclick="document.getElementById('encrypt_operate_action').click();"><?php echo $constStr['encrypt'][$constStr['language']]; ?></span>
 						<input name="operate_action" type="submit" id="encrypt_operate_action" value="<?php echo $constStr['encrypt'][$constStr['language']]; ?>" style="display:none">
 					</div>
 				<?php } ?>
@@ -1744,10 +1744,10 @@ textarea{
 								</li>
 							</ul>
 							<div class="form-group" style="padding-top: 5%;" >
-								<input class="form-field basic-style" id="create_input" name="create_name" type="text" placeholder="<?php echo $constStr['Name'][$constStr['language']]; ?>" style="border-radius: 6px;"/>
+								<input class="basic-style" id="create_input" name="create_name" type="text" placeholder="<?php echo $constStr['Name'][$constStr['language']]; ?>" style="border-radius: 6px;"/>
 							</div>
 							<div class="form-group" style="padding-top: 5%;" id="create_text_div">
-								<textarea class="form-field basic-style" id="create_text" name="create_text" rows="3" placeholder="<?php echo $constStr['Content'][$constStr['language']]; ?>" style="white-space: pre-wrap;"></textarea>
+								<textarea class="basic-style" id="create_text" name="create_text" rows="3" placeholder="<?php echo $constStr['Content'][$constStr['language']]; ?>" style="white-space: pre-wrap;"></textarea>
 							</div>
 						</div>	
 					</div>
