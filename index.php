@@ -703,7 +703,6 @@ function render_list($path, $files)
         .list-table td,.list-table th{padding:0 10px;text-align:left}
         .list-table .size,.list-table .updated_at{text-align:right}
         .list-table .file ion-icon{font-size:15px;margin-right:5px;vertical-align: middle}
-        .mask{position:absolute;left:0px;top:0px;width:100%;background-color:#000;filter:alpha(opacity=50);opacity:0.5;z-index:2;}
 <?php if ($_SERVER['admin']) { ?>
         .operate{display:inline-table;line-height: 1.8;list-style:none;cursor:pointer;}
         .operate ul{position:absolute;display:none;background: white;border:1px #1296db solid;border-radius:5px;margin: -1px 0 0 0;padding:0 5px;color:#205D67;z-index: 2;}
@@ -849,15 +848,12 @@ function render_list($path, $files)
   white-space: nowrap;
   display: block;
 }
-
 .form-group .form-field-first {
   border-radius: 6px 0 0 6px;
 }
-
 .form-group .form-field-last {
   border-radius: 0 6px 6px 0;
 }
-
 .form-group .form-field {
   position: relative;
   flex: 1 1 auto;
@@ -1627,7 +1623,6 @@ textarea{
             </div>
         </div>
     </div>
-    <div id="mask" class="mask" style="display:none;"></div>
 <?php
     if ($_SERVER['admin']) {
         if (!$_GET['preview']) { ?>
@@ -1769,7 +1764,7 @@ textarea{
 	</div>
 <?php   }
     } ?>
-    <font color="#f7f7f9"><?php echo date("Y-m-d H:i:s")." ".$constStr['Week'][date("w")][$constStr['language']]." ".$_SERVER['REMOTE_ADDR'];?></font>
+    <font id="mask" color="#f7f7f9"><?php echo date("Y-m-d H:i:s")." ".$constStr['Week'][date("w")][$constStr['language']]." ".$_SERVER['REMOTE_ADDR'];?></font>
 </body>
 <link rel="stylesheet" href="//unpkg.zhimg.com/github-markdown-css@3.0.1/github-markdown.css">
 <script type="text/javascript" src="//unpkg.zhimg.com/marked@0.6.2/marked.min.js"></script>
@@ -2021,7 +2016,6 @@ textarea{
     if (getenv('admin')!='') { // close div. 有登录或操作，需要关闭DIV时 ?>
     function operatediv_close(operate) {
         document.getElementById(operate+'_div').style.display='none';
-        document.getElementById('mask').style.display='none';
     }
 <?php }
     if (isset($files['folder']) && ($_SERVER['is_imgup_path'] || $_SERVER['admin'] || $_SERVER['user'])) { // is folder and is admin or guest upload path. 当前是admin登录或图床目录时 ?>
@@ -2303,7 +2297,6 @@ function binupfile(file,url,tdnum){
                 }
             } else alert(xhr.status+'\n'+xhr.responseText);
             document.getElementById(str+'_div').style.display='none';
-            document.getElementById('mask').style.display='none';
         }
         return false;
     }
